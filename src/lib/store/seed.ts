@@ -688,3 +688,6 @@ export function buildSeedRequests(now = new Date()): ServiceRequest[] {
 
 /** Highest seeded reference — new requests continue the sequence. */
 export const SEED_MAX_REFERENCE = Math.max(...SEEDS.map((s) => s.ref));
+
+/** How many requests a reset restores. Quoted in the UI so it can never drift. */
+export const SEED_COUNT = SEEDS.length;

@@ -6,6 +6,7 @@ import { StartTourButton } from "@/components/demo/tour-bar";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/toast";
 import { TOUR_STEPS } from "@/lib/demo/tour";
+import { SEED_COUNT } from "@/lib/store/seed";
 import { useRequests } from "@/lib/store/use-requests";
 import { ArrowRight, LayoutDashboard, RotateCcw, Smartphone, Timer } from "lucide-react";
 import Link from "next/link";
@@ -51,7 +52,7 @@ export function DemoLauncher() {
                 push({
                   tone: "success",
                   title: "Demo data reset",
-                  description: "The inbox is back to its 15 seeded requests.",
+                  description: `The inbox is back to its ${SEED_COUNT} seeded requests.`,
                 });
               }}
             >

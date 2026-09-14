@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { useToast } from "@/components/ui/toast";
 import { BUSINESS, PRODUCT } from "@/lib/domain/business";
+import { SEED_COUNT } from "@/lib/store/seed";
 import { useRequests } from "@/lib/store/use-requests";
 import { cn } from "@/lib/utils/cn";
 import {
@@ -178,7 +179,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         open={confirmReset}
         onClose={() => setConfirmReset(false)}
         title="Reset the demo inbox?"
-        description="This restores the 15 seeded requests and removes anything you created in this browser. Nothing else is affected."
+        description={`This restores the ${SEED_COUNT} seeded requests and removes anything you created in this browser. Nothing else is affected.`}
         size="sm"
         footer={
           <>
@@ -192,7 +193,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                 push({
                   tone: "success",
                   title: "Demo data reset",
-                  description: "15 requests restored.",
+                  description: `${SEED_COUNT} requests restored.`,
                 });
               }}
             >

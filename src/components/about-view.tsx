@@ -9,6 +9,7 @@ import {
   PRODUCT,
   hasBuilderContact,
 } from "@/lib/domain/business";
+import { SEED_COUNT } from "@/lib/store/seed";
 import {
   ArrowLeft,
   Ban,
@@ -138,7 +139,7 @@ export function AboutView() {
           <p className="text-ink-700 mt-2.5 text-[14px] leading-relaxed">
             Two practical consequences while you are looking around: a request you submit on
             your phone will not appear on your laptop, and clearing your browser data resets the
-            demo to its fifteen seeded examples. Every one of those examples is fictional —
+            demo to its {SEED_COUNT} seeded examples. Every one of those examples is fictional —
             invented names, reserved <span className="font-mono text-[13px]">555</span> phone
             numbers and <span className="font-mono text-[13px]">example.com</span> addresses.
             Only the towns and ZIP codes are real, so the service area looks like the real one.

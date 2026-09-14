@@ -33,6 +33,19 @@ const nextConfig: NextConfig = {
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
   trailingSlash: isStatic,
   typedRoutes: false,
+  /*
+   * `next dev` blocks cross-origin requests to its own dev assets, which
+   * includes the HMR client. Reaching the dev server on anything other than
+   * `localhost` — 127.0.0.1, a container IP, a tunnel — otherwise leaves the
+   * page server-rendered but never hydrated, with no error in the console.
+   */
+  allowedDevOrigins: [
+    "127.0.0.1",
+    "0.0.0.0",
+    "*.local",
+    "**.ngrok-free.app",
+    "**.trycloudflare.com",
+  ],
 };
 
 export default nextConfig;

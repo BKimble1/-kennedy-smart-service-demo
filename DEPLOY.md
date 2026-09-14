@@ -75,6 +75,17 @@ NEXT_PUBLIC_BASE_PATH=/demo npm run build:static
 
 ---
 
+## A note on `npm run dev`
+
+`next dev` blocks cross-origin requests to its own dev assets. If you reach the dev
+server on anything other than `localhost` — `127.0.0.1`, a container IP, an ngrok or
+Cloudflare tunnel — the page server-renders but never hydrates, and nothing appears in
+the console. `allowedDevOrigins` in `next.config.ts` already covers the common cases;
+add your host there if you hit it.
+
+Also: `npm run build:static` deliberately deletes `.next` when it finishes, so run
+`npm run build` again before `npm start`.
+
 ## Before you send the link
 
 1. Fill in your contact details in `src/lib/domain/business.ts` (`BUILDER`). Leave them

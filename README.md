@@ -141,7 +141,7 @@ wired up — it needs Pages switched on for the repository once.
 
 ## Demo data
 
-Fifteen seeded requests across Marion, Gas City, Jonesboro, Upland, Fairmount, Sweetser,
+Sixteen seeded requests across Marion, Gas City, Jonesboro, Upland, Fairmount, Sweetser,
 Van Buren and Converse. Every customer name, phone number, email address and street number
 is invented; phone numbers use the reserved `555` range and emails use `example.com`. The
 towns and ZIP codes are real places inside the stated service area so the map of the
