@@ -71,6 +71,13 @@ async function desktopContext(width = 1600, height = 1000) {
   await page.goto(`${BASE}/dashboard/board`, { waitUntil: "networkidle" });
   await shot(page, "07-pipeline-board", { settle: 1000 });
 
+  await page.goto(`${BASE}/dashboard/requests/KSD-4192`, { waitUntil: "networkidle" });
+  await shot(page, "25-unfinished-request", { settle: 1200 });
+
+  await page.goto(`${BASE}/about`, { waitUntil: "networkidle" });
+  await shot(page, "26-about", { settle: 700 });
+  await page.screenshot({ path: `${OUT}/26-about-full.png`, fullPage: true });
+
   await ctx.close();
 }
 

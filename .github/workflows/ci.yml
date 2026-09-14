@@ -36,11 +36,12 @@ jobs:
       - name: Unit tests
         run: npm run test
 
-      - name: Production build
-        run: npm run build
-
+      # Static first: it removes `.next` on purpose, so the server build runs last.
       - name: Static export build
         run: npm run build:static
+
+      - name: Production build
+        run: npm run build
 
   e2e:
     name: End-to-end

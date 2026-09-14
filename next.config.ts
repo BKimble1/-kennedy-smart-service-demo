@@ -17,7 +17,19 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   pageExtensions: isStatic ? ["tsx", "ts", "jsx", "js"] : ["tsx", "ts", "jsx", "js", "node.ts"],
-  ...(isStatic ? { output: "export" as const, images: { unoptimized: true } } : {}),
+  ...(isStatic
+    ? {
+        output: "export" as const,
+        images: { unoptimized: true },
+        /*
+         * With `output: "export"` the build directory *is* the exported site,
+         * so point it straight at `out/`. This also keeps the two builds apart:
+         * a static export left in `.next` gets served by `next start` with the
+         * wrong routing, which is a confusing failure to debug.
+         */
+        distDir: "out",
+      }
+    : {}),
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
   trailingSlash: isStatic,
   typedRoutes: false,

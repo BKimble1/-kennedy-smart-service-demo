@@ -28,7 +28,7 @@ const IS: string[] = [
 ];
 
 const IS_NOT: string[] = [
-  "An official Kennedy's Inc. system. Kennedy's did not ask for it, has not reviewed it and has not approved it.",
+  "An official Kennedy's Inc. system. Kennedy's did not ask for it, did not review it and did not approve it.",
   "Connected to anything. It cannot reach Kennedy's phones, email, scheduling or billing. Nothing you type here is sent to the business.",
   "A diagnostic tool. It records what a customer can see and hands it to a technician. It never says what is wrong with equipment.",
   "Finished software. It is a concept built to show a workflow, not a product with accounts, backups or support behind it.",

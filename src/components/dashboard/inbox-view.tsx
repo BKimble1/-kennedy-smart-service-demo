@@ -97,7 +97,7 @@ export function InboxView() {
         )}
 
         <div className="border-ink-200 flex flex-col gap-3 rounded-xl border bg-white p-3 lg:flex-row lg:items-center">
-          <div className="relative min-w-0 flex-1">
+          <div className="relative min-w-[220px] flex-1">
             <Search
               className="text-ink-400 pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
               aria-hidden
@@ -120,27 +120,32 @@ export function InboxView() {
             ) : null}
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 lg:shrink-0">
+          <div className="flex shrink-0 flex-wrap items-center gap-2">
             <Segmented
               ariaLabel="Filter by trade"
               size="sm"
               options={TRADES}
               value={trade}
               onChange={setTrade}
-              className="hidden xl:inline-flex"
+              className="hidden shrink-0 xl:inline-flex"
             />
-            <Select
-              value={trade}
-              onChange={(e) => setTrade(e.target.value as TradeFilter)}
-              aria-label="Filter by trade"
-              className="h-9 w-auto py-0 text-[13px] xl:hidden"
-            >
-              {TRADES.map((t) => (
-                <option key={t.value} value={t.value}>
-                  {t.label}
-                </option>
-              ))}
-            </Select>
+            {/* `Select` renders its own wrapper, so the breakpoint has to live
+                on a container — putting `xl:hidden` on the control itself
+                leaves the wrapper (and its chevron) on screen. */}
+            <div className="xl:hidden">
+              <Select
+                value={trade}
+                onChange={(e) => setTrade(e.target.value as TradeFilter)}
+                aria-label="Filter by trade"
+                className="h-9 w-auto py-0 text-[13px]"
+              >
+                {TRADES.map((t) => (
+                  <option key={t.value} value={t.value}>
+                    {t.label}
+                  </option>
+                ))}
+              </Select>
+            </div>
             <Select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}

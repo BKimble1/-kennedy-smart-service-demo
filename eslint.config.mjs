@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated output that must never be linted.
+    "playwright-report/**",
+    "test-results/**",
+    "blob-report/**",
+    "coverage/**",
   ]),
 ]);
 

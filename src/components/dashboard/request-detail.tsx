@@ -146,8 +146,8 @@ export function RequestDetail({ id }: { id: string }) {
             <p className="text-warn-900/90 mt-2 text-[13.5px] leading-relaxed">
               {request.customer.name.split(" ")[0]} got as far as the{" "}
               {request.abandonedAt ?? "contact"} step and left without submitting. Everything
-              below is what they had already told us — the name, the number and the symptoms are
-              real. What is missing is photos and preferred times.
+              below had already been entered — the name, the number and the symptoms are real.
+              What is missing is photos and preferred times.
             </p>
             <p className="text-warn-900/70 mt-2 text-[12.5px] leading-relaxed">
               On a plain contact form this request would not exist at all.

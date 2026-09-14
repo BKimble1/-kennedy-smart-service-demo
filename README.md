@@ -118,6 +118,12 @@ Set `NEXT_PUBLIC_BASE_PATH` when hosting under a sub-path.
 
 ---
 
+## Deploying
+
+See **[DEPLOY.md](./DEPLOY.md)**. Short version: `npm run build:static` produces a
+self-contained `out/` folder for any static host, and a GitHub Pages workflow is already
+wired up — it needs Pages switched on for the repository once.
+
 ## The pitch package
 
 `sales/` holds the material for showing this to a business:
