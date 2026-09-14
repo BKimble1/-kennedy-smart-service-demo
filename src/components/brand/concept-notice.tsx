@@ -3,6 +3,7 @@
 import { CONCEPT_NOTICE } from "@/lib/domain/business";
 import { cn } from "@/lib/utils/cn";
 import { Info, X } from "lucide-react";
+import Link from "next/link";
 import * as React from "react";
 
 /**
@@ -46,7 +47,16 @@ export function ConceptNotice({
               : "border-ink-200 bg-ink-50 text-ink-600",
           )}
         >
-          {CONCEPT_NOTICE.long}
+          {CONCEPT_NOTICE.long}{" "}
+          <Link
+            href="/about"
+            className={cn(
+              "font-medium underline underline-offset-2",
+              variant === "dark" ? "text-white/85" : "text-brand-700",
+            )}
+          >
+            More about this demo
+          </Link>
         </p>
       ) : null}
     </div>
@@ -58,7 +68,7 @@ export function ConceptRibbon() {
   const [dismissed, setDismissed] = React.useState(false);
   if (dismissed) return null;
   return (
-    <div className="no-print relative z-30 border-b border-ink-900/10 bg-ink-950 text-white">
+    <div className="no-print border-ink-900/10 bg-ink-950 relative z-30 border-b text-white">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2 sm:px-6">
         <span className="inline-flex items-center gap-1.5 rounded border border-white/15 bg-white/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.06em] uppercase">
           Concept demo
@@ -66,6 +76,12 @@ export function ConceptRibbon() {
         <p className="min-w-0 flex-1 truncate text-[11.5px] text-white/70">
           {CONCEPT_NOTICE.long}
         </p>
+        <Link
+          href="/about"
+          className="hidden shrink-0 text-[11.5px] font-medium text-white/80 underline underline-offset-2 hover:text-white sm:inline"
+        >
+          More
+        </Link>
         <button
           onClick={() => setDismissed(true)}
           aria-label="Dismiss concept notice"

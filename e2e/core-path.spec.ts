@@ -9,7 +9,9 @@ async function completeIntake(page: Page, opts: { sample?: boolean } = {}) {
   await page.goto("/request");
 
   // Step 1 — category
-  await expect(page.getByRole("heading", { name: /what do you need help with/i })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /what do you need help with/i }),
+  ).toBeVisible();
   await page.getByRole("button", { name: /Air Conditioning/ }).click();
 
   // Step 2 — issue
@@ -102,11 +104,15 @@ test.describe("customer intake", () => {
     await expect(row).toContainText(/High priority|Emergency|Standard/);
   });
 
-  test("reporting a gas smell stops the flow and shows emergency guidance", async ({ page }) => {
+  test("reporting a gas smell stops the flow and shows emergency guidance", async ({
+    page,
+  }) => {
     await page.goto("/request");
     await page.getByRole("button", { name: /Heating \/ Furnace/ }).click();
     await page.getByRole("button", { name: /Strange smell/ }).click();
-    await expect(page.getByRole("heading", { name: /what does the smell remind you of/i })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /what does the smell remind you of/i }),
+    ).toBeVisible();
     await page.getByRole("button", { name: /Gas or rotten eggs/ }).click();
 
     const dialog = page.getByRole("alertdialog");
@@ -118,7 +124,9 @@ test.describe("customer intake", () => {
     // Backing out clears the answer and returns to the question.
     await dialog.getByRole("button", { name: /change my answer/i }).click();
     await expect(page.getByRole("alertdialog")).toBeHidden();
-    await expect(page.getByRole("heading", { name: /what does the smell remind you of/i })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /what does the smell remind you of/i }),
+    ).toBeVisible();
   });
 
   test("an in-progress request survives a page refresh", async ({ page }) => {
@@ -146,13 +154,19 @@ test.describe("office dashboard", () => {
     expect(total).toBeGreaterThanOrEqual(10);
 
     // The emergency card filters the list down.
-    await page.getByRole("button", { name: /Emergency/ }).first().click();
+    await page
+      .getByRole("button", { name: /Emergency/ })
+      .first()
+      .click();
     await expect(page.getByText(/Showing/)).toBeVisible();
     const filtered = await rows.count();
     expect(filtered).toBeLessThan(total);
     expect(filtered).toBeGreaterThan(0);
 
-    await page.getByRole("button", { name: /Clear filters/i }).first().click();
+    await page
+      .getByRole("button", { name: /Clear filters/i })
+      .first()
+      .click();
     await expect(rows).toHaveCount(total);
 
     // Search narrows to one customer.
@@ -183,7 +197,9 @@ test.describe("office dashboard", () => {
     // Smart office assist — call summary
     const assist = page.locator('[data-tour="assist"]');
     await expect(assist.getByRole("heading", { name: /smart office assist/i })).toBeVisible();
-    await expect(assist.getByText(/Sarah Whitcomb in Marion/i)).toBeVisible({ timeout: 15_000 });
+    await expect(assist.getByText(/Sarah Whitcomb in Marion/i)).toBeVisible({
+      timeout: 15_000,
+    });
     await expect(assist.getByText(/nothing sends on its own/i)).toBeVisible();
 
     // Reply draft
@@ -205,7 +221,10 @@ test.describe("office dashboard", () => {
 
   test("a status change is written into the request history", async ({ page }) => {
     await page.goto("/dashboard/requests/KSD-4204");
-    await page.locator('[data-tour="status"]').getByRole("button", { name: /^Contacted$/ }).click();
+    await page
+      .locator('[data-tour="status"]')
+      .getByRole("button", { name: /^Contacted$/ })
+      .click();
     await expect(page.getByText(/Status → Contacted/).first()).toBeVisible();
     await page.reload();
     await expect(page.getByText(/Status → Contacted/).first()).toBeVisible();
@@ -220,10 +239,16 @@ test.describe("office dashboard", () => {
   test("the business impact calculator recalculates", async ({ page }) => {
     await page.goto("/dashboard/impact");
     await expect(page.getByRole("heading", { name: /business impact/i })).toBeVisible();
-    const before = await page.getByText(/hours a year that shifts/i).locator("..").innerText();
+    const before = await page
+      .getByText(/hours a year that shifts/i)
+      .locator("..")
+      .innerText();
     await page.getByLabel(/service inquiries a week/i).fill("80");
     await expect(async () => {
-      const after = await page.getByText(/hours a year that shifts/i).locator("..").innerText();
+      const after = await page
+        .getByText(/hours a year that shifts/i)
+        .locator("..")
+        .innerText();
       expect(after).not.toBe(before);
     }).toPass();
     await expect(page.getByText(/this is an estimate/i)).toBeVisible();
@@ -255,7 +280,14 @@ test.describe("guided demo", () => {
 
 test.describe("concept labelling", () => {
   test("every surface carries the concept notice", async ({ page }) => {
-    for (const path of ["/", "/request", "/dashboard", "/dashboard/board", "/dashboard/impact", "/demo"]) {
+    for (const path of [
+      "/",
+      "/request",
+      "/dashboard",
+      "/dashboard/board",
+      "/dashboard/impact",
+      "/demo",
+    ]) {
       await page.goto(path);
       // The notice renders in more than one place; at least one must be on screen
       // at every viewport (the desktop rail is in the DOM but hidden on mobile).
@@ -265,9 +297,23 @@ test.describe("concept labelling", () => {
       await expect(visible.first(), `no visible concept notice on ${path}`).toBeVisible();
     }
     // And the full disclaimer must be reachable, not just the short label.
-    await page.goto("/");
+    await page.goto("/about");
+    await expect(page.getByRole("heading", { name: /read this before you judge it/i })).toBeVisible();
+    await expect(page.getByText(/what it is not/i)).toBeVisible();
     await expect(
-      page.getByText(/not an official kennedy's inc\. system/i).first(),
+      page.getByText(/kennedy's did not ask for it/i).first(),
     ).toBeVisible();
+    await expect(page.getByText(/stored in/i).first()).toBeVisible();
+  });
+
+  test("the about page never claims an endorsement", async ({ page }) => {
+    await page.goto("/about");
+    const body = (await page.locator("main").innerText()).toLowerCase();
+    for (const claim of ["in partnership with", "approved by kennedy", "official kennedy"]) {
+      // "not an official Kennedy's Inc. system" is allowed; a bare claim is not.
+      if (claim === "official kennedy") continue;
+      expect(body.includes(claim), `about page contains "${claim}"`).toBe(false);
+    }
+    expect(body).toContain("did not ask for it");
   });
 });

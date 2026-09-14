@@ -55,7 +55,7 @@ export function Logo({
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            "font-display font-semibold tracking-[-0.02em] text-ink-950",
+            "font-display text-ink-950 font-semibold tracking-[-0.02em]",
             size === "sm" ? "text-[13px]" : size === "lg" ? "text-lg" : "text-[15px]",
           )}
         >
@@ -64,7 +64,7 @@ export function Logo({
         {showProduct ? (
           <span
             className={cn(
-              "mt-0.5 font-medium tracking-[0.08em] text-ink-500 uppercase",
+              "text-ink-500 mt-0.5 font-medium tracking-[0.08em] uppercase",
               size === "sm" ? "text-[8.5px]" : "text-[9.5px]",
             )}
           >
@@ -76,7 +76,13 @@ export function Logo({
   );
 }
 
-export function LogoDark({ className, size = "md" }: { className?: string; size?: "sm" | "md" }) {
+export function LogoDark({
+  className,
+  size = "md",
+}: {
+  className?: string;
+  size?: "sm" | "md";
+}) {
   const mark = size === "sm" ? 26 : 32;
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>

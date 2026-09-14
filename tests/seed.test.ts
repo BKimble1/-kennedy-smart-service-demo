@@ -73,14 +73,21 @@ describe("seeded inbox", () => {
   });
 
   it("includes estimate opportunities", () => {
-    expect(seeds.filter((s) => s.triage.estimateOpportunity.flagged).length).toBeGreaterThanOrEqual(
-      2,
-    );
+    expect(
+      seeds.filter((s) => s.triage.estimateOpportunity.flagged).length,
+    ).toBeGreaterThanOrEqual(2);
   });
 
   it("fills every pipeline column that the board shows", () => {
     const statuses = new Set(seeds.map((s) => s.status));
-    for (const expected of ["new", "contacted", "scheduled", "assigned", "estimate-sent", "completed"]) {
+    for (const expected of [
+      "new",
+      "contacted",
+      "scheduled",
+      "assigned",
+      "estimate-sent",
+      "completed",
+    ]) {
       expect(statuses, `no seed in "${expected}"`).toContain(expected);
     }
   });

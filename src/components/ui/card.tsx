@@ -9,7 +9,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-xl border border-ink-200 bg-white shadow-sm",
+        "border-ink-200 rounded-xl border bg-white shadow-sm",
         inset && "p-5 sm:p-6",
         className,
       )}
@@ -30,14 +30,19 @@ export function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDiv
 export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("font-display text-[15px] font-semibold text-ink-950", className)}
+      className={cn("font-display text-ink-950 text-[15px] font-semibold", className)}
       {...props}
     />
   );
 }
 
-export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn("mt-1 text-[13px] leading-relaxed text-ink-500", className)} {...props} />;
+export function CardDescription({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p className={cn("text-ink-500 mt-1 text-[13px] leading-relaxed", className)} {...props} />
+  );
 }
 
 export function CardBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -48,7 +53,7 @@ export function CardFooter({ className, ...props }: React.HTMLAttributes<HTMLDiv
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-2 border-t border-ink-150 bg-ink-50/60 px-5 py-3.5 sm:px-6",
+        "border-ink-150 bg-ink-50/60 flex flex-wrap items-center gap-2 border-t px-5 py-3.5 sm:px-6",
         className,
       )}
       {...props}

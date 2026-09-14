@@ -36,6 +36,7 @@ import {
   Moon,
   NotebookPen,
   Phone,
+  Printer,
   ShieldAlert,
   UserCheck,
   X,
@@ -94,10 +95,11 @@ export function RequestDetail({ id }: { id: string }) {
   return (
     <>
       <PageHeader
+        className="print-block"
         title={request.customer.name}
         description={`${request.reference} · submitted ${relativeTime(request.createdAt)} · ${formatDateTime(request.createdAt)}`}
         actions={
-          <>
+          <div className="no-print flex flex-wrap items-center gap-2">
             <Button asChild variant="ghost" size="sm">
               <Link href="/dashboard">
                 <ArrowLeft aria-hidden />
@@ -110,18 +112,22 @@ export function RequestDetail({ id }: { id: string }) {
                 {formatPhone(request.customer.phone)}
               </a>
             </Button>
-          </>
+            <Button variant="secondary" size="sm" onClick={() => window.print()}>
+              <Printer aria-hidden />
+              Print
+            </Button>
+          </div>
         }
       />
 
       <div className="px-4 py-5 sm:px-6 lg:px-8">
         {protocol ? (
-          <div className="animate-rise mb-5 rounded-xl border-2 border-danger-300 bg-danger-50 p-4 sm:p-5">
-            <p className="flex items-center gap-2 font-display text-[15px] font-semibold text-danger-800">
+          <div className="animate-rise border-danger-300 bg-danger-50 mb-5 rounded-xl border-2 p-4 sm:p-5">
+            <p className="font-display text-danger-800 flex items-center gap-2 text-[15px] font-semibold">
               <ShieldAlert className="size-5 shrink-0" aria-hidden />
               Safety condition reported at intake — {protocol.label.toLowerCase()}
             </p>
-            <p className="mt-2 text-[13.5px] leading-relaxed text-danger-900">
+            <p className="text-danger-900 mt-2 text-[13.5px] leading-relaxed">
               The customer was shown emergency guidance before this request was submitted:{" "}
               <span className="font-medium">{protocol.headline}</span> Confirm they are safe and
               that the appropriate emergency service has been contacted before you discuss
@@ -133,19 +139,19 @@ export function RequestDetail({ id }: { id: string }) {
         <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_380px] xl:gap-5">
           <div className="space-y-4 xl:order-1">
             {/* ---- Overview ------------------------------------------- */}
-            <section className="rounded-xl border border-ink-200 bg-white p-4 sm:p-5">
+            <section className="border-ink-200 rounded-xl border bg-white p-4 sm:p-5">
               <div className="flex flex-wrap items-center gap-1.5">
                 <PriorityBadge priority={request.triage.priority} size="md" />
                 <StatusBadge status={request.status} size="md" />
                 <TradeChip category={request.category} label={request.categoryLabel} />
                 {request.propertyType === "business" ? (
-                  <span className="inline-flex items-center gap-1 rounded-md border border-ink-200 bg-ink-50 px-1.5 py-0.5 text-[11px] font-medium text-ink-600">
+                  <span className="border-ink-200 bg-ink-50 text-ink-600 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px] font-medium">
                     <Building2 className="size-3" aria-hidden />
                     Commercial
                   </span>
                 ) : null}
                 {request.customer.returning ? (
-                  <span className="inline-flex items-center gap-1 rounded-md border border-ok-200 bg-ok-50 px-1.5 py-0.5 text-[11px] font-medium text-ok-700">
+                  <span className="border-ok-200 bg-ok-50 text-ok-700 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px] font-medium">
                     <UserCheck className="size-3" aria-hidden />
                     Returning customer
                   </span>
@@ -158,12 +164,16 @@ export function RequestDetail({ id }: { id: string }) {
                 ) : null}
               </div>
 
-              <h2 className="mt-3.5 font-display text-xl leading-tight font-semibold">
+              <h2 className="font-display mt-3.5 text-xl leading-tight font-semibold">
                 {request.issueLabel}
               </h2>
 
               <dl className="mt-4 grid gap-3 sm:grid-cols-2">
-                <Fact icon={Clock} label="Customer urgency" value={URGENCY_LABEL[request.urgency]} />
+                <Fact
+                  icon={Clock}
+                  label="Customer urgency"
+                  value={URGENCY_LABEL[request.urgency]}
+                />
                 <Fact
                   icon={Clock}
                   label="Preferred times"
@@ -185,7 +195,7 @@ export function RequestDetail({ id }: { id: string }) {
                 />
               </dl>
 
-              <div className="mt-4 flex flex-wrap gap-2 border-t border-ink-150 pt-4">
+              <div className="border-ink-150 mt-4 flex flex-wrap gap-2 border-t pt-4">
                 <Button asChild size="sm" variant="secondary">
                   <a href={phoneHref(request.customer.phone)}>
                     <Phone aria-hidden />
@@ -222,28 +232,34 @@ export function RequestDetail({ id }: { id: string }) {
             </section>
 
             {/* ---- Why it's ranked here -------------------------------- */}
-            <section className="rounded-xl border border-ink-200 bg-white p-4 sm:p-5">
+            <section className="border-ink-200 rounded-xl border bg-white p-4 sm:p-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="flex items-center gap-2 font-display text-[15px] font-semibold text-ink-950">
-                    <Gauge className="size-4 text-ink-400" aria-hidden />
+                  <h2 className="font-display text-ink-950 flex items-center gap-2 text-[15px] font-semibold">
+                    <Gauge className="text-ink-400 size-4" aria-hidden />
                     Why it&apos;s ranked here
                   </h2>
-                  <p className="mt-0.5 text-[12px] text-ink-500">
+                  <p className="text-ink-500 mt-0.5 text-[12px]">
                     Fixed rules, not a model — the same answers always produce the same ranking.
                   </p>
                 </div>
                 <div className="shrink-0 text-right">
-                  <p className="tnum font-display text-2xl leading-none font-semibold text-ink-950">
+                  <p className="tnum font-display text-ink-950 text-2xl leading-none font-semibold">
                     {request.triage.score}
                   </p>
-                  <p className="text-[10.5px] tracking-wide text-ink-400 uppercase">Score</p>
+                  <p className="text-ink-400 text-[10.5px] tracking-wide uppercase">Score</p>
                 </div>
               </div>
               <ul className="mt-3.5 space-y-2">
                 {request.triage.reasons.map((r, i) => (
-                  <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-ink-700">
-                    <span aria-hidden className="mt-[8px] size-1 shrink-0 rounded-full bg-ink-400" />
+                  <li
+                    key={i}
+                    className="text-ink-700 flex gap-2.5 text-[13.5px] leading-relaxed"
+                  >
+                    <span
+                      aria-hidden
+                      className="bg-ink-400 mt-[8px] size-1 shrink-0 rounded-full"
+                    />
                     {r}
                   </li>
                 ))}
@@ -251,25 +267,25 @@ export function RequestDetail({ id }: { id: string }) {
             </section>
 
             {/* ---- Structured answers ---------------------------------- */}
-            <section className="overflow-hidden rounded-xl border border-ink-200 bg-white">
-              <div className="border-b border-ink-150 px-4 py-3.5 sm:px-5">
-                <h2 className="font-display text-[15px] font-semibold text-ink-950">
+            <section className="border-ink-200 overflow-hidden rounded-xl border bg-white">
+              <div className="border-ink-150 border-b px-4 py-3.5 sm:px-5">
+                <h2 className="font-display text-ink-950 text-[15px] font-semibold">
                   What the customer told us
                 </h2>
-                <p className="mt-0.5 text-[12px] text-ink-500">
+                <p className="text-ink-500 mt-0.5 text-[12px]">
                   {rows.length} answers captured at intake — before anyone picked up the phone.
                 </p>
               </div>
-              <dl className="divide-y divide-ink-150">
+              <dl className="divide-ink-150 divide-y">
                 {rows.map((row) => (
                   <div
                     key={row.id}
                     className="grid gap-1 px-4 py-3 sm:grid-cols-[minmax(0,300px)_1fr] sm:gap-4 sm:px-5"
                   >
-                    <dt className="text-[13px] text-ink-500">{row.prompt}</dt>
+                    <dt className="text-ink-500 text-[13px]">{row.prompt}</dt>
                     <dd
                       className={cn(
-                        "text-[13.5px] font-medium text-ink-900",
+                        "text-ink-900 text-[13.5px] font-medium",
                         row.isFreeText && "font-normal italic",
                       )}
                     >
@@ -278,9 +294,9 @@ export function RequestDetail({ id }: { id: string }) {
                   </div>
                 ))}
                 {request.notes ? (
-                  <div className="grid gap-1 bg-ink-50/60 px-4 py-3 sm:grid-cols-[minmax(0,300px)_1fr] sm:gap-4 sm:px-5">
-                    <dt className="text-[13px] text-ink-500">Note from the customer</dt>
-                    <dd className="text-[13.5px] text-ink-900 italic">“{request.notes}”</dd>
+                  <div className="bg-ink-50/60 grid gap-1 px-4 py-3 sm:grid-cols-[minmax(0,300px)_1fr] sm:gap-4 sm:px-5">
+                    <dt className="text-ink-500 text-[13px]">Note from the customer</dt>
+                    <dd className="text-ink-900 text-[13.5px] italic">“{request.notes}”</dd>
                   </div>
                 ) : null}
               </dl>
@@ -288,9 +304,9 @@ export function RequestDetail({ id }: { id: string }) {
 
             {/* ---- Photos ---------------------------------------------- */}
             {request.photos.length ? (
-              <section className="rounded-xl border border-ink-200 bg-white p-4 sm:p-5">
-                <h2 className="flex items-center gap-2 font-display text-[15px] font-semibold text-ink-950">
-                  <Camera className="size-4 text-ink-400" aria-hidden />
+              <section className="border-ink-200 rounded-xl border bg-white p-4 sm:p-5">
+                <h2 className="font-display text-ink-950 flex items-center gap-2 text-[15px] font-semibold">
+                  <Camera className="text-ink-400 size-4" aria-hidden />
                   Photos ({request.photos.length})
                 </h2>
                 <div className="mt-3.5 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -298,7 +314,7 @@ export function RequestDetail({ id }: { id: string }) {
                     <button
                       key={p.id}
                       onClick={() => setLightbox(p.dataUrl)}
-                      className="group overflow-hidden rounded-lg border border-ink-200 bg-ink-100 text-left transition-all hover:-translate-y-px hover:shadow-md"
+                      className="group border-ink-200 bg-ink-100 overflow-hidden rounded-lg border text-left transition-all hover:-translate-y-px hover:shadow-md"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -306,10 +322,10 @@ export function RequestDetail({ id }: { id: string }) {
                         alt={PHOTO_KIND_LABEL[p.kind]}
                         className="aspect-[4/3] w-full object-cover"
                       />
-                      <span className="block px-2.5 py-2 text-[11.5px] font-medium text-ink-600">
+                      <span className="text-ink-600 block px-2.5 py-2 text-[11.5px] font-medium">
                         {PHOTO_KIND_LABEL[p.kind]}
                         {p.placeholder ? (
-                          <span className="ml-1 text-ink-400">· demo image</span>
+                          <span className="text-ink-400 ml-1">· demo image</span>
                         ) : null}
                       </span>
                     </button>
@@ -319,9 +335,9 @@ export function RequestDetail({ id }: { id: string }) {
             ) : null}
 
             {/* ---- Activity -------------------------------------------- */}
-            <section className="rounded-xl border border-ink-200 bg-white p-4 sm:p-5">
+            <section className="border-ink-200 rounded-xl border bg-white p-4 sm:p-5">
               <div className="flex items-center justify-between gap-3">
-                <h2 className="font-display text-[15px] font-semibold text-ink-950">
+                <h2 className="font-display text-ink-950 text-[15px] font-semibold">
                   Request history
                 </h2>
                 <Button variant="secondary" size="sm" onClick={() => setNoteOpen(true)}>
@@ -335,7 +351,7 @@ export function RequestDetail({ id }: { id: string }) {
                     {i < arr.length - 1 ? (
                       <span
                         aria-hidden
-                        className="absolute top-6 bottom-0 left-[11px] w-px bg-ink-200"
+                        className="bg-ink-200 absolute top-6 bottom-0 left-[11px] w-px"
                       />
                     ) : null}
                     <span
@@ -351,13 +367,13 @@ export function RequestDetail({ id }: { id: string }) {
                       )}
                     />
                     <div className="min-w-0 flex-1">
-                      <p className="text-[13.5px] font-medium text-ink-900">{entry.summary}</p>
+                      <p className="text-ink-900 text-[13.5px] font-medium">{entry.summary}</p>
                       {entry.detail ? (
-                        <p className="mt-0.5 text-[13px] leading-relaxed text-ink-600">
+                        <p className="text-ink-600 mt-0.5 text-[13px] leading-relaxed">
                           {entry.detail}
                         </p>
                       ) : null}
-                      <p className="tnum mt-1 text-[11.5px] text-ink-400">
+                      <p className="tnum text-ink-400 mt-1 text-[11.5px]">
                         {entry.actor} · {formatDateTime(entry.at)}
                       </p>
                     </div>
@@ -368,7 +384,7 @@ export function RequestDetail({ id }: { id: string }) {
           </div>
 
           {/* ---- Right column ------------------------------------------ */}
-          <div className="space-y-4 xl:order-2">
+          <div className="space-y-4 xl:order-2 print:hidden">
             <OfficeAssist
               request={request}
               onMarkContacted={() => {
@@ -386,15 +402,18 @@ export function RequestDetail({ id }: { id: string }) {
               onAssign={(tech) => {
                 update(request.id, {
                   assignedTech: tech || undefined,
-                  ...(tech && request.status === "scheduled" ? { status: "assigned" as const } : {}),
+                  ...(tech && request.status === "scheduled"
+                    ? { status: "assigned" as const }
+                    : {}),
                 });
               }}
             />
-            <div className="rounded-xl border border-ink-200 bg-white p-4 text-[12px] leading-relaxed text-ink-500 sm:p-5">
-              <p className="mb-1.5 font-semibold text-ink-700">About this record</p>
+            <div className="border-ink-200 text-ink-500 rounded-xl border bg-white p-4 text-[12px] leading-relaxed sm:p-5">
+              <p className="text-ink-700 mb-1.5 font-semibold">About this record</p>
               <p>
-                Everything above came from one web form. Nothing here was typed by staff. In this
-                concept demo the data lives only in your browser and never reaches {BUSINESS.name}.
+                Everything above came from one web form. Nothing here was typed by staff. In
+                this concept demo the data lives only in your browser and never reaches{" "}
+                {BUSINESS.name}.
               </p>
             </div>
           </div>
@@ -442,7 +461,7 @@ export function RequestDetail({ id }: { id: string }) {
 
       {lightbox ? (
         <div
-          className="animate-fade fixed inset-0 z-[70] grid place-items-center bg-ink-950/85 p-4 backdrop-blur-sm"
+          className="animate-fade bg-ink-950/85 fixed inset-0 z-[70] grid place-items-center p-4 backdrop-blur-sm"
           role="dialog"
           aria-label="Photo preview"
           onClick={() => setLightbox(null)}
@@ -477,12 +496,12 @@ function Fact({
 }) {
   return (
     <div className="flex gap-2.5">
-      <Icon className="mt-0.5 size-4 shrink-0 text-ink-400" aria-hidden />
+      <Icon className="text-ink-400 mt-0.5 size-4 shrink-0" aria-hidden />
       <div className="min-w-0">
-        <dt className="text-[10.5px] font-semibold tracking-[0.07em] text-ink-500 uppercase">
+        <dt className="text-ink-500 text-[10.5px] font-semibold tracking-[0.07em] uppercase">
           {label}
         </dt>
-        <dd className="mt-0.5 text-[13.5px] leading-snug text-ink-900">{value}</dd>
+        <dd className="text-ink-900 mt-0.5 text-[13.5px] leading-snug">{value}</dd>
       </div>
     </div>
   );

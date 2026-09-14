@@ -30,8 +30,11 @@ export function StatusControl({
   const closed = request.status === "closed";
 
   return (
-    <section className="rounded-xl border border-ink-200 bg-white p-4 sm:p-5" data-tour="status">
-      <h2 className="font-display text-[15px] font-semibold text-ink-950">Status</h2>
+    <section
+      className="border-ink-200 rounded-xl border bg-white p-4 sm:p-5"
+      data-tour="status"
+    >
+      <h2 className="font-display text-ink-950 text-[15px] font-semibold">Status</h2>
 
       <ol className="mt-4 space-y-1" aria-label="Request pipeline">
         {PIPELINE.map((status, i) => {
@@ -45,7 +48,7 @@ export function StatusControl({
                 aria-current={active ? "step" : undefined}
                 className={cn(
                   "group flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left transition-colors",
-                  active ? "bg-brand-50 ring-1 ring-brand-200" : "hover:bg-ink-100",
+                  active ? "bg-brand-50 ring-brand-200 ring-1" : "hover:bg-ink-100",
                 )}
               >
                 <span
@@ -55,13 +58,9 @@ export function StatusControl({
                       ? "border-ok-500 bg-ok-500 text-white"
                       : active
                         ? "border-brand-600 bg-brand-600 text-white"
-                        : "border-ink-250 bg-white text-ink-400 group-hover:border-ink-400",
+                        : "border-ink-250 text-ink-400 group-hover:border-ink-400 bg-white",
                   )}
-                  style={
-                    !done && !active
-                      ? { borderColor: "var(--color-ink-300)" }
-                      : undefined
-                  }
+                  style={!done && !active ? { borderColor: "var(--color-ink-300)" } : undefined}
                 >
                   {done ? (
                     <Check className="size-3" strokeWidth={3.2} aria-hidden />
@@ -73,16 +72,16 @@ export function StatusControl({
                   className={cn(
                     "text-[13.5px]",
                     active
-                      ? "font-semibold text-brand-900"
+                      ? "text-brand-900 font-semibold"
                       : done
-                        ? "font-medium text-ink-700"
+                        ? "text-ink-700 font-medium"
                         : "text-ink-500",
                   )}
                 >
                   {STATUS_LABEL[status]}
                 </span>
                 {active ? (
-                  <span className="ml-auto text-[10.5px] font-semibold tracking-wide text-brand-700 uppercase">
+                  <span className="text-brand-700 ml-auto text-[10.5px] font-semibold tracking-wide uppercase">
                     Current
                   </span>
                 ) : null}
@@ -92,13 +91,13 @@ export function StatusControl({
         })}
       </ol>
 
-      <div className="mt-4 space-y-3 border-t border-ink-150 pt-4">
+      <div className="border-ink-150 mt-4 space-y-3 border-t pt-4">
         <div>
           <label
             htmlFor="assign-tech"
-            className="mb-1.5 flex items-center gap-1.5 text-[12.5px] font-medium text-ink-700"
+            className="text-ink-700 mb-1.5 flex items-center gap-1.5 text-[12.5px] font-medium"
           >
-            <UserCog className="size-3.5 text-ink-400" aria-hidden />
+            <UserCog className="text-ink-400 size-3.5" aria-hidden />
             Assigned technician
           </label>
           <Select
@@ -126,8 +125,8 @@ export function StatusControl({
             Mark lost / cancelled
           </Button>
         ) : (
-          <div className="rounded-lg border border-ink-200 bg-ink-50 px-3 py-2.5 text-center">
-            <p className="text-[12.5px] font-medium text-ink-600">
+          <div className="border-ink-200 bg-ink-50 rounded-lg border px-3 py-2.5 text-center">
+            <p className="text-ink-600 text-[12.5px] font-medium">
               {STATUS_LABEL[request.status]}
             </p>
             <Button variant="link" size="xs" onClick={() => onStatus("new")} className="mt-0.5">
@@ -137,7 +136,7 @@ export function StatusControl({
         )}
       </div>
 
-      <p className="mt-3 text-[11px] leading-relaxed text-ink-400">
+      <p className="text-ink-400 mt-3 text-[11px] leading-relaxed">
         Statuses follow {STATUS_ORDER.length} stages. Click any stage to move the request there.
       </p>
     </section>

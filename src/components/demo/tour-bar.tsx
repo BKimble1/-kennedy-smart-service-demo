@@ -64,9 +64,9 @@ export function TourBar() {
 
   return (
     <div className="no-print pointer-events-none fixed inset-x-0 bottom-0 z-[75] flex justify-center p-3 sm:p-5">
-      <div className="animate-rise pointer-events-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-ink-950/97 shadow-pop backdrop-blur-md">
+      <div className="animate-rise bg-ink-950/97 shadow-pop pointer-events-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 backdrop-blur-md">
         <div className="flex items-start gap-3.5 p-4 sm:p-5">
-          <span className="tnum mt-0.5 grid size-7 shrink-0 place-items-center rounded-lg bg-brand-600 text-[12px] font-semibold text-white">
+          <span className="tnum bg-brand-600 mt-0.5 grid size-7 shrink-0 place-items-center rounded-lg text-[12px] font-semibold text-white">
             {state.index + 1}
           </span>
           <div className="min-w-0 flex-1">
@@ -75,7 +75,7 @@ export function TourBar() {
             </p>
             <p className="mt-1.5 text-[13px] leading-relaxed text-white/65">{step.body}</p>
             {step.action ? (
-              <p className="mt-2 inline-flex items-center gap-1.5 rounded-md border border-brand-400/25 bg-brand-500/12 px-2 py-1 text-[11.5px] font-medium text-brand-200">
+              <p className="border-brand-400/25 bg-brand-500/12 text-brand-200 mt-2 inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11.5px] font-medium">
                 <MousePointerClick className="size-3" aria-hidden />
                 {step.action}
               </p>
@@ -100,7 +100,7 @@ export function TourBar() {
                 className={cn(
                   "h-1.5 rounded-full transition-all duration-200",
                   i === state.index
-                    ? "w-5 bg-brand-400"
+                    ? "bg-brand-400 w-5"
                     : i < state.index
                       ? "w-1.5 bg-white/45"
                       : "w-1.5 bg-white/15 hover:bg-white/30",

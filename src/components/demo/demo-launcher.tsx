@@ -15,7 +15,7 @@ export function DemoLauncher() {
   const { push } = useToast();
 
   return (
-    <div className="texture-grid min-h-dvh bg-ink-950">
+    <div className="texture-grid bg-ink-950 min-h-dvh">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(100%_60%_at_50%_0%,oklch(0.372_0.085_249)_0%,transparent_60%)]"
@@ -30,14 +30,14 @@ export function DemoLauncher() {
             <Timer className="size-3" aria-hidden />
             About 90 seconds
           </p>
-          <h1 className="mt-5 font-display text-[34px] leading-[1.1] font-semibold text-white sm:text-[42px]">
+          <h1 className="font-display mt-5 text-[34px] leading-[1.1] font-semibold text-white sm:text-[42px]">
             Follow one service request
             <br />
             from a phone to the schedule.
           </h1>
           <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-white/65">
-            A bar at the bottom of the screen tells you what to click next, one step at a time. You
-            can skip it whenever you like — nothing in the app depends on it.
+            A bar at the bottom of the screen tells you what to click next, one step at a time.
+            You can skip it whenever you like — nothing in the app depends on it.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

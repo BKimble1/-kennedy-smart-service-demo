@@ -14,12 +14,7 @@ import {
 } from "lucide-react";
 
 export type MetricKey =
-  | "new"
-  | "needs-response"
-  | "emergency"
-  | "scheduled"
-  | "estimates"
-  | "completed";
+  "new" | "needs-response" | "emergency" | "scheduled" | "estimates" | "completed";
 
 interface Tile {
   key: MetricKey;
@@ -85,12 +80,36 @@ const TILES: Tile[] = [
 ];
 
 const TONE: Record<Tile["tone"], { icon: string; ring: string; value: string }> = {
-  brand: { icon: "border-brand-100 bg-brand-50 text-brand-700", ring: "hover:border-brand-300", value: "text-ink-950" },
-  violet: { icon: "border-violet-100 bg-violet-50 text-violet-700", ring: "hover:border-violet-200", value: "text-ink-950" },
-  danger: { icon: "border-danger-100 bg-danger-50 text-danger-600", ring: "hover:border-danger-300", value: "text-danger-700" },
-  warn: { icon: "border-warn-100 bg-warn-50 text-warn-700", ring: "hover:border-warn-200", value: "text-ink-950" },
-  ember: { icon: "border-ember-100 bg-ember-50 text-ember-700", ring: "hover:border-ember-200", value: "text-ink-950" },
-  ok: { icon: "border-ok-100 bg-ok-50 text-ok-700", ring: "hover:border-ok-200", value: "text-ink-950" },
+  brand: {
+    icon: "border-brand-100 bg-brand-50 text-brand-700",
+    ring: "hover:border-brand-300",
+    value: "text-ink-950",
+  },
+  violet: {
+    icon: "border-violet-100 bg-violet-50 text-violet-700",
+    ring: "hover:border-violet-200",
+    value: "text-ink-950",
+  },
+  danger: {
+    icon: "border-danger-100 bg-danger-50 text-danger-600",
+    ring: "hover:border-danger-300",
+    value: "text-danger-700",
+  },
+  warn: {
+    icon: "border-warn-100 bg-warn-50 text-warn-700",
+    ring: "hover:border-warn-200",
+    value: "text-ink-950",
+  },
+  ember: {
+    icon: "border-ember-100 bg-ember-50 text-ember-700",
+    ring: "hover:border-ember-200",
+    value: "text-ink-950",
+  },
+  ok: {
+    icon: "border-ok-100 bg-ok-50 text-ok-700",
+    ring: "hover:border-ok-200",
+    value: "text-ink-950",
+  },
 };
 
 export function StatCards({
@@ -117,30 +136,36 @@ export function StatCards({
             style={{ animationDelay: `${i * 35}ms` }}
             className={cn(
               "animate-rise group rounded-xl border bg-white p-3.5 text-left transition-all duration-150 hover:-translate-y-px hover:shadow-md",
-              selected ? "border-ink-900 ring-2 ring-ink-900/10" : cn("border-ink-200", tone.ring),
+              selected
+                ? "border-ink-900 ring-ink-900/10 ring-2"
+                : cn("border-ink-200", tone.ring),
             )}
           >
             <div className="flex items-start justify-between gap-2">
-              <span className={cn("grid size-7 place-items-center rounded-lg border", tone.icon)}>
+              <span
+                className={cn("grid size-7 place-items-center rounded-lg border", tone.icon)}
+              >
                 <Icon className="size-3.5" aria-hidden />
               </span>
               {t.key === "emergency" && value > 0 ? (
                 <span
-                  className="animate-pulse-ring mt-1 size-1.5 rounded-full bg-danger-500"
+                  className="animate-pulse-ring bg-danger-500 mt-1 size-1.5 rounded-full"
                   aria-hidden
                 />
               ) : null}
             </div>
             <p
               className={cn(
-                "tnum mt-2.5 font-display text-[26px] leading-none font-semibold",
+                "tnum font-display mt-2.5 text-[26px] leading-none font-semibold",
                 value === 0 ? "text-ink-300" : tone.value,
               )}
             >
               {value}
             </p>
-            <p className="mt-1.5 text-[12.5px] leading-tight font-medium text-ink-700">{t.label}</p>
-            <p className="mt-0.5 truncate text-[11px] text-ink-400">{t.sub(metrics)}</p>
+            <p className="text-ink-700 mt-1.5 text-[12.5px] leading-tight font-medium">
+              {t.label}
+            </p>
+            <p className="text-ink-400 mt-0.5 truncate text-[11px]">{t.sub(metrics)}</p>
           </button>
         );
       })}

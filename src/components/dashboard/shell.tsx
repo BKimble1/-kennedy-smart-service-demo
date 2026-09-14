@@ -37,9 +37,9 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
     exact ? pathname === href : pathname.startsWith(href);
 
   return (
-    <div className="min-h-dvh bg-ink-100">
+    <div className="bg-ink-100 min-h-dvh">
       {/* ---- Desktop rail ------------------------------------------------ */}
-      <aside className="no-print texture-grid fixed inset-y-0 left-0 z-40 hidden w-[248px] flex-col border-r border-ink-950 bg-ink-950 lg:flex">
+      <aside className="no-print texture-grid border-ink-950 bg-ink-950 fixed inset-y-0 left-0 z-40 hidden w-[248px] flex-col border-r lg:flex">
         <div className="px-5 pt-5 pb-6">
           <Link href="/" className="inline-block rounded-md">
             <LogoDark />
@@ -108,7 +108,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* ---- Mobile / tablet top bar ------------------------------------- */}
-      <header className="no-print sticky top-0 z-40 border-b border-ink-950/40 bg-ink-950 lg:hidden">
+      <header className="no-print border-ink-950/40 bg-ink-950 sticky top-0 z-40 border-b lg:hidden">
         <div className="flex items-center justify-between px-4 py-3">
           <Link href="/" className="rounded-md">
             <LogoDark size="sm" />
@@ -160,13 +160,13 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         </nav>
       </header>
 
-      <div className="flex min-h-dvh flex-col lg:pl-[248px]">
+      <div className="flex min-h-dvh flex-col lg:pl-[248px] print:pl-0">
         <main id="main" className="flex-1">
           {children}
         </main>
-        <footer className="no-print border-t border-ink-200 bg-white px-4 py-4 sm:px-6 lg:px-8">
+        <footer className="no-print border-ink-200 border-t bg-white px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-            <p className="text-[11.5px] text-ink-400">
+            <p className="text-ink-400 text-[11.5px]">
               {PRODUCT.fullName} · an independent concept build · {BUSINESS.phone}
             </p>
             <ConceptNotice />
@@ -189,7 +189,11 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               onClick={() => {
                 reset();
                 setConfirmReset(false);
-                push({ tone: "success", title: "Demo data reset", description: "15 requests restored." });
+                push({
+                  tone: "success",
+                  title: "Demo data reset",
+                  description: "15 requests restored.",
+                });
               }}
             >
               <RotateCcw aria-hidden />
@@ -216,7 +220,7 @@ export function PageHeader({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 border-b border-ink-200 bg-white px-4 py-5 sm:px-6 lg:flex-row lg:items-center lg:px-8",
+        "border-ink-200 flex flex-col gap-4 border-b bg-white px-4 py-5 sm:px-6 lg:flex-row lg:items-center lg:px-8",
         className,
       )}
     >
@@ -225,7 +229,7 @@ export function PageHeader({
           {title}
         </h1>
         {description ? (
-          <p className="mt-1 text-[13.5px] leading-relaxed text-ink-500">{description}</p>
+          <p className="text-ink-500 mt-1 text-[13.5px] leading-relaxed">{description}</p>
         ) : null}
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}

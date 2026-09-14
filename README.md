@@ -13,7 +13,7 @@ Marion, Indiana).
 
 ## What it is
 
-A replacement for the generic *Name / Email / Subject / Message* contact form, in two halves:
+A replacement for the generic _Name / Email / Subject / Message_ contact form, in two halves:
 
 **The customer side** (`/request`) — a mobile-first, eight-step intake. Pick a trade, pick
 what's happening, answer two to four follow-up questions that change based on the answer,
@@ -42,15 +42,15 @@ npm install
 npm run dev          # http://localhost:3100
 ```
 
-| Script | What it does |
-| --- | --- |
-| `npm run dev` | Development server |
+| Script                        | What it does                                                  |
+| ----------------------------- | ------------------------------------------------------------- |
+| `npm run dev`                 | Development server                                            |
 | `npm run build` / `npm start` | Production server build (supports the optional live-AI route) |
-| `npm run build:static` | Fully static export into `out/` — any static host |
-| `npm run verify` | Format check, lint, typecheck, unit tests, production build |
-| `npm run test` | Unit tests (Vitest) |
-| `npm run e2e` | End-to-end tests (Playwright, four viewports) |
-| `npm run screenshots` | Regenerate `sales/screenshots/` |
+| `npm run build:static`        | Fully static export into `out/` — any static host             |
+| `npm run verify`              | Format check, lint, typecheck, unit tests, production build   |
+| `npm run test`                | Unit tests (Vitest)                                           |
+| `npm run e2e`                 | End-to-end tests (Playwright, four viewports)                 |
+| `npm run screenshots`         | Regenerate `sales/screenshots/`                               |
 
 Requires Node 22+.
 
@@ -106,9 +106,9 @@ implementation of the same interface; nothing above that line changes.
 
 ## Two build modes
 
-| Mode | Command | Notes |
-| --- | --- | --- |
-| Server | `npm run build` | Node host (Vercel, Render, Fly, self-hosted). Live-AI route available. |
+| Mode   | Command                | Notes                                                                                                    |
+| ------ | ---------------------- | -------------------------------------------------------------------------------------------------------- |
+| Server | `npm run build`        | Node host (Vercel, Render, Fly, self-hosted). Live-AI route available.                                   |
 | Static | `npm run build:static` | Emits `out/`. No server, no API route. Deployed to GitHub Pages by `.github/workflows/deploy-pages.yml`. |
 
 `next.config.ts` drops the `node.ts` page extension in static mode, so the server-only AI
@@ -122,14 +122,14 @@ Set `NEXT_PUBLIC_BASE_PATH` when hosting under a sub-path.
 
 `sales/` holds the material for showing this to a business:
 
-| File | What it is |
-| --- | --- |
-| `DEMO-SCRIPT.md` | The live walkthrough, beat by beat |
-| `IMPLEMENTATION-PLAN.md` | What turning this into a real system takes |
-| `PRICING.md` | Three packages, the reasoning, and the negotiation floor |
-| `OUTREACH.md` | The email, the short version, and the follow-ups |
-| `ONE-PAGE-PROPOSAL.md` | The one-pager to send after interest |
-| `screenshots/` | Captured from the running app |
+| File                     | What it is                                               |
+| ------------------------ | -------------------------------------------------------- |
+| `DEMO-SCRIPT.md`         | The live walkthrough, beat by beat                       |
+| `IMPLEMENTATION-PLAN.md` | What turning this into a real system takes               |
+| `PRICING.md`             | Three packages, the reasoning, and the negotiation floor |
+| `OUTREACH.md`            | The email, the short version, and the follow-ups         |
+| `ONE-PAGE-PROPOSAL.md`   | The one-pager to send after interest                     |
+| `screenshots/`           | Captured from the running app                            |
 
 ---
 

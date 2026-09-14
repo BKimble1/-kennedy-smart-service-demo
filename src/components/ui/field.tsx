@@ -11,9 +11,9 @@ export function Label({
   ...props
 }: React.LabelHTMLAttributes<HTMLLabelElement> & { required?: boolean }) {
   return (
-    <label className={cn("block text-[13px] font-medium text-ink-800", className)} {...props}>
+    <label className={cn("text-ink-800 block text-[13px] font-medium", className)} {...props}>
       {children}
-      {required ? <span className="ml-0.5 text-danger-600">*</span> : null}
+      {required ? <span className="text-danger-600 ml-0.5">*</span> : null}
     </label>
   );
 }
@@ -31,7 +31,7 @@ export const Input = React.forwardRef<
       aria-invalid={invalid || undefined}
       className={cn(
         control,
-        invalid && "border-danger-500 ring-4 ring-danger-500/10 hover:border-danger-500",
+        invalid && "border-danger-500 ring-danger-500/10 hover:border-danger-500 ring-4",
         className,
       )}
       {...props}
@@ -50,7 +50,7 @@ export const Textarea = React.forwardRef<
       className={cn(
         control,
         "min-h-[96px] resize-y leading-relaxed",
-        invalid && "border-danger-500 ring-4 ring-danger-500/10",
+        invalid && "border-danger-500 ring-danger-500/10 ring-4",
         className,
       )}
       {...props}
@@ -74,7 +74,7 @@ export const Select = React.forwardRef<
       <svg
         aria-hidden
         viewBox="0 0 20 20"
-        className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-ink-500"
+        className="text-ink-500 pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.6"
@@ -107,10 +107,13 @@ export function Field({
       <Label htmlFor={htmlFor} required={required}>
         {label}
       </Label>
-      {hint ? <p className="text-xs leading-relaxed text-ink-500">{hint}</p> : null}
+      {hint ? <p className="text-ink-500 text-xs leading-relaxed">{hint}</p> : null}
       {children}
       {error ? (
-        <p className="flex items-center gap-1.5 text-xs font-medium text-danger-600" role="alert">
+        <p
+          className="text-danger-600 flex items-center gap-1.5 text-xs font-medium"
+          role="alert"
+        >
           <AlertCircle className="size-3.5 shrink-0" aria-hidden />
           {error}
         </p>

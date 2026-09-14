@@ -22,7 +22,11 @@ export const BUSINESS = {
   officeHours: { openHour: 8, closeHour: 17, weekdaysOnly: true },
   officeHoursLabel: "Mon–Fri, 8:00am – 5:00pm",
   serviceAreaLabel: "Marion, Gas City & the greater Grant County area",
-  credentials: ["NATE-certified technicians", "Authorized Bryant dealer", "Serving Grant County since 1975"],
+  credentials: [
+    "NATE-certified technicians",
+    "Authorized Bryant dealer",
+    "Serving Grant County since 1975",
+  ],
 } as const;
 
 /** Towns used for demo addresses — all real places inside the stated service area. */
@@ -47,6 +51,30 @@ export const CONCEPT_NOTICE = {
     "and nothing submitted here reaches the business.",
   builtBy: "Built as a working concept by an independent developer.",
 } as const;
+
+/**
+ * The person showing this demo. Filled in once, here, and used on the About
+ * page and in the footer. Left blank the UI simply omits the contact block —
+ * the demo never invents a name.
+ */
+export interface Builder {
+  name: string;
+  email: string;
+  phone: string;
+  /** One line on who you are. Shown under the name on /about. */
+  blurb: string;
+}
+
+export const BUILDER: Builder = {
+  name: "",
+  email: "",
+  phone: "",
+  blurb: "Independent software developer.",
+};
+
+export function hasBuilderContact(): boolean {
+  return Boolean(BUILDER.name || BUILDER.email || BUILDER.phone);
+}
 
 export const PRODUCT = {
   name: "Smart Service Desk",

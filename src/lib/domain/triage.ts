@@ -81,7 +81,9 @@ export function runTriage(input: TriageInput): TriageResult {
     return {
       priority: "emergency",
       score: 100,
-      reasons: ["Customer reported a safety condition during intake — safety guidance was shown."],
+      reasons: [
+        "Customer reported a safety condition during intake — safety guidance was shown.",
+      ],
       estimateOpportunity: { flagged: false },
       comfortRisk: signals.includes("no-conditioning"),
       waterRisk: signals.includes("active-water"),
@@ -92,7 +94,10 @@ export function runTriage(input: TriageInput): TriageResult {
   /* Base weight of the issue the customer picked. */
   const issue = getIssue(category, issueId);
   if (issue?.weight) {
-    scored.push({ points: issue.weight, reason: `Reported issue: ${issue.label.toLowerCase()}.` });
+    scored.push({
+      points: issue.weight,
+      reason: `Reported issue: ${issue.label.toLowerCase()}.`,
+    });
   }
 
   /* What the customer told us about urgency. */
@@ -109,7 +114,10 @@ export function runTriage(input: TriageInput): TriageResult {
     for (let i = 0; i < answer.valueIds.length; i++) {
       const option = question.options.find((o) => o.id === answer.valueIds[i]);
       if (option?.weight) {
-        scored.push({ points: option.weight, reason: `${question.prompt} — “${option.label}”.` });
+        scored.push({
+          points: option.weight,
+          reason: `${question.prompt} — “${option.label}”.`,
+        });
       }
     }
   }
@@ -119,7 +127,10 @@ export function runTriage(input: TriageInput): TriageResult {
   const waterRisk = signals.includes("active-water");
 
   if (waterRisk) {
-    scored.push({ points: 6, reason: "Water is escaping — property damage risk while it waits." });
+    scored.push({
+      points: 6,
+      reason: "Water is escaping — property damage risk while it waits.",
+    });
   }
   if (signals.includes("no-water")) {
     scored.push({ points: 10, reason: "Building has no water." });
@@ -131,7 +142,10 @@ export function runTriage(input: TriageInput): TriageResult {
     scored.push({ points: 8, reason: "Commercial property — downtime affects the business." });
   }
   if (signals.includes("repeat-repair")) {
-    scored.push({ points: 4, reason: "Recent service on the same equipment — may be a callback." });
+    scored.push({
+      points: 4,
+      reason: "Recent service on the same equipment — may be a callback.",
+    });
   }
 
   const raw = scored.reduce((sum, s) => sum + s.points, 0);
@@ -197,7 +211,11 @@ export function detectEstimateOpportunity(
     };
   }
   if (category === "install") {
-    return { flagged: true, kind: "asked", reason: "Request came in under installation / replacement." };
+    return {
+      flagged: true,
+      kind: "asked",
+      reason: "Request came in under installation / replacement.",
+    };
   }
 
   const reasons: string[] = [];

@@ -52,7 +52,9 @@ export function PipelineBoard() {
     for (const s of STATUS_ORDER) map.set(s, []);
     for (const r of requests) map.get(r.status)?.push(r);
     for (const [, list] of map) {
-      list.sort((a, b) => b.triage.score - a.triage.score || b.createdAt.localeCompare(a.createdAt));
+      list.sort(
+        (a, b) => b.triage.score - a.triage.score || b.createdAt.localeCompare(a.createdAt),
+      );
     }
     return map;
   }, [requests]);
@@ -119,10 +121,10 @@ export function PipelineBoard() {
         </DndContext>
       )}
 
-      <p className="flex items-center gap-2 px-4 pb-8 text-[12px] text-ink-500 sm:px-6 lg:px-8">
+      <p className="text-ink-500 flex items-center gap-2 px-4 pb-8 text-[12px] sm:px-6 lg:px-8">
         <Info className="size-3.5 shrink-0" aria-hidden />
-        Cards are ordered by triage score inside each stage, so the most urgent work is always at
-        the top of the column.
+        Cards are ordered by triage score inside each stage, so the most urgent work is always
+        at the top of the column.
       </p>
     </>
   );
@@ -142,15 +144,15 @@ function Column({
     <section
       ref={setNodeRef}
       className={cn(
-        "flex w-[270px] shrink-0 flex-col rounded-xl border border-t-[3px] bg-ink-150/50 transition-colors sm:w-[290px]",
+        "bg-ink-150/50 flex w-[270px] shrink-0 flex-col rounded-xl border border-t-[3px] transition-colors sm:w-[290px]",
         COLUMN_TINT[status],
         isOver ? "border-brand-400 bg-brand-50/70" : "border-ink-200",
       )}
       aria-label={`${STATUS_LABEL[status]} — ${requests.length} requests`}
     >
       <header className="flex items-center justify-between gap-2 px-3.5 py-3">
-        <h2 className="text-[12.5px] font-semibold text-ink-800">{STATUS_LABEL[status]}</h2>
-        <span className="tnum rounded-md bg-white px-1.5 py-0.5 text-[11px] font-semibold text-ink-600 ring-1 ring-ink-200">
+        <h2 className="text-ink-800 text-[12.5px] font-semibold">{STATUS_LABEL[status]}</h2>
+        <span className="tnum text-ink-600 ring-ink-200 rounded-md bg-white px-1.5 py-0.5 text-[11px] font-semibold ring-1">
           {requests.length}
         </span>
       </header>
@@ -204,14 +206,14 @@ function Card({
       className={cn(
         "group rounded-lg border bg-white p-2.5 transition-shadow",
         request.triage.priority === "emergency" ? "border-danger-200" : "border-ink-200",
-        overlay ? "rotate-2 shadow-pop" : "shadow-xs hover:shadow-md",
+        overlay ? "shadow-pop rotate-2" : "shadow-xs hover:shadow-md",
       )}
     >
       <div className="flex items-start gap-2">
         <button
           {...dragHandle}
           aria-label={`Drag ${request.customer.name}'s request`}
-          className="-ml-1 cursor-grab rounded p-0.5 text-ink-300 transition-colors hover:bg-ink-100 hover:text-ink-600 active:cursor-grabbing"
+          className="text-ink-300 hover:bg-ink-100 hover:text-ink-600 -ml-1 cursor-grab rounded p-0.5 transition-colors active:cursor-grabbing"
         >
           <GripVertical className="size-4" aria-hidden />
         </button>
@@ -219,11 +221,11 @@ function Card({
         <div className="min-w-0 flex-1">
           <Link
             href={`/dashboard/requests/${request.reference}`}
-            className="block truncate text-[13.5px] font-semibold text-ink-950 hover:underline"
+            className="text-ink-950 block truncate text-[13.5px] font-semibold hover:underline"
           >
             {request.customer.name}
           </Link>
-          <p className="truncate text-[11.5px] text-ink-500">
+          <p className="text-ink-500 truncate text-[11.5px]">
             {request.customer.city} · {relativeTime(request.createdAt)}
           </p>
         </div>
@@ -231,31 +233,31 @@ function Card({
           <button
             onClick={() => onMove(request, 1)}
             aria-label={`Move ${request.customer.name} to the next stage`}
-            className="rounded p-1 text-ink-300 opacity-0 transition-all group-hover:opacity-100 hover:bg-ink-100 hover:text-ink-700 focus-visible:opacity-100"
+            className="text-ink-300 hover:bg-ink-100 hover:text-ink-700 rounded p-1 opacity-0 transition-all group-hover:opacity-100 focus-visible:opacity-100"
           >
             <MoveRight className="size-3.5" aria-hidden />
           </button>
         ) : null}
       </div>
 
-      <p className="mt-2 line-clamp-2 text-[12.5px] leading-snug text-ink-700">{oneLine}</p>
+      <p className="text-ink-700 mt-2 line-clamp-2 text-[12.5px] leading-snug">{oneLine}</p>
 
       <div className="mt-2 flex flex-wrap items-center gap-1">
         <PriorityBadge priority={request.triage.priority} showIcon={false} />
         {request.safetyFlags.length ? (
-          <span className="inline-flex items-center gap-1 rounded-md border border-danger-300 bg-danger-100 px-1.5 py-0.5 text-[10.5px] font-semibold text-danger-800">
+          <span className="border-danger-300 bg-danger-100 text-danger-800 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10.5px] font-semibold">
             <ShieldAlert className="size-2.5" aria-hidden />
             Safety
           </span>
         ) : null}
         {request.photos.length ? (
-          <span className="tnum inline-flex items-center gap-1 rounded-md border border-ink-200 bg-ink-50 px-1.5 py-0.5 text-[10.5px] text-ink-600">
+          <span className="tnum border-ink-200 bg-ink-50 text-ink-600 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10.5px]">
             <Camera className="size-2.5" aria-hidden />
             {request.photos.length}
           </span>
         ) : null}
         {request.assignedTech ? (
-          <span className="ml-auto text-[10.5px] font-medium text-ink-500">
+          <span className="text-ink-500 ml-auto text-[10.5px] font-medium">
             {request.assignedTech}
           </span>
         ) : null}

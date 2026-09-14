@@ -91,10 +91,7 @@ export function formatAvailability(
 }
 
 /** The mid-sentence form: never capitalizes a leading `today`/`tomorrow`. */
-export function availabilityPhrase(
-  slots: AvailabilitySelection[],
-  now = new Date(),
-): string {
+export function availabilityPhrase(slots: AvailabilitySelection[], now = new Date()): string {
   return formatAvailability(slots, now, { lead: false });
 }
 

@@ -15,6 +15,7 @@ import {
   clauseFor,
   clausesFor,
   joinClauses,
+  joinSentenceClauses,
   lowerFirstOnly,
   sentence,
 } from "./narrate";
@@ -197,9 +198,14 @@ export function detailLines(request: ServiceRequest): string[] {
 }
 
 export function buildOneLine(request: ServiceRequest): string {
+  /* A safety-flagged record must say so in one line — everywhere it appears. */
+  if (request.safetyFlags.length > 0) {
+    const labels = request.safetyFlags.map((f) => SAFETY_PROTOCOLS[f].label.toLowerCase());
+    return sentence(`${joinClauses(labels)} — emergency guidance was shown at intake`);
+  }
   const clauses = clausesFor(request).slice(0, 2);
   const base = clauses.length
-    ? capitalize(joinClauses(clauses))
+    ? capitalize(joinSentenceClauses(clauses))
     : `${request.categoryLabel}: ${request.issueLabel.toLowerCase()}`;
   return sentence(base);
 }
@@ -230,7 +236,7 @@ export function buildCallSummary(request: ServiceRequest): string {
     );
     const middle = clauses.slice(1, 3);
     if (middle.length) {
-      sentences.push(`${capitalize(joinClauses(middle))}.`);
+      sentences.push(`${capitalize(joinSentenceClauses(middle))}.`);
     }
   }
 
@@ -400,12 +406,14 @@ export function buildTechNotes(request: ServiceRequest): TechNotes {
   const safetyConcerns =
     request.safetyFlags.length > 0
       ? request.safetyFlags.map(
-          (f) => `${SAFETY_PROTOCOLS[f].label} — emergency guidance shown to customer at intake`,
+          (f) =>
+            `${SAFETY_PROTOCOLS[f].label} — emergency guidance shown to customer at intake`,
         )
       : ["None reported during intake"];
 
   if (request.signals.includes("active-water") && request.safetyFlags.length === 0) {
-    safetyConcerns[0] = "Active water present — check for damage near electrical before working";
+    safetyConcerns[0] =
+      "Active water present — check for damage near electrical before working";
   }
 
   const photoText =

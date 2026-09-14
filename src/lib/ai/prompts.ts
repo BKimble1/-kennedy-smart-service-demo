@@ -15,7 +15,9 @@ export function groundingFacts(request: ServiceRequest): string {
   lines.push(`Reference: ${request.reference}`);
   lines.push(`Submitted: ${new Date(request.createdAt).toLocaleString("en-US")}`);
   lines.push(`Channel: submitted through the website intake form`);
-  lines.push(`Property type: ${request.propertyType === "business" ? "commercial" : "residential"}`);
+  lines.push(
+    `Property type: ${request.propertyType === "business" ? "commercial" : "residential"}`,
+  );
   lines.push(`Service category: ${request.categoryLabel}`);
   lines.push(`Reported issue: ${request.issueLabel}`);
   lines.push(`Urgency selected by customer: ${URGENCY_LABEL[request.urgency]}`);
@@ -30,9 +32,7 @@ export function groundingFacts(request: ServiceRequest): string {
   lines.push("");
   lines.push(
     `Photos attached: ${
-      request.photos.length === 0
-        ? "none"
-        : request.photos.map((p) => p.kind).join(", ")
+      request.photos.length === 0 ? "none" : request.photos.map((p) => p.kind).join(", ")
     } (you cannot see them — only say how many and what kind)`,
   );
   lines.push(`Customer availability: ${formatAvailability(request.availability)}`);

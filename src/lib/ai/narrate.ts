@@ -76,6 +76,8 @@ const CLAUSES: ClauseMap = {
     random: "the noise is intermittent",
   },
   "smell-type": {
+    gas: "the customer reports a gas or rotten-egg smell",
+    burning: "the customer reports a burning, hot-plastic or electrical smell",
     dusty: "a dusty or singed smell for the first few minutes of the season",
     musty: "a musty or damp smell",
     other: "an unfamiliar smell",
@@ -216,10 +218,10 @@ const CLAUSES: ClauseMap = {
     no: "they aren't interested in financing",
   },
   "maintenance-scope": {
-    "ac-tuneup": "air conditioning tune-up",
-    "furnace-tuneup": "furnace tune-up and safety check",
-    both: "seasonal check on the whole system",
-    "water-heater": "water heater flush or check",
+    "ac-tuneup": "an air conditioning tune-up",
+    "furnace-tuneup": "a furnace tune-up and safety check",
+    both: "a seasonal check on the whole system",
+    "water-heater": "a water heater flush or check",
     drains: "drain cleaning",
     plan: "information about a maintenance plan",
   },
@@ -262,6 +264,18 @@ export function clauseFor(answer: IntakeAnswer): string | null {
     return `it's ${parts[0]}`;
   }
   return joinClauses(parts);
+}
+
+/**
+ * Joins two independent clauses. When either already contains "and"/"or",
+ * another "and" produces the run-on sentences that make generated text read
+ * like generated text — so those get a semicolon instead.
+ */
+export function joinSentenceClauses(parts: string[]): string {
+  const kept = parts.filter(Boolean);
+  if (kept.length <= 1) return kept[0] ?? "";
+  const hasConjunction = kept.some((p) => /\s(and|or)\s/.test(p));
+  return hasConjunction ? kept.join("; ") : kept.join(" and ");
 }
 
 export function joinClauses(parts: string[]): string {

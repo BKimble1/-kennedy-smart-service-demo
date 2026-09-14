@@ -135,7 +135,11 @@ async function desktopContext(width = 1600, height = 1000) {
 
 /* ---- Safety interstitial ------------------------------------------------ */
 {
-  const ctx = await browser.newContext({ ...devices["iPhone 13"], browserName: "chromium", deviceScaleFactor: 3 });
+  const ctx = await browser.newContext({
+    ...devices["iPhone 13"],
+    browserName: "chromium",
+    deviceScaleFactor: 3,
+  });
   const page = await ctx.newPage();
   await page.goto(`${BASE}/request`, { waitUntil: "networkidle" });
   await page.getByRole("button", { name: /Heating \/ Furnace/ }).click();
@@ -150,7 +154,11 @@ async function desktopContext(width = 1600, height = 1000) {
 
 /* ---- Mobile dashboard --------------------------------------------------- */
 {
-  const ctx = await browser.newContext({ ...devices["iPhone 13"], browserName: "chromium", deviceScaleFactor: 3 });
+  const ctx = await browser.newContext({
+    ...devices["iPhone 13"],
+    browserName: "chromium",
+    deviceScaleFactor: 3,
+  });
   const page = await ctx.newPage();
   await page.goto(`${BASE}/dashboard`, { waitUntil: "networkidle" });
   await shot(page, "22-mobile-dashboard", { settle: 1200 });

@@ -82,7 +82,7 @@ export function IntakeWizard() {
   const protocol = shownSafety ? primaryProtocol([shownSafety]) : null;
 
   return (
-    <div className="relative flex min-h-dvh flex-col bg-ink-50">
+    <div className="bg-ink-50 relative flex min-h-dvh flex-col">
       <IntakeHeader progress={progress} onExit={() => router.push("/")} />
 
       <main id="main" className="flex-1 px-4 pt-6 pb-14 sm:px-6 sm:pt-10">
@@ -92,11 +92,11 @@ export function IntakeWizard() {
             direction={direction}
             eyebrow="Step 1 of 8"
             title="What do you need help with?"
-            subtitle="Pick the closest match. You can add detail in a moment."
+            subtitle="Pick the closest match. About a minute, no account, and you can stop at any point."
             footerNote={
               <>
                 In a hurry?{" "}
-                <a href={BUSINESS.phoneHref} className="font-medium text-brand-700 underline">
+                <a href={BUSINESS.phoneHref} className="text-brand-700 font-medium underline">
                   Call {BUSINESS.phone}
                 </a>{" "}
                 instead.
@@ -173,14 +173,18 @@ export function IntakeWizard() {
                   subtitle={question.helper}
                   onBack={() => intake.go(-1)}
                   onNext={
-                    question.type === "single" && !isSafety
-                      ? undefined
-                      : () => intake.go(1)
+                    question.type === "single" && !isSafety ? undefined : () => intake.go(1)
                   }
                   nextDisabled={
-                    question.type === "text" ? !question.optional && !answered : isSafety ? !answered : false
+                    question.type === "text"
+                      ? !question.optional && !answered
+                      : isSafety
+                        ? !answered
+                        : false
                   }
-                  nextLabel={isSafety ? "Continue" : question.optional && !answered ? "Skip" : "Continue"}
+                  nextLabel={
+                    isSafety ? "Continue" : question.optional && !answered ? "Skip" : "Continue"
+                  }
                 >
                   {question.type === "text" ? (
                     <Textarea
@@ -213,7 +217,8 @@ export function IntakeWizard() {
                                   next = selected ? [] : [option.id];
                                 } else {
                                   const withoutExclusive = current.valueIds.filter(
-                                    (id) => !question.options?.find((o) => o.id === id)?.exclusive,
+                                    (id) =>
+                                      !question.options?.find((o) => o.id === id)?.exclusive,
                                   );
                                   next = selected
                                     ? withoutExclusive.filter((id) => id !== option.id)
@@ -232,7 +237,7 @@ export function IntakeWizard() {
                     <button
                       type="button"
                       onClick={() => intake.go(1)}
-                      className="mt-4 inline-flex items-center gap-1 text-[13px] font-medium text-ink-500 underline underline-offset-4 transition-colors hover:text-ink-800"
+                      className="text-ink-500 hover:text-ink-800 mt-4 inline-flex items-center gap-1 text-[13px] font-medium underline underline-offset-4 transition-colors"
                     >
                       I don&apos;t know — skip this
                       <ChevronRight className="size-3.5" aria-hidden />
@@ -269,9 +274,9 @@ export function IntakeWizard() {
                 />
               ))}
             </div>
-            <div className="mt-4 flex items-start gap-2.5 rounded-lg border border-ink-200 bg-white px-3.5 py-3">
-              <ShieldQuestion className="mt-px size-4 shrink-0 text-ink-400" aria-hidden />
-              <p className="text-[12.5px] leading-relaxed text-ink-600">
+            <div className="border-ink-200 mt-4 flex items-start gap-2.5 rounded-lg border bg-white px-3.5 py-3">
+              <ShieldQuestion className="text-ink-400 mt-px size-4 shrink-0" aria-hidden />
+              <p className="text-ink-600 text-[12.5px] leading-relaxed">
                 If anyone is in danger right now — gas, smoke, carbon monoxide or flooding you
                 can&apos;t stop — call 911 first. This form can&apos;t help with that.
               </p>
@@ -308,7 +313,8 @@ export function IntakeWizard() {
               value={state.customer}
               onChange={(customer) => {
                 intake.update({ customer });
-                if (Object.keys(contactErrors).length) setContactErrors(validateContact(customer));
+                if (Object.keys(contactErrors).length)
+                  setContactErrors(validateContact(customer));
               }}
               propertyType={state.propertyType}
               onPropertyType={(propertyType) => intake.update({ propertyType })}
@@ -371,9 +377,9 @@ export function IntakeWizard() {
         ) : null}
       </main>
 
-      <footer className="no-print border-t border-ink-200 bg-white/70 px-4 py-4 sm:px-6">
+      <footer className="no-print border-ink-200 border-t bg-white/70 px-4 py-4 sm:px-6">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-x-4 gap-y-2">
-          <p className="text-[11.5px] text-ink-400">
+          <p className="text-ink-400 text-[11.5px]">
             {BUSINESS.name} · {BUSINESS.serviceAreaLabel}
           </p>
           <ConceptNotice />
@@ -409,11 +415,11 @@ export function IntakeWizard() {
 
 function IntakeHeader({ progress, onExit }: { progress: number; onExit: () => void }) {
   return (
-    <header className="no-print sticky top-0 z-30 border-b border-ink-200 bg-white/85 backdrop-blur-md">
+    <header className="no-print border-ink-200 sticky top-0 z-30 border-b bg-white/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-3 sm:px-6">
         <button
           onClick={onExit}
-          className="-ml-1.5 rounded-lg p-1.5 text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900 sm:hidden"
+          className="text-ink-500 hover:bg-ink-100 hover:text-ink-900 -ml-1.5 rounded-lg p-1.5 transition-colors sm:hidden"
           aria-label="Leave the request form"
         >
           <ArrowLeft className="size-4.5" aria-hidden />
@@ -423,16 +429,16 @@ function IntakeHeader({ progress, onExit }: { progress: number; onExit: () => vo
         </Link>
         <a
           href={BUSINESS.phoneHref}
-          className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-ink-200 bg-white px-2.5 py-1.5 text-[12.5px] font-medium text-ink-700 transition-colors hover:border-ink-300 hover:bg-ink-50"
+          className="border-ink-200 text-ink-700 hover:border-ink-300 hover:bg-ink-50 ml-auto inline-flex items-center gap-1.5 rounded-lg border bg-white px-2.5 py-1.5 text-[12.5px] font-medium transition-colors"
         >
           <Phone className="size-3.5" aria-hidden />
           <span className="hidden sm:inline">{BUSINESS.phone}</span>
           <span className="sm:hidden">Call</span>
         </a>
       </div>
-      <div className="h-[3px] w-full bg-ink-150">
+      <div className="bg-ink-150 h-[3px] w-full">
         <div
-          className="h-full bg-brand-600 transition-[width] duration-500 ease-out"
+          className="bg-brand-600 h-full transition-[width] duration-500 ease-out"
           style={{ width: `${progress}%` }}
           role="progressbar"
           aria-valuenow={progress}
@@ -456,30 +462,28 @@ function ReviewPanel({
 }) {
   const { draft, state } = intake;
   const preview = React.useMemo(() => (draft ? previewRequest(draft) : null), [draft]);
-  const summary = React.useMemo(
-    () => (preview ? buildSummary(preview) : null),
-    [preview],
-  );
+  const summary = React.useMemo(() => (preview ? buildSummary(preview) : null), [preview]);
   if (!preview || !summary) return null;
 
-  const edits: { label: string; target: Parameters<typeof intake.jumpTo>[0]; value: string }[] = [
-    { label: "Service", target: "category", value: preview.categoryLabel },
-    { label: "Issue", target: "issue", value: preview.issueLabel },
-    { label: "Contact", target: "contact", value: state.customer.name || "Not set" },
-    { label: "Photos", target: "photos", value: `${state.photos.length} attached` },
-    {
-      label: "Availability",
-      target: "availability",
-      value: formatAvailability(preview.availability),
-    },
-  ];
+  const edits: { label: string; target: Parameters<typeof intake.jumpTo>[0]; value: string }[] =
+    [
+      { label: "Service", target: "category", value: preview.categoryLabel },
+      { label: "Issue", target: "issue", value: preview.issueLabel },
+      { label: "Contact", target: "contact", value: state.customer.name || "Not set" },
+      { label: "Photos", target: "photos", value: `${state.photos.length} attached` },
+      {
+        label: "Availability",
+        target: "availability",
+        value: formatAvailability(preview.availability),
+      },
+    ];
 
   return (
     <div className="space-y-5">
       <RequestSummary summary={summary} />
 
-      <div className="rounded-xl border border-ink-200 bg-white p-4 sm:p-5">
-        <p className="mb-3 text-[11px] font-semibold tracking-[0.08em] text-ink-500 uppercase">
+      <div className="border-ink-200 rounded-xl border bg-white p-4 sm:p-5">
+        <p className="text-ink-500 mb-3 text-[11px] font-semibold tracking-[0.08em] uppercase">
           Need to change something?
         </p>
         <div className="flex flex-wrap gap-2">
@@ -488,11 +492,11 @@ function ReviewPanel({
               key={e.label}
               type="button"
               onClick={() => intake.jumpTo(e.target)}
-              className="group inline-flex items-center gap-1.5 rounded-lg border border-ink-200 bg-white px-2.5 py-1.5 text-[12.5px] text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-brand-900"
+              className="group border-ink-200 text-ink-700 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-900 inline-flex items-center gap-1.5 rounded-lg border bg-white px-2.5 py-1.5 text-[12.5px] transition-colors"
             >
               <span className="font-medium">{e.label}</span>
               <span className="text-ink-400 group-hover:text-brand-600">·</span>
-              <span className="max-w-[140px] truncate text-ink-500 group-hover:text-brand-700">
+              <span className="text-ink-500 group-hover:text-brand-700 max-w-[140px] truncate">
                 {e.value}
               </span>
             </button>
@@ -501,10 +505,10 @@ function ReviewPanel({
       </div>
 
       {state.photos.length > 0 ? (
-        <div className="flex items-center gap-2.5 rounded-lg border border-ink-200 bg-white px-4 py-3 text-[13px] text-ink-600">
-          <ImageIcon className="size-4 shrink-0 text-ink-400" aria-hidden />
-          {state.photos.length} photo{state.photos.length === 1 ? "" : "s"} will be attached to this
-          request.
+        <div className="border-ink-200 text-ink-600 flex items-center gap-2.5 rounded-lg border bg-white px-4 py-3 text-[13px]">
+          <ImageIcon className="text-ink-400 size-4 shrink-0" aria-hidden />
+          {state.photos.length} photo{state.photos.length === 1 ? "" : "s"} will be attached to
+          this request.
         </div>
       ) : null}
 
@@ -513,9 +517,9 @@ function ReviewPanel({
         {!submitting ? <CheckCircle2 aria-hidden /> : null}
       </Button>
 
-      <p className="text-center text-[12.5px] leading-relaxed text-ink-500">
+      <p className="text-ink-500 text-center text-[12.5px] leading-relaxed">
         The office is open {BUSINESS.officeHoursLabel}. If this can&apos;t wait, call{" "}
-        <a href={BUSINESS.phoneHref} className="font-medium text-brand-700 underline">
+        <a href={BUSINESS.phoneHref} className="text-brand-700 font-medium underline">
           {BUSINESS.phone}
         </a>
         .

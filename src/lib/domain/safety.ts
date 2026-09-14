@@ -39,7 +39,8 @@ export const SAFETY_PROTOCOLS: Record<SafetyFlagId, SafetyProtocol> = {
       { label: "Emergency services", detail: "911", href: "tel:911", primary: true },
       {
         label: "Your natural gas utility",
-        detail: "The 24-hour emergency number is printed on your gas bill and on the utility's website.",
+        detail:
+          "The 24-hour emergency number is printed on your gas bill and on the utility's website.",
       },
     ],
     closing:
@@ -57,9 +58,7 @@ export const SAFETY_PROTOCOLS: Record<SafetyFlagId, SafetyProtocol> = {
       "If anyone feels dizzy, nauseated, confused, has a headache or has passed out, tell the dispatcher — those can be symptoms of carbon monoxide exposure and need medical attention.",
       "Do not go back inside until emergency responders say it is safe.",
     ],
-    contacts: [
-      { label: "Emergency services", detail: "911", href: "tel:911", primary: true },
-    ],
+    contacts: [{ label: "Emergency services", detail: "911", href: "tel:911", primary: true }],
     closing:
       "Carbon monoxide is invisible and has no smell. Treat every alarm as real. We'll be here when the building has been cleared.",
   },
@@ -74,9 +73,7 @@ export const SAFETY_PROTOCOLS: Record<SafetyFlagId, SafetyProtocol> = {
       "Do not open a door that is hot to the touch, and do not go back for belongings.",
       "If there is no visible smoke or flame and the smell is faint, you can shut the system off at the thermostat and at the breaker — but only if you can reach both safely.",
     ],
-    contacts: [
-      { label: "Emergency services", detail: "911", href: "tel:911", primary: true },
-    ],
+    contacts: [{ label: "Emergency services", detail: "911", href: "tel:911", primary: true }],
     closing:
       "A burning smell from a heating system can be harmless dust on the first cold day, or it can be a real failure. We won't guess which from a form.",
   },
@@ -133,7 +130,14 @@ export const SAFETY_PROTOCOLS: Record<SafetyFlagId, SafetyProtocol> = {
       "If sewage has reached electrical outlets or a furnace, keep clear and call 911.",
       "Call us so this is handled as a same-day call rather than a queued request.",
     ],
-    contacts: [{ label: "Kennedy's Inc.", detail: "(765) 664-5578", href: "tel:+17656645578", primary: true }],
+    contacts: [
+      {
+        label: "Kennedy's Inc.",
+        detail: "(765) 664-5578",
+        href: "tel:+17656645578",
+        primary: true,
+      },
+    ],
     closing:
       "Finish the request if you'd like the office to have the details in writing, but a sewage backup should start with a phone call.",
   },

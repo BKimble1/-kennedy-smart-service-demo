@@ -16,9 +16,7 @@ const isStatic = process.env.STATIC_EXPORT === "1";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
-  pageExtensions: isStatic
-    ? ["tsx", "ts", "jsx", "js"]
-    : ["tsx", "ts", "jsx", "js", "node.ts"],
+  pageExtensions: isStatic ? ["tsx", "ts", "jsx", "js"] : ["tsx", "ts", "jsx", "js", "node.ts"],
   ...(isStatic ? { output: "export" as const, images: { unoptimized: true } } : {}),
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
   trailingSlash: isStatic,

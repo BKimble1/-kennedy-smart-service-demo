@@ -52,7 +52,7 @@ export function Modal({
       ref={ref}
       aria-labelledby="modal-title"
       className={cn(
-        "m-auto w-[calc(100vw-2rem)] rounded-2xl border border-ink-200 bg-white p-0 text-ink-900 shadow-pop backdrop:bg-ink-950/45 backdrop:backdrop-blur-[2px]",
+        "border-ink-200 text-ink-900 shadow-pop backdrop:bg-ink-950/45 m-auto w-[calc(100vw-2rem)] rounded-2xl border bg-white p-0 backdrop:backdrop-blur-[2px]",
         "open:animate-pop",
         size === "sm" && "max-w-sm",
         size === "md" && "max-w-lg",
@@ -74,12 +74,12 @@ export function Modal({
             {title}
           </h2>
           {description ? (
-            <p className="mt-1.5 text-[13px] leading-relaxed text-ink-600">{description}</p>
+            <p className="text-ink-600 mt-1.5 text-[13px] leading-relaxed">{description}</p>
           ) : null}
         </div>
         <button
           onClick={onClose}
-          className="-m-1.5 rounded-lg p-1.5 text-ink-400 transition-colors hover:bg-ink-100 hover:text-ink-800"
+          className="text-ink-400 hover:bg-ink-100 hover:text-ink-800 -m-1.5 rounded-lg p-1.5 transition-colors"
           aria-label="Close dialog"
         >
           <X className="size-4" aria-hidden />
@@ -87,7 +87,7 @@ export function Modal({
       </div>
       {children ? <div className="px-6 py-5">{children}</div> : <div className="h-2" />}
       {footer ? (
-        <div className="flex flex-wrap justify-end gap-2 border-t border-ink-150 bg-ink-50/70 px-6 py-4">
+        <div className="border-ink-150 bg-ink-50/70 flex flex-wrap justify-end gap-2 border-t px-6 py-4">
           {footer}
         </div>
       ) : null}

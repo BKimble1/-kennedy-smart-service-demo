@@ -22,29 +22,24 @@ export function RequestSummary({
   showHeadline?: boolean;
 }) {
   return (
-    <div
-      className={cn(
-        "overflow-hidden rounded-xl border border-ink-200 bg-white",
-        className,
-      )}
-    >
+    <div className={cn("border-ink-200 overflow-hidden rounded-xl border bg-white", className)}>
       {showHeadline ? (
-        <div className="flex items-start gap-3 border-b border-ink-150 bg-ink-50/70 px-4 py-3.5 sm:px-5">
-          <span className="mt-px grid size-6 shrink-0 place-items-center rounded-md border border-brand-200 bg-brand-50 text-brand-700">
+        <div className="border-ink-150 bg-ink-50/70 flex items-start gap-3 border-b px-4 py-3.5 sm:px-5">
+          <span className="border-brand-200 bg-brand-50 text-brand-700 mt-px grid size-6 shrink-0 place-items-center rounded-md border">
             <Sparkle className="size-3.5" aria-hidden />
           </span>
           <div className="min-w-0">
-            <p className="text-[10.5px] font-semibold tracking-[0.09em] text-ink-500 uppercase">
+            <p className="text-ink-500 text-[10.5px] font-semibold tracking-[0.09em] uppercase">
               Request summary
             </p>
-            <p className="mt-0.5 font-display text-[15px] leading-snug font-semibold text-ink-950">
+            <p className="font-display text-ink-950 mt-0.5 text-[15px] leading-snug font-semibold">
               {summary.headline}
             </p>
           </div>
         </div>
       ) : null}
 
-      <dl className={cn("divide-y divide-ink-150", dense ? "text-[13px]" : "text-[13.5px]")}>
+      <dl className={cn("divide-ink-150 divide-y", dense ? "text-[13px]" : "text-[13.5px]")}>
         {summary.sections.map((section) => (
           <div
             key={section.label}
@@ -69,9 +64,9 @@ export function RequestSummary({
               className={cn(
                 "leading-relaxed",
                 section.tone === "alert"
-                  ? "font-medium text-danger-800"
+                  ? "text-danger-800 font-medium"
                   : section.tone === "accent"
-                    ? "font-medium text-ink-900"
+                    ? "text-ink-900 font-medium"
                     : "text-ink-800",
               )}
             >
@@ -100,7 +95,11 @@ export function RequestSummary({
   );
 }
 
-export function SummaryBadgeRow({ items }: { items: { label: string; tone?: "danger" | "warn" | "brand" | "ok" }[] }) {
+export function SummaryBadgeRow({
+  items,
+}: {
+  items: { label: string; tone?: "danger" | "warn" | "brand" | "ok" }[];
+}) {
   if (items.length === 0) return null;
   return (
     <div className="flex flex-wrap gap-1.5">

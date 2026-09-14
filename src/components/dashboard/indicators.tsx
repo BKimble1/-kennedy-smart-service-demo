@@ -56,7 +56,10 @@ export const STATUS_ICON: Record<RequestStatus, LucideIcon> = {
   closed: XCircle,
 };
 
-const STATUS_TONE: Record<RequestStatus, "brand" | "violet" | "warn" | "ok" | "neutral" | "ember"> = {
+const STATUS_TONE: Record<
+  RequestStatus,
+  "brand" | "violet" | "warn" | "ok" | "neutral" | "ember"
+> = {
   new: "brand",
   contacted: "violet",
   scheduled: "warn",
@@ -66,7 +69,13 @@ const STATUS_TONE: Record<RequestStatus, "brand" | "violet" | "warn" | "ok" | "n
   closed: "neutral",
 };
 
-export function StatusBadge({ status, size = "sm" }: { status: RequestStatus; size?: "sm" | "md" }) {
+export function StatusBadge({
+  status,
+  size = "sm",
+}: {
+  status: RequestStatus;
+  size?: "sm" | "md";
+}) {
   const Icon = STATUS_ICON[status];
   return (
     <Badge tone={STATUS_TONE[status]} size={size}>

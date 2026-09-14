@@ -22,7 +22,7 @@ export function Progress({
   }[tone];
   return (
     <div
-      className={cn("h-1.5 w-full overflow-hidden rounded-full bg-ink-200", className)}
+      className={cn("bg-ink-200 h-1.5 w-full overflow-hidden rounded-full", className)}
       role="progressbar"
       aria-valuenow={Math.round(pct)}
       aria-valuemin={0}

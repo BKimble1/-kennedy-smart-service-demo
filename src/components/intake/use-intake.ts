@@ -74,7 +74,12 @@ export const INITIAL_STATE: IntakeState = {
 const DRAFT_KEY = "ksd.intake-draft.v1";
 
 /** Issue families where the safety checklist is worth asking. */
-const SAFETY_RELEVANT_CATEGORIES: ServiceCategoryId[] = ["cooling", "heating", "plumbing", "other"];
+const SAFETY_RELEVANT_CATEGORIES: ServiceCategoryId[] = [
+  "cooling",
+  "heating",
+  "plumbing",
+  "other",
+];
 
 function isSafetyRelevant(
   category: ServiceCategoryId | undefined,
@@ -242,9 +247,7 @@ export function useIntake() {
             questionId: q.id,
             prompt: q.prompt,
             valueIds: ids,
-            labels: ids.map(
-              (id) => q.options?.find((o) => o.id === id)?.label ?? id,
-            ),
+            labels: ids.map((id) => q.options?.find((o) => o.id === id)?.label ?? id),
           };
         })
         .filter((a): a is IntakeAnswer => a !== null),

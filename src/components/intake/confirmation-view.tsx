@@ -53,12 +53,12 @@ export function ConfirmationView({ id }: { id: string }) {
   if (!request || !summary) {
     return (
       <Shell>
-        <div className="animate-rise mx-auto max-w-md rounded-xl border border-ink-200 bg-white p-8 text-center">
-          <span className="mx-auto mb-4 grid size-11 place-items-center rounded-xl border border-ink-200 bg-ink-50 text-ink-400">
+        <div className="animate-rise border-ink-200 mx-auto max-w-md rounded-xl border bg-white p-8 text-center">
+          <span className="border-ink-200 bg-ink-50 text-ink-400 mx-auto mb-4 grid size-11 place-items-center rounded-xl border">
             <CircleAlert className="size-5" aria-hidden />
           </span>
           <h1 className="font-display text-xl font-semibold">We couldn&apos;t find {id}</h1>
-          <p className="mt-2 text-[14px] leading-relaxed text-ink-600">
+          <p className="text-ink-600 mt-2 text-[14px] leading-relaxed">
             Requests in this demo live in your own browser, so a link won&apos;t open on a
             different device or after clearing site data.
           </p>
@@ -103,7 +103,11 @@ export function ConfirmationView({ id }: { id: string }) {
       detail: parts.join(" ") || "No changes.",
     });
     if (extraPhotos.length) {
-      update(request.id, { photos: [...request.photos, ...extraPhotos] }, request.customer.name);
+      update(
+        request.id,
+        { photos: [...request.photos, ...extraPhotos] },
+        request.customer.name,
+      );
     }
     setSaving(false);
     setEditing(false);
@@ -115,41 +119,41 @@ export function ConfirmationView({ id }: { id: string }) {
   return (
     <Shell>
       <div className="mx-auto max-w-2xl space-y-5">
-        <div className="animate-rise rounded-2xl border border-ok-200 bg-white p-6 text-center shadow-sm sm:p-8">
-          <span className="animate-pop mx-auto mb-4 grid size-14 place-items-center rounded-full border-2 border-ok-200 bg-ok-50 text-ok-600">
+        <div className="animate-rise border-ok-200 rounded-2xl border bg-white p-6 text-center shadow-sm sm:p-8">
+          <span className="animate-pop border-ok-200 bg-ok-50 text-ok-600 mx-auto mb-4 grid size-14 place-items-center rounded-full border-2">
             <Check className="size-7" strokeWidth={2.6} aria-hidden />
           </span>
           <h1 className="font-display text-[28px] leading-tight font-semibold sm:text-[32px]">
             You&apos;re all set.
           </h1>
-          <p className="mx-auto mt-2.5 max-w-md text-[15px] leading-relaxed text-ink-600">
+          <p className="text-ink-600 mx-auto mt-2.5 max-w-md text-[15px] leading-relaxed">
             Your request is with the office. Someone will call you at{" "}
-            <span className="font-medium text-ink-900">{request.customer.phone}</span> to confirm a
-            time.
+            <span className="text-ink-900 font-medium">{request.customer.phone}</span> to
+            confirm a time.
           </p>
-          <div className="mt-5 inline-flex items-center gap-2.5 rounded-lg border border-ink-200 bg-ink-50 px-3.5 py-2">
-            <FileText className="size-4 text-ink-400" aria-hidden />
-            <span className="text-[11px] font-semibold tracking-[0.08em] text-ink-500 uppercase">
+          <div className="border-ink-200 bg-ink-50 mt-5 inline-flex items-center gap-2.5 rounded-lg border px-3.5 py-2">
+            <FileText className="text-ink-400 size-4" aria-hidden />
+            <span className="text-ink-500 text-[11px] font-semibold tracking-[0.08em] uppercase">
               Reference
             </span>
-            <span className="font-mono text-[15px] font-medium text-ink-950">
+            <span className="text-ink-950 font-mono text-[15px] font-medium">
               {request.reference}
             </span>
           </div>
-          <p className="mt-3 text-[12.5px] text-ink-500">
+          <p className="text-ink-500 mt-3 text-[12.5px]">
             Submitted {formatDateTime(request.createdAt)}
           </p>
         </div>
 
         {protocol ? (
-          <div className="animate-rise rounded-xl border border-danger-300 bg-danger-50 p-4 sm:p-5">
-            <p className="flex items-center gap-2 font-display text-[15px] font-semibold text-danger-800">
+          <div className="animate-rise border-danger-300 bg-danger-50 rounded-xl border p-4 sm:p-5">
+            <p className="font-display text-danger-800 flex items-center gap-2 text-[15px] font-semibold">
               <CircleAlert className="size-4.5 shrink-0" aria-hidden />
               Safety first — {protocol.label.toLowerCase()}
             </p>
-            <p className="mt-2 text-[13.5px] leading-relaxed text-danger-900">
-              {protocol.headline} If you have not already done so, call 911 before anything else.
-              This request does not replace emergency help.
+            <p className="text-danger-900 mt-2 text-[13.5px] leading-relaxed">
+              {protocol.headline} If you have not already done so, call 911 before anything
+              else. This request does not replace emergency help.
             </p>
             <Button asChild variant="danger" size="sm" className="mt-3.5">
               <a href="tel:911">
@@ -160,8 +164,10 @@ export function ConfirmationView({ id }: { id: string }) {
           </div>
         ) : null}
 
-        <section className="animate-rise rounded-xl border border-ink-200 bg-white p-5 sm:p-6">
-          <h2 className="font-display text-[15px] font-semibold text-ink-950">What happens next</h2>
+        <section className="animate-rise border-ink-200 rounded-xl border bg-white p-5 sm:p-6">
+          <h2 className="font-display text-ink-950 text-[15px] font-semibold">
+            What happens next
+          </h2>
           <ol className="mt-4 space-y-3.5">
             {[
               {
@@ -181,12 +187,12 @@ export function ConfirmationView({ id }: { id: string }) {
               },
             ].map((s, i) => (
               <li key={s.title} className="flex gap-3.5">
-                <span className="tnum mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border border-ink-200 bg-ink-50 text-[12px] font-semibold text-ink-600">
+                <span className="tnum border-ink-200 bg-ink-50 text-ink-600 mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border text-[12px] font-semibold">
                   {i + 1}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[14px] font-medium text-ink-900">{s.title}</p>
-                  <p className="mt-0.5 text-[13.5px] leading-relaxed text-ink-600">{s.body}</p>
+                  <p className="text-ink-900 text-[14px] font-medium">{s.title}</p>
+                  <p className="text-ink-600 mt-0.5 text-[13.5px] leading-relaxed">{s.body}</p>
                 </div>
               </li>
             ))}
@@ -208,12 +214,12 @@ export function ConfirmationView({ id }: { id: string }) {
           </Button>
         </div>
 
-        <div className="no-print flex flex-wrap items-center justify-between gap-3 rounded-xl border border-dashed border-brand-200 bg-brand-50/50 p-4">
+        <div className="no-print border-brand-200 bg-brand-50/50 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-dashed p-4">
           <div className="min-w-0">
-            <p className="text-[13.5px] font-medium text-brand-950">
+            <p className="text-brand-950 text-[13.5px] font-medium">
               This is the demo — want to see the other side?
             </p>
-            <p className="mt-0.5 text-[12.5px] text-brand-800/80">
+            <p className="text-brand-800/80 mt-0.5 text-[12.5px]">
               {request.reference} is already at the top of the office inbox.
             </p>
           </div>
@@ -229,7 +235,7 @@ export function ConfirmationView({ id }: { id: string }) {
         <div className="no-print flex flex-wrap items-center justify-between gap-3 pt-1">
           <button
             onClick={() => window.print()}
-            className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-ink-500 transition-colors hover:text-ink-900"
+            className="text-ink-500 hover:text-ink-900 inline-flex items-center gap-1.5 text-[12.5px] font-medium transition-colors"
           >
             <Printer className="size-3.5" aria-hidden />
             Print this page
@@ -290,7 +296,7 @@ export function ConfirmationView({ id }: { id: string }) {
                 key={p.id}
                 src={p.dataUrl}
                 alt={p.name}
-                className="size-12 rounded-lg border border-ink-200 object-cover"
+                className="border-ink-200 size-12 rounded-lg border object-cover"
               />
             ))}
           </div>
@@ -302,8 +308,8 @@ export function ConfirmationView({ id }: { id: string }) {
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-dvh bg-ink-50">
-      <header className="no-print border-b border-ink-200 bg-white">
+    <div className="bg-ink-50 min-h-dvh">
+      <header className="no-print border-ink-200 border-b bg-white">
         <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3.5 sm:px-6">
           <Link href="/" className="rounded-md">
             <Logo size="sm" />

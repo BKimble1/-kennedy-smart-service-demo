@@ -36,7 +36,15 @@ describe("demo AI provider", () => {
   it("always includes the core summary sections", async () => {
     const summary = await demoProvider.summarize(byRef("KSD-4206"));
     const labels = summary.sections.map((s) => s.label);
-    for (const label of ["Service", "Issue", "Urgency", "Detail", "Photos", "Customer availability", "Location"]) {
+    for (const label of [
+      "Service",
+      "Issue",
+      "Urgency",
+      "Detail",
+      "Photos",
+      "Customer availability",
+      "Location",
+    ]) {
       expect(labels).toContain(label);
     }
   });
@@ -141,7 +149,15 @@ describe("demo AI provider", () => {
   it("keeps weekday names capitalized inside the call summary", async () => {
     for (const request of seeds) {
       const text = await demoProvider.callSummary(request);
-      for (const day of ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]) {
+      for (const day of [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+      ]) {
         expect(text.includes(` ${day}`), `${request.reference} lower-cased ${day}`).toBe(false);
       }
     }

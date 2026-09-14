@@ -61,22 +61,25 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             <div
               key={t.id}
               role="status"
-              className="animate-pop pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-xl border border-ink-200 bg-white p-3.5 shadow-pop"
+              className="animate-pop border-ink-200 shadow-pop pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-xl border bg-white p-3.5"
             >
               <span
-                className={cn("grid size-7 shrink-0 place-items-center rounded-lg border", TONE[t.tone])}
+                className={cn(
+                  "grid size-7 shrink-0 place-items-center rounded-lg border",
+                  TONE[t.tone],
+                )}
               >
                 <Icon className="size-4" aria-hidden />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[13px] font-semibold text-ink-900">{t.title}</p>
+                <p className="text-ink-900 text-[13px] font-semibold">{t.title}</p>
                 {t.description ? (
-                  <p className="mt-0.5 text-xs leading-relaxed text-ink-600">{t.description}</p>
+                  <p className="text-ink-600 mt-0.5 text-xs leading-relaxed">{t.description}</p>
                 ) : null}
               </div>
               <button
                 onClick={() => remove(t.id)}
-                className="-m-1 rounded-md p-1 text-ink-400 transition-colors hover:bg-ink-100 hover:text-ink-700"
+                className="text-ink-400 hover:bg-ink-100 hover:text-ink-700 -m-1 rounded-md p-1 transition-colors"
                 aria-label="Dismiss notification"
               >
                 <X className="size-3.5" aria-hidden />

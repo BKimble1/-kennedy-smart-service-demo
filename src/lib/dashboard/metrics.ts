@@ -26,9 +26,11 @@ export function computeMetrics(requests: ServiceRequest[], now = new Date()): Da
 
   return {
     newCount: waiting.length,
-    needsResponse: requests.filter((r) => r.status === "new" || r.status === "contacted").length,
+    needsResponse: requests.filter((r) => r.status === "new" || r.status === "contacted")
+      .length,
     emergency: open.filter((r) => r.triage.priority === "emergency").length,
-    scheduled: requests.filter((r) => r.status === "scheduled" || r.status === "assigned").length,
+    scheduled: requests.filter((r) => r.status === "scheduled" || r.status === "assigned")
+      .length,
     estimates: open.filter((r) => r.triage.estimateOpportunity.flagged).length,
     completed: requests.filter((r) => r.status === "completed").length,
     afterHours: requests.filter((r) => r.triage.afterHours).length,

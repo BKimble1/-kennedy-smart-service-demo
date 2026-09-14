@@ -37,11 +37,11 @@ Names, phone numbers, addresses, and photos sit in a database on a server rented
 
 ## What it costs
 
-| | Starter | Middle | Full |
-| --- | --- | --- | --- |
-| One-time build | $3,200 | $8,900 | $17,500 |
-| Optional monthly, starting day 61 | $75 | $195 | $395 plus SMS at cost |
-| Live in | 2 to 3 weeks | 3 weeks | 10 to 14 weeks |
+|                                   | Starter      | Middle  | Full                  |
+| --------------------------------- | ------------ | ------- | --------------------- |
+| One-time build                    | $3,200       | $8,900  | $17,500               |
+| Optional monthly, starting day 61 | $75          | $195    | $395 plus SMS at cost |
+| Live in                           | 2 to 3 weeks | 3 weeks | 10 to 14 weeks        |
 
 Starter is the customer intake page and email notifications, no dashboard. The demo you are looking at is the middle column. Full adds scheduling integration, text messaging, and staff logins, and I would not sell it to you first.
 
@@ -59,12 +59,12 @@ Not included: a rebuild of kennedyheatingandair.com, advertising, or any connect
 
 ## Timeline
 
-| Week | What happens |
-| --- | --- |
-| 1 | I sit with whoever answers the phone and write down what they ask callers today. You decide the trade list, the issue list, and any wording about response times. |
-| 2 | Your questions, trades, and wording go in. It gets deployed. You see it running with your own content partway through the week. |
-| 3 | Your changes. Training for whoever works the inbox. Live behind a link on your site. |
-| 4 to 5 | Tuning, at no extra charge. Triage rules written in week one are wrong the moment real requests arrive. |
+| Week   | What happens                                                                                                                                                      |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1      | I sit with whoever answers the phone and write down what they ask callers today. You decide the trade list, the issue list, and any wording about response times. |
+| 2      | Your questions, trades, and wording go in. It gets deployed. You see it running with your own content partway through the week.                                   |
+| 3      | Your changes. Training for whoever works the inbox. Live behind a link on your site.                                                                              |
+| 4 to 5 | Tuning, at no extra charge. Triage rules written in week one are wrong the moment real requests arrive.                                                           |
 
 The software is already built. Those weeks are your content, your questions, deployment, and training, not writing it from scratch. If weeks 4 and 5 read like padding to you, cut them and call me when something is wrong.
 

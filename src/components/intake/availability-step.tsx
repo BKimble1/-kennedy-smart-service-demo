@@ -70,8 +70,8 @@ export function AvailabilityStep({
         className={cn(
           "flex w-full items-center gap-3.5 rounded-xl border p-4 text-left transition-all duration-150 hover:-translate-y-px hover:shadow-md",
           flexible
-            ? "border-brand-500 bg-brand-50/60 ring-2 ring-brand-500/18"
-            : "border-ink-200 bg-white hover:border-ink-300",
+            ? "border-brand-500 bg-brand-50/60 ring-brand-500/18 ring-2"
+            : "border-ink-200 hover:border-ink-300 bg-white",
         )}
       >
         <span
@@ -85,20 +85,20 @@ export function AvailabilityStep({
           <Zap className="size-[18px]" aria-hidden />
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block text-[15px] font-medium text-ink-900">
+          <span className="text-ink-900 block text-[15px] font-medium">
             I&apos;m flexible — first available
           </span>
-          <span className="mt-0.5 block text-[13px] text-ink-500">
+          <span className="text-ink-500 mt-0.5 block text-[13px]">
             The office will offer you the earliest slot they have
           </span>
         </span>
-        {flexible ? <Check className="size-5 shrink-0 text-brand-600" aria-hidden /> : null}
+        {flexible ? <Check className="text-brand-600 size-5 shrink-0" aria-hidden /> : null}
       </button>
 
       <div className="relative">
         <div className="mb-2.5 flex items-center gap-2">
-          <CalendarDays className="size-4 text-ink-400" aria-hidden />
-          <p className="text-[13px] font-medium text-ink-700">Or pick the days that work</p>
+          <CalendarDays className="text-ink-400 size-4" aria-hidden />
+          <p className="text-ink-700 text-[13px] font-medium">Or pick the days that work</p>
         </div>
         <div
           className="scrollarea -mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0"
@@ -121,7 +121,7 @@ export function AvailabilityStep({
                     ? "border-brand-500 bg-brand-600 text-white shadow-sm"
                     : weekend
                       ? "border-ink-200 bg-ink-100/70 text-ink-400 hover:border-ink-300"
-                      : "border-ink-200 bg-white text-ink-700 hover:-translate-y-px hover:border-ink-300 hover:shadow-sm",
+                      : "border-ink-200 text-ink-700 hover:border-ink-300 bg-white hover:-translate-y-px hover:shadow-sm",
                 )}
               >
                 <span
@@ -132,7 +132,7 @@ export function AvailabilityStep({
                 >
                   {dayLabel(d)}
                 </span>
-                <span className="tnum mt-1 font-display text-[19px] leading-none font-semibold">
+                <span className="tnum font-display mt-1 text-[19px] leading-none font-semibold">
                   {d.getDate()}
                 </span>
                 <span
@@ -147,16 +147,14 @@ export function AvailabilityStep({
             );
           })}
         </div>
-        <p className="mt-2 text-[12px] text-ink-500">
-          {BUSINESS_HOURS_NOTE}
-        </p>
+        <p className="text-ink-500 mt-2 text-[12px]">{BUSINESS_HOURS_NOTE}</p>
       </div>
 
       {value.length > 0 ? (
         <div className="animate-rise space-y-2.5">
           {value.map((slot) => (
-            <div key={slot.date} className="rounded-xl border border-ink-200 bg-white p-4">
-              <p className="mb-3 text-[13.5px] font-semibold text-ink-900">
+            <div key={slot.date} className="border-ink-200 rounded-xl border bg-white p-4">
+              <p className="text-ink-900 mb-3 text-[13.5px] font-semibold">
                 {new Date(`${slot.date}T12:00:00`).toLocaleDateString("en-US", {
                   weekday: "long",
                   month: "long",
@@ -176,7 +174,7 @@ export function AvailabilityStep({
                         "rounded-lg border px-3 py-2.5 text-left transition-colors",
                         on
                           ? "border-brand-400 bg-brand-50 text-brand-900"
-                          : "border-ink-200 bg-white text-ink-600 hover:border-ink-300 hover:bg-ink-50",
+                          : "border-ink-200 text-ink-600 hover:border-ink-300 hover:bg-ink-50 bg-white",
                       )}
                     >
                       <span className="block text-[13.5px] font-medium">{WINDOW_LABEL[w]}</span>
@@ -188,7 +186,7 @@ export function AvailabilityStep({
                 })}
               </div>
               {slot.windows.length === 0 ? (
-                <p className="mt-2.5 text-[12px] text-warn-700">
+                <p className="text-warn-700 mt-2.5 text-[12px]">
                   Pick at least one window, or remove this day.
                 </p>
               ) : null}

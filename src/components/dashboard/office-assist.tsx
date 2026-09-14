@@ -69,24 +69,26 @@ export function OfficeAssist({
 
   return (
     <section
-      className="overflow-hidden rounded-xl border border-ink-200 bg-white"
+      className="border-ink-200 overflow-hidden rounded-xl border bg-white"
       aria-labelledby="assist-heading"
       data-tour="assist"
     >
-      <header className="border-b border-ink-150 bg-gradient-to-b from-ink-50 to-white px-4 py-3.5 sm:px-5">
+      <header className="border-ink-150 from-ink-50 border-b bg-gradient-to-b to-white px-4 py-3.5 sm:px-5">
         <div className="flex items-start gap-3">
-          <span className="mt-px grid size-7 shrink-0 place-items-center rounded-lg border border-brand-200 bg-brand-50 text-brand-700">
+          <span className="border-brand-200 bg-brand-50 text-brand-700 mt-px grid size-7 shrink-0 place-items-center rounded-lg border">
             <Sparkle className="size-4" aria-hidden />
           </span>
           <div className="min-w-0 flex-1">
             <h2
               id="assist-heading"
-              className="font-display text-[15px] font-semibold text-ink-950"
+              className="font-display text-ink-950 text-[15px] font-semibold"
             >
               Smart office assist
             </h2>
-            <p className="mt-0.5 text-[12px] leading-relaxed text-ink-500">
-              {isLiveMode() ? provider.description : "Written from the structured intake answers."}{" "}
+            <p className="text-ink-500 mt-0.5 text-[12px] leading-relaxed">
+              {isLiveMode()
+                ? provider.description
+                : "Written from the structured intake answers."}{" "}
               Drafts only — nothing sends on its own.
             </p>
           </div>
@@ -121,8 +123,8 @@ export function OfficeAssist({
           <AssistSkeleton />
         ) : tab === "call" ? (
           <div className="animate-fade space-y-4">
-            <div className="rounded-lg border border-ink-200 bg-ink-50/70 p-4">
-              <p className="text-[14.5px] leading-relaxed text-ink-800">{bundle.callSummary}</p>
+            <div className="border-ink-200 bg-ink-50/70 rounded-lg border p-4">
+              <p className="text-ink-800 text-[14.5px] leading-relaxed">{bundle.callSummary}</p>
             </div>
             {request.triage.estimateOpportunity.flagged ? (
               <EstimateCallout reason={request.triage.estimateOpportunity.reason} />
@@ -156,9 +158,9 @@ export function OfficeAssist({
                   { value: "email", label: "Email" },
                 ]}
               />
-              <span className="text-[12px] text-ink-500">
+              <span className="text-ink-500 text-[12px]">
                 Customer prefers{" "}
-                <span className="font-medium text-ink-700">
+                <span className="text-ink-700 font-medium">
                   {request.customer.contactMethod === "phone"
                     ? "a phone call"
                     : request.customer.contactMethod}
@@ -167,11 +169,11 @@ export function OfficeAssist({
             </div>
 
             {channel === "email" && bundle.reply.subject ? (
-              <div className="rounded-lg border border-ink-200 bg-ink-50/70 px-3.5 py-2.5">
-                <p className="text-[10.5px] font-semibold tracking-[0.08em] text-ink-500 uppercase">
+              <div className="border-ink-200 bg-ink-50/70 rounded-lg border px-3.5 py-2.5">
+                <p className="text-ink-500 text-[10.5px] font-semibold tracking-[0.08em] uppercase">
                   Subject
                 </p>
-                <p className="mt-0.5 text-[13.5px] font-medium text-ink-900">
+                <p className="text-ink-900 mt-0.5 text-[13.5px] font-medium">
                   {bundle.reply.subject}
                 </p>
               </div>
@@ -185,13 +187,23 @@ export function OfficeAssist({
                 id="reply-body"
                 value={replyBody}
                 onChange={(e) => setEdited({ key, text: e.target.value })}
-                rows={channel === "text" ? 5 : 16}
-                className="w-full resize-y rounded-lg border border-ink-200 bg-white p-3.5 font-sans text-[13.5px] leading-relaxed text-ink-800 shadow-xs focus:border-brand-500 focus:ring-4 focus:ring-brand-500/12 focus:outline-none"
+                rows={channel === "text" ? 7 : 16}
+                /*
+                 * `field-sizing: content` grows the box to fit wherever it is
+                 * supported; `rows` is the fallback everywhere else. A draft
+                 * that looks truncated reads as unfinished work.
+                 */
+                className="border-ink-200 text-ink-800 focus:border-brand-500 focus:ring-brand-500/12 [field-sizing:content] w-full resize-y rounded-lg border bg-white p-3.5 font-sans text-[13.5px] leading-relaxed shadow-xs focus:ring-4 focus:outline-none"
               />
-              <p className="mt-1.5 flex items-center justify-between text-[11.5px] text-ink-500">
+              <p className="text-ink-500 mt-1.5 flex items-center justify-between text-[11.5px]">
                 <span>Edit anything before you copy it.</span>
                 {channel === "text" ? (
-                  <span className={cn("tnum", replyBody.length > 320 && "font-medium text-warn-700")}>
+                  <span
+                    className={cn(
+                      "tnum",
+                      replyBody.length > 320 && "text-warn-700 font-medium",
+                    )}
+                  >
                     {replyBody.length} characters
                   </span>
                 ) : null}
@@ -240,13 +252,13 @@ export function OfficeAssist({
 
 function EstimateCallout({ reason }: { reason?: string }) {
   return (
-    <div className="rounded-lg border border-ember-200 bg-ember-50/70 p-3.5">
-      <p className="flex items-center gap-2 text-[13px] font-semibold text-ember-900">
+    <div className="border-ember-200 bg-ember-50/70 rounded-lg border p-3.5">
+      <p className="text-ember-900 flex items-center gap-2 text-[13px] font-semibold">
         <FileText className="size-4 shrink-0" aria-hidden />
         Possible replacement estimate opportunity
       </p>
-      <p className="mt-1.5 text-[12.5px] leading-relaxed text-ember-900/85">{reason}</p>
-      <p className="mt-2 text-[11.5px] leading-relaxed text-ember-800/70">
+      <p className="text-ember-900/85 mt-1.5 text-[12.5px] leading-relaxed">{reason}</p>
+      <p className="text-ember-800/70 mt-2 text-[11.5px] leading-relaxed">
         This is a prompt to ask, not a recommendation. Nothing here says the equipment needs
         replacing — only a technician who has seen it can say that.
       </p>
@@ -254,7 +266,13 @@ function EstimateCallout({ reason }: { reason?: string }) {
   );
 }
 
-function TechNotesPanel({ bundle, request }: { bundle: AssistBundle; request: ServiceRequest }) {
+function TechNotesPanel({
+  bundle,
+  request,
+}: {
+  bundle: AssistBundle;
+  request: ServiceRequest;
+}) {
   const notes = bundle.techNotes;
   const plain = [
     `TECHNICIAN PREP — ${request.reference}`,
@@ -283,32 +301,36 @@ function TechNotesPanel({ bundle, request }: { bundle: AssistBundle; request: Se
 
   return (
     <div className="animate-fade space-y-4">
-      <dl className="divide-y divide-ink-150 overflow-hidden rounded-lg border border-ink-200">
+      <dl className="divide-ink-150 border-ink-200 divide-y overflow-hidden rounded-lg border">
         <Row label="Reported issue" value={notes.reportedIssue} />
         <Row label="Equipment" value={notes.equipment} />
         <Row label="Approx. age" value={notes.approximateAge} />
         <Row label="Photos" value={notes.photos} />
         <Row label="Symptoms" items={notes.symptoms} />
-        <Row label="Safety" items={notes.safetyConcerns} tone={hasSafety ? "alert" : "default"} />
+        <Row
+          label="Safety"
+          items={notes.safetyConcerns}
+          tone={hasSafety ? "alert" : "default"}
+        />
       </dl>
 
-      <div className="rounded-lg border border-ink-200 bg-ink-50/70 p-4">
-        <p className="flex items-center gap-2 text-[10.5px] font-semibold tracking-[0.08em] text-ink-600 uppercase">
+      <div className="border-ink-200 bg-ink-50/70 rounded-lg border p-4">
+        <p className="text-ink-600 flex items-center gap-2 text-[10.5px] font-semibold tracking-[0.08em] uppercase">
           <Wrench className="size-3.5" aria-hidden />
           Confirm onsite
         </p>
         <ul className="mt-2.5 space-y-1.5">
           {notes.verifyOnsite.map((s, i) => (
-            <li key={i} className="flex gap-2.5 text-[13px] leading-relaxed text-ink-700">
-              <span aria-hidden className="mt-[7px] size-1 shrink-0 rounded-full bg-ink-400" />
+            <li key={i} className="text-ink-700 flex gap-2.5 text-[13px] leading-relaxed">
+              <span aria-hidden className="bg-ink-400 mt-[7px] size-1 shrink-0 rounded-full" />
               {s}
             </li>
           ))}
         </ul>
-        <p className="mt-3 flex items-start gap-2 border-t border-ink-200 pt-2.5 text-[11.5px] leading-relaxed text-ink-500">
+        <p className="border-ink-200 text-ink-500 mt-3 flex items-start gap-2 border-t pt-2.5 text-[11.5px] leading-relaxed">
           <AlertTriangle className="mt-px size-3.5 shrink-0" aria-hidden />
-          Things to check and record, based on what the customer reported. Not a diagnosis — no form
-          can diagnose equipment.
+          Things to check and record, based on what the customer reported. Not a diagnosis — no
+          form can diagnose equipment.
         </p>
       </div>
 
@@ -352,7 +374,7 @@ function Row({
       <dd
         className={cn(
           "text-[13px] leading-relaxed",
-          tone === "alert" ? "font-medium text-danger-800" : "text-ink-800",
+          tone === "alert" ? "text-danger-800 font-medium" : "text-ink-800",
         )}
       >
         {value ? value : null}

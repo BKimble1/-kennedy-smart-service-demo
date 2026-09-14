@@ -192,9 +192,12 @@ const BY_CATEGORY: Record<ServiceCategoryId, string[]> = {
 
 /** Signals that add a universally useful check regardless of the issue. */
 const BY_SIGNAL: Partial<Record<RequestSignal, string>> = {
-  "aging-equipment": "Confirm actual equipment age from the data plate — the customer's estimate may be off",
-  "very-old-equipment": "Confirm actual equipment age from the data plate before any estimate conversation",
-  "repeat-repair": "Pull the history on this address before arrival — the customer reports recent work",
+  "aging-equipment":
+    "Confirm actual equipment age from the data plate — the customer's estimate may be off",
+  "very-old-equipment":
+    "Confirm actual equipment age from the data plate before any estimate conversation",
+  "repeat-repair":
+    "Pull the history on this address before arrival — the customer reports recent work",
   "business-property": "Confirm site access, after-hours entry and who signs off on work",
   "active-water": "Note whether water is still escaping on arrival and where it is reaching",
 };

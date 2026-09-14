@@ -64,8 +64,8 @@ export function OptionCard({
         size === "lg" ? "p-4 sm:p-[18px]" : "px-4 py-3.5",
         selected
           ? danger
-            ? "border-danger-400 bg-danger-50/70 ring-2 ring-danger-500/20"
-            : "border-brand-500 bg-brand-50/60 ring-2 ring-brand-500/18"
+            ? "border-danger-400 bg-danger-50/70 ring-danger-500/20 ring-2"
+            : "border-brand-500 bg-brand-50/60 ring-brand-500/18 ring-2"
           : danger
             ? "border-danger-200 hover:border-danger-300"
             : "border-ink-200 hover:border-ink-300",
@@ -90,7 +90,7 @@ export function OptionCard({
       <span className="min-w-0 flex-1">
         <span
           className={cn(
-            "block font-medium text-ink-900",
+            "text-ink-900 block font-medium",
             size === "lg" ? "text-[15.5px]" : "text-[15px]",
             danger && "text-danger-800",
           )}
@@ -98,7 +98,7 @@ export function OptionCard({
           {label}
         </span>
         {hint ? (
-          <span className="mt-0.5 block text-[13px] leading-snug text-ink-500">{hint}</span>
+          <span className="text-ink-500 mt-0.5 block text-[13px] leading-snug">{hint}</span>
         ) : null}
       </span>
 

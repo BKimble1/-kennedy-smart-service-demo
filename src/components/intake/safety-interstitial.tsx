@@ -34,7 +34,7 @@ export function SafetyInterstitial({
 
   return (
     <div
-      className="animate-fade fixed inset-0 z-[80] overflow-y-auto bg-ink-950"
+      className="animate-fade bg-ink-950 fixed inset-0 z-[80] overflow-y-auto"
       role="alertdialog"
       aria-labelledby="safety-heading"
       aria-modal="true"
@@ -107,7 +107,7 @@ export function SafetyInterstitial({
                   className={cn(
                     "flex items-center justify-between gap-4 rounded-xl border px-4 py-4 transition-colors",
                     c.primary
-                      ? "border-white/25 bg-white text-ink-950 hover:bg-ink-100"
+                      ? "text-ink-950 hover:bg-ink-100 border-white/25 bg-white"
                       : "border-white/15 bg-white/[0.07] text-white hover:bg-white/[0.12]",
                   )}
                 >
@@ -115,7 +115,7 @@ export function SafetyInterstitial({
                     <span className="block text-[11px] font-semibold tracking-[0.08em] uppercase opacity-60">
                       {c.label}
                     </span>
-                    <span className="mt-0.5 block font-display text-xl font-semibold">
+                    <span className="font-display mt-0.5 block text-xl font-semibold">
                       {c.detail}
                     </span>
                   </span>
@@ -151,15 +151,21 @@ export function SafetyInterstitial({
             >
               I&apos;m safe — finish my request
             </Button>
-            <Button size="lg" variant="ghost" onClick={onBack} className="text-white/70 hover:bg-white/10 hover:text-white">
+            <Button
+              size="lg"
+              variant="ghost"
+              onClick={onBack}
+              className="text-white/70 hover:bg-white/10 hover:text-white"
+            >
               <ArrowLeft aria-hidden />
               Change my answer
             </Button>
           </div>
 
           <p className="mt-8 border-t border-white/10 pt-5 text-[11.5px] leading-relaxed text-white/45">
-            This is a concept demonstration and not an official {BUSINESS.name} system. It cannot
-            contact anyone on your behalf. In a real emergency, call 911 — not a web form.
+            This is a concept demonstration and not an official {BUSINESS.name} system. It
+            cannot contact anyone on your behalf. In a real emergency, call 911 — not a web
+            form.
           </p>
         </div>
       </div>

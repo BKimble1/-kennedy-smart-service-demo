@@ -20,12 +20,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
-import {
-  ComparisonBars,
-  NumbersTable,
-  calculate,
-  type CalcInputs,
-} from "./impact-calculator";
+import { ComparisonBars, NumbersTable, calculate, type CalcInputs } from "./impact-calculator";
 
 const BENEFITS = [
   {
@@ -84,9 +79,14 @@ export function ImpactView() {
         title="Business impact"
         description="What structured intake changes, and a way to put your own numbers against it."
         actions={
-          <Button asChild variant="secondary" size="sm">
-            <Link href="/dashboard">Back to inbox</Link>
-          </Button>
+          <>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/about">What making this real involves</Link>
+            </Button>
+            <Button asChild variant="secondary" size="sm">
+              <Link href="/dashboard">Back to inbox</Link>
+            </Button>
+          </>
         }
       />
 
@@ -99,27 +99,27 @@ export function ImpactView() {
               <article
                 key={b.title}
                 style={{ animationDelay: `${i * 40}ms` }}
-                className="animate-rise rounded-xl border border-ink-200 bg-white p-5"
+                className="animate-rise border-ink-200 rounded-xl border bg-white p-5"
               >
-                <span className="grid size-9 place-items-center rounded-lg border border-ink-200 bg-ink-50 text-ink-600">
+                <span className="border-ink-200 bg-ink-50 text-ink-600 grid size-9 place-items-center rounded-lg border">
                   <Icon className="size-[18px]" aria-hidden />
                 </span>
-                <h2 className="mt-3.5 font-display text-[15px] font-semibold text-ink-950">
+                <h2 className="font-display text-ink-950 mt-3.5 text-[15px] font-semibold">
                   {b.title}
                 </h2>
-                <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-600">{b.body}</p>
+                <p className="text-ink-600 mt-1.5 text-[13.5px] leading-relaxed">{b.body}</p>
               </article>
             );
           })}
         </section>
 
         {/* ---- Calculator --------------------------------------------- */}
-        <section className="grid gap-4 rounded-xl border border-ink-200 bg-white p-5 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-8 lg:p-7">
+        <section className="border-ink-200 grid gap-4 rounded-xl border bg-white p-5 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-8 lg:p-7">
           <div>
-            <h2 className="font-display text-lg font-semibold text-ink-950">
+            <h2 className="font-display text-ink-950 text-lg font-semibold">
               Put your own numbers in
             </h2>
-            <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-600">
+            <p className="text-ink-600 mt-1.5 text-[13.5px] leading-relaxed">
               These are your figures, not ours. Change anything that looks wrong — the estimate
               updates as you type.
             </p>
@@ -195,20 +195,21 @@ export function ImpactView() {
               />
             </div>
 
-            <div className="mt-6 rounded-xl border border-ink-200 bg-ink-50/60 p-5">
+            <div className="border-ink-200 bg-ink-50/60 mt-6 rounded-xl border p-5">
               <ComparisonBars input={input} result={result} />
               <NumbersTable input={input} result={result} />
             </div>
 
-            <div className="mt-4 flex gap-2.5 rounded-lg border border-warn-200 bg-warn-50/70 p-3.5">
-              <Info className="mt-px size-4 shrink-0 text-warn-700" aria-hidden />
-              <div className="text-[12.5px] leading-relaxed text-warn-900">
+            <div className="border-warn-200 bg-warn-50/70 mt-4 flex gap-2.5 rounded-lg border p-3.5">
+              <Info className="text-warn-700 mt-px size-4 shrink-0" aria-hidden />
+              <div className="text-warn-900 text-[12.5px] leading-relaxed">
                 <p className="font-semibold">This is an estimate, and only of admin time.</p>
-                <p className="mt-1 text-warn-900/85">
+                <p className="text-warn-900/85 mt-1">
                   It multiplies numbers you entered. It is not a revenue projection, it does not
-                  assume you win more work, and it does not assume anyone is let go — the realistic
-                  outcome is the same people spending less of the day retyping what a customer
-                  already knows. Treat the second bar as a hypothesis to test, not a promise.
+                  assume you win more work, and it does not assume anyone is let go — the
+                  realistic outcome is the same people spending less of the day retyping what a
+                  customer already knows. Treat the second bar as a hypothesis to test, not a
+                  promise.
                 </p>
               </div>
             </div>
@@ -216,14 +217,14 @@ export function ImpactView() {
         </section>
 
         {/* ---- Grounded in this inbox --------------------------------- */}
-        <section className="rounded-xl border border-ink-200 bg-white p-5 lg:p-7">
-          <h2 className="font-display text-lg font-semibold text-ink-950">
+        <section className="border-ink-200 rounded-xl border bg-white p-5 lg:p-7">
+          <h2 className="font-display text-ink-950 text-lg font-semibold">
             What the demo inbox actually contains
           </h2>
-          <p className="mt-1.5 max-w-2xl text-[13.5px] leading-relaxed text-ink-600">
-            Not a projection — a count of the {requests.length} seeded requests you can open right
-            now. Realistic for a contractor of this size, and the same counts you would be reading
-            from real traffic.
+          <p className="text-ink-600 mt-1.5 max-w-2xl text-[13.5px] leading-relaxed">
+            Not a projection — a count of the {requests.length} seeded requests you can open
+            right now. Realistic for a contractor of this size, and the same counts you would be
+            reading from real traffic.
           </p>
           <div className="mt-5 grid gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
             <InboxFact
@@ -254,8 +255,8 @@ export function ImpactView() {
         </section>
 
         {/* ---- What this does not claim ------------------------------- */}
-        <section className="rounded-xl border border-ink-200 bg-white p-5 lg:p-7">
-          <h2 className="font-display text-lg font-semibold text-ink-950">
+        <section className="border-ink-200 rounded-xl border bg-white p-5 lg:p-7">
+          <h2 className="font-display text-ink-950 text-lg font-semibold">
             What this does not claim
           </h2>
           <ul className="mt-4 grid gap-2.5 md:grid-cols-2">
@@ -269,9 +270,12 @@ export function ImpactView() {
             ].map((t) => (
               <li
                 key={t}
-                className="flex gap-2.5 rounded-lg border border-ink-150 bg-ink-50/50 p-3.5 text-[13px] leading-relaxed text-ink-700"
+                className="border-ink-150 bg-ink-50/50 text-ink-700 flex gap-2.5 rounded-lg border p-3.5 text-[13px] leading-relaxed"
               >
-                <span aria-hidden className="mt-[7px] size-1 shrink-0 rounded-full bg-ink-400" />
+                <span
+                  aria-hidden
+                  className="bg-ink-400 mt-[7px] size-1 shrink-0 rounded-full"
+                />
                 {t}
               </li>
             ))}
@@ -303,13 +307,13 @@ function NumberField({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="block text-[13px] font-medium text-ink-800">
+      <label htmlFor={id} className="text-ink-800 block text-[13px] font-medium">
         {label}
       </label>
-      <p className="mt-0.5 mb-1.5 text-[11.5px] leading-relaxed text-ink-500">{hint}</p>
+      <p className="text-ink-500 mt-0.5 mb-1.5 text-[11.5px] leading-relaxed">{hint}</p>
       <div className="relative">
         {prefix ? (
-          <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-[15px] text-ink-500">
+          <span className="text-ink-500 pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-[15px]">
             {prefix}
           </span>
         ) : null}
@@ -319,13 +323,13 @@ function NumberField({
           value={String(value)}
           onChange={(e) => onChange(e.target.value)}
           className={cn(
-            "tnum pr-20 font-display text-[17px] font-semibold",
+            "tnum font-display pr-20 text-[17px] font-semibold",
             prefix && "pl-7",
             accent && "border-brand-300 bg-brand-50/40",
           )}
         />
         {suffix ? (
-          <span className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-[12px] text-ink-400">
+          <span className="text-ink-400 pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-[12px]">
             {suffix}
           </span>
         ) : null}
@@ -354,7 +358,9 @@ function Stat({
         emphasis ? "border-brand-200 bg-brand-50/60" : "border-ink-200 bg-white",
       )}
     >
-      <p className="text-[11px] font-medium tracking-[0.04em] text-ink-500 uppercase">{label}</p>
+      <p className="text-ink-500 text-[11px] font-medium tracking-[0.04em] uppercase">
+        {label}
+      </p>
       <p className="mt-2 flex items-baseline gap-1.5">
         <span
           className={cn(
@@ -364,9 +370,9 @@ function Stat({
         >
           {value}
         </span>
-        <span className="text-[12.5px] text-ink-500">{unit}</span>
+        <span className="text-ink-500 text-[12.5px]">{unit}</span>
       </p>
-      <p className="mt-1.5 text-[11.5px] leading-snug text-ink-500">{sub}</p>
+      <p className="text-ink-500 mt-1.5 text-[11.5px] leading-snug">{sub}</p>
     </div>
   );
 }
@@ -383,15 +389,15 @@ function InboxFact({
   label: string;
 }) {
   return (
-    <div className="rounded-xl border border-ink-200 bg-ink-50/60 p-4">
-      <span className="grid size-8 place-items-center rounded-lg border border-ink-200 bg-white text-ink-600">
+    <div className="border-ink-200 bg-ink-50/60 rounded-xl border p-4">
+      <span className="border-ink-200 text-ink-600 grid size-8 place-items-center rounded-lg border bg-white">
         <Icon className="size-4" aria-hidden />
       </span>
-      <p className="tnum mt-3 font-display text-[22px] leading-none font-semibold text-ink-950">
+      <p className="tnum font-display text-ink-950 mt-3 text-[22px] leading-none font-semibold">
         {value}
-        <span className="text-[15px] font-medium text-ink-400"> / {total}</span>
+        <span className="text-ink-400 text-[15px] font-medium"> / {total}</span>
       </p>
-      <p className="mt-1.5 text-[12.5px] leading-snug text-ink-600">{label}</p>
+      <p className="text-ink-600 mt-1.5 text-[12.5px] leading-snug">{label}</p>
     </div>
   );
 }

@@ -247,7 +247,8 @@ const SEEDS: SeedSpec[] = [
     photos: ["dataplate"],
     availability: [{ dayOffset: 0, windows: ["afternoon"] }],
     status: "contacted",
-    officeNotes: "Spoke with Lauren 8:15am. Confirmed breaker is on. Holding a 1–4 slot for her.",
+    officeNotes:
+      "Spoke with Lauren 8:15am. Confirmed breaker is on. Holding a 1–4 slot for her.",
     customer: {
       name: "Lauren Deschene",
       phone: "7655550157",
@@ -441,7 +442,8 @@ const SEEDS: SeedSpec[] = [
     availability: [{ dayOffset: 6, windows: ["afternoon"] }],
     notes: "System is an 18-year-old builder unit. Third repair in two summers.",
     status: "estimate-sent",
-    officeNotes: "Two options emailed Tuesday — 15 SEER2 and 17 SEER2 with financing sheet. Follow up Friday.",
+    officeNotes:
+      "Two options emailed Tuesday — 15 SEER2 and 17 SEER2 with financing sheet. Follow up Friday.",
     customer: {
       name: "Doreen Pletcher",
       phone: "7655550166",
@@ -505,11 +507,7 @@ function buildAnswers(spec: SeedSpec): IntakeAnswer[] {
   });
 }
 
-function buildActivity(
-  spec: SeedSpec,
-  createdAt: Date,
-  now: Date,
-): ActivityEntry[] {
+function buildActivity(spec: SeedSpec, createdAt: Date, now: Date): ActivityEntry[] {
   const entries: ActivityEntry[] = [];
   const at = (minutesAfter: number) =>
     new Date(Math.min(createdAt.getTime() + minutesAfter * 60000, now.getTime())).toISOString();
@@ -535,7 +533,13 @@ function buildActivity(
   }
 
   const reached: RequestStatus[] = [];
-  const order: RequestStatus[] = ["contacted", "scheduled", "assigned", "estimate-sent", "completed"];
+  const order: RequestStatus[] = [
+    "contacted",
+    "scheduled",
+    "assigned",
+    "estimate-sent",
+    "completed",
+  ];
   const target = spec.status;
   for (const s of order) {
     reached.push(s);
@@ -638,7 +642,10 @@ export function buildSeedRequests(now = new Date()): ServiceRequest[] {
       status: spec.status,
       assignedTech: spec.assignedTech,
       scheduledFor: spec.scheduledFor
-        ? { date: offsetDate(now, spec.scheduledFor.dayOffset), window: spec.scheduledFor.window }
+        ? {
+            date: offsetDate(now, spec.scheduledFor.dayOffset),
+            window: spec.scheduledFor.window,
+          }
         : undefined,
       triage,
       activity,

@@ -96,10 +96,10 @@ export function InboxView() {
           </div>
         )}
 
-        <div className="flex flex-col gap-3 rounded-xl border border-ink-200 bg-white p-3 lg:flex-row lg:items-center">
+        <div className="border-ink-200 flex flex-col gap-3 rounded-xl border bg-white p-3 lg:flex-row lg:items-center">
           <div className="relative min-w-0 flex-1">
             <Search
-              className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-ink-400"
+              className="text-ink-400 pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
               aria-hidden
             />
             <Input
@@ -113,7 +113,7 @@ export function InboxView() {
               <button
                 onClick={() => setQuery("")}
                 aria-label="Clear search"
-                className="absolute top-1/2 right-2.5 -translate-y-1/2 rounded p-1 text-ink-400 transition-colors hover:bg-ink-100 hover:text-ink-700"
+                className="text-ink-400 hover:bg-ink-100 hover:text-ink-700 absolute top-1/2 right-2.5 -translate-y-1/2 rounded p-1 transition-colors"
               >
                 <X className="size-3.5" aria-hidden />
               </button>
@@ -157,7 +157,7 @@ export function InboxView() {
         {filtersActive ? (
           <div className="flex flex-wrap items-center gap-2 text-[13px]">
             <span className="text-ink-500">
-              Showing <span className="tnum font-semibold text-ink-900">{visible.length}</span>{" "}
+              Showing <span className="tnum text-ink-900 font-semibold">{visible.length}</span>{" "}
               {VIEW_LABEL[view].toLowerCase()}
               {trade !== "all" ? ` in ${TRADES.find((t) => t.value === trade)?.label}` : ""}
             </span>

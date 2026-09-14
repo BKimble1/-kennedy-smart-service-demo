@@ -56,10 +56,4 @@ export const STATUS_ORDER: RequestStatus[] = [
 /** Statuses that still need someone to do something. */
 export const OPEN_STATUSES: RequestStatus[] = ["new", "contacted", "scheduled", "assigned"];
 
-export const TECHNICIANS = [
-  "Dale R.",
-  "Marcus T.",
-  "Wes K.",
-  "Tony P.",
-  "Brandi L.",
-] as const;
+export const TECHNICIANS = ["Dale R.", "Marcus T.", "Wes K.", "Tony P.", "Brandi L."] as const;

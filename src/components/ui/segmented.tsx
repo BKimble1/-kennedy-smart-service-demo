@@ -22,7 +22,7 @@ export function Segmented<T extends string>({
       role="tablist"
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex items-center gap-0.5 rounded-lg border border-ink-200 bg-ink-100/70 p-0.5",
+        "border-ink-200 bg-ink-100/70 inline-flex items-center gap-0.5 rounded-lg border p-0.5",
         className,
       )}
     >
@@ -38,7 +38,7 @@ export function Segmented<T extends string>({
               "inline-flex items-center gap-1.5 rounded-[6px] font-medium transition-all duration-150",
               size === "sm" ? "h-7 px-2.5 text-xs" : "h-8 px-3 text-[13px]",
               active
-                ? "bg-white text-ink-900 shadow-xs ring-1 ring-ink-200"
+                ? "text-ink-900 ring-ink-200 bg-white shadow-xs ring-1"
                 : "text-ink-600 hover:text-ink-900",
             )}
           >

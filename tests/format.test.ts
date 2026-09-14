@@ -14,9 +14,9 @@ const MON = new Date(2026, 8, 14, 9, 0, 0); // Monday 14 Sep 2026
 
 describe("availability", () => {
   it("says today and tomorrow by name", () => {
-    expect(
-      formatAvailability([{ date: toISODate(MON), windows: ["afternoon"] }], MON),
-    ).toBe("Today afternoon");
+    expect(formatAvailability([{ date: toISODate(MON), windows: ["afternoon"] }], MON)).toBe(
+      "Today afternoon",
+    );
     const tue = new Date(MON);
     tue.setDate(tue.getDate() + 1);
     expect(formatAvailability([{ date: toISODate(tue), windows: ["morning"] }], MON)).toBe(

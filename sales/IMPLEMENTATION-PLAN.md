@@ -1,4 +1,5 @@
 # Implementation Plan
+
 ### Turning the Smart Service Desk concept into a system Kennedy's actually runs
 
 **Demo:** [DEMO URL]
@@ -24,19 +25,19 @@ I built this from public information and my own assumptions about how your offic
 
 ### What already exists vs. what has to be built
 
-| Piece | State today |
-|---|---|
-| 8-step customer intake, mobile-first | Built and working |
-| Safety interlock and protocols | Built and working |
-| Deterministic triage rules and reasons | Built and working |
-| Office dashboard, inbox, detail view, status pipeline | Built and working |
-| Smart Office Assist drafts (call summary, reply draft, tech prep sheet) | Built and working, deterministic |
-| Persistence | Browser-local only. Has to be replaced. |
-| Staff login | Does not exist |
-| Email and SMS | Does not exist |
-| Photo storage | Browser-local only |
-| Calendar | Does not exist |
-| Backups, monitoring, hosting | Does not exist |
+| Piece                                                                   | State today                             |
+| ----------------------------------------------------------------------- | --------------------------------------- |
+| 8-step customer intake, mobile-first                                    | Built and working                       |
+| Safety interlock and protocols                                          | Built and working                       |
+| Deterministic triage rules and reasons                                  | Built and working                       |
+| Office dashboard, inbox, detail view, status pipeline                   | Built and working                       |
+| Smart Office Assist drafts (call summary, reply draft, tech prep sheet) | Built and working, deterministic        |
+| Persistence                                                             | Browser-local only. Has to be replaced. |
+| Staff login                                                             | Does not exist                          |
+| Email and SMS                                                           | Does not exist                          |
+| Photo storage                                                           | Browser-local only                      |
+| Calendar                                                                | Does not exist                          |
+| Backups, monitoring, hosting                                            | Does not exist                          |
 
 Seven of those rows are unbuilt. That is the work in this document.
 
@@ -50,13 +51,13 @@ You would be giving a stranger a DNS record on your domain, accounts in your nam
 
 **Every account is created under a Kennedy's email address with you as the owner. I get added as a collaborator.** Not the other way around.
 
-| Account | Owner | I get |
-|---|---|---|
-| Domain DNS / registrar | Kennedy's (you already have it) | Nothing. Your web person adds the records. |
-| Application hosting | Kennedy's | Collaborator access |
-| Database and object storage | Kennedy's | Collaborator access |
-| Code repository | Kennedy's | Collaborator access |
-| Email and SMS providers | Kennedy's | Collaborator access |
+| Account                     | Owner                           | I get                                      |
+| --------------------------- | ------------------------------- | ------------------------------------------ |
+| Domain DNS / registrar      | Kennedy's (you already have it) | Nothing. Your web person adds the records. |
+| Application hosting         | Kennedy's                       | Collaborator access                        |
+| Database and object storage | Kennedy's                       | Collaborator access                        |
+| Code repository             | Kennedy's                       | Collaborator access                        |
+| Email and SMS providers     | Kennedy's                       | Collaborator access                        |
 
 Removing me is four collaborator removals and four password changes — not one, and I will not pretend it is one. It is a numbered checklist in the runbook, and you should have someone walk it once during handover so you know it works.
 
@@ -76,13 +77,13 @@ Removing me is four collaborator removals and four password changes — not one,
 
 Fixed price, not hourly, so a slow week of mine is not your problem.
 
-| | |
-|---|---|
-| Week 0 discovery — 60–90 minutes with you, plus a look inside your scheduling system if you have one | **$[DISCOVERY FEE]**, credited against the build if you go ahead |
-| Base build — database, staff login, email, photo storage, security, backups, testing, staging and production hosting, launch and handover (sections 4–13) | **$[FIXED FEE]** |
-| After-hours SMS alerts, if you want them (section 6) | **+$[SMS ADD-ON]** |
-| Google Calendar write, if you do not run a scheduling platform (section 8) | **+$[CALENDAR ADD-ON]** |
-| Integration with an existing field-service platform | Not quoted until week 0. See section 8. |
+|                                                                                                                                                           |                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Week 0 discovery — 60–90 minutes with you, plus a look inside your scheduling system if you have one                                                      | **$[DISCOVERY FEE]**, credited against the build if you go ahead |
+| Base build — database, staff login, email, photo storage, security, backups, testing, staging and production hosting, launch and handover (sections 4–13) | **$[FIXED FEE]**                                                 |
+| After-hours SMS alerts, if you want them (section 6)                                                                                                      | **+$[SMS ADD-ON]**                                               |
+| Google Calendar write, if you do not run a scheduling platform (section 8)                                                                                | **+$[CALENDAR ADD-ON]**                                          |
+| Integration with an existing field-service platform                                                                                                       | Not quoted until week 0. See section 8.                          |
 
 Half at the start of week 1, half at handover. What is in the fixed price is the scope written down at the end of week 0. New features after that get priced separately before I build them — no surprise invoices, and no free scope creep either.
 
@@ -98,18 +99,18 @@ You pick one of these. I am not asking you to invent my business model.
 
 These are accounts in your name, billed to your card, and they are yours whether or not I am still involved. List prices at time of writing; confirm at signup.
 
-| Item | Provider | Monthly |
-|---|---|---|
-| Application hosting | Render or Fly.io, $7–$19; Vercel Pro is $20 per user | $7 – $20 |
-| Postgres, with point-in-time backups | Neon, Supabase, or Render | $7 – $25 |
-| Object storage (photos) | Cloudflare R2 | under $1 |
-| Transactional email | Postmark 10k/mo, or Resend | $0 – $15 |
-| SMS number + messages | Twilio | $1.15 number, ~$0.0079/message |
-| A2P 10DLC registration (SMS only) | Twilio / carriers | $4 one-time brand, $15 one-time campaign vetting, ~$2/mo |
-| Error monitoring | Sentry free tier | $0 |
-| Uptime checks | UptimeRobot free tier | $0 |
-| Domain and TLS | You own the domain. Subdomain free, certificates automatic. | $0 |
-| **Realistic total** | | **$40 – $80** |
+| Item                                 | Provider                                                    | Monthly                                                  |
+| ------------------------------------ | ----------------------------------------------------------- | -------------------------------------------------------- |
+| Application hosting                  | Render or Fly.io, $7–$19; Vercel Pro is $20 per user        | $7 – $20                                                 |
+| Postgres, with point-in-time backups | Neon, Supabase, or Render                                   | $7 – $25                                                 |
+| Object storage (photos)              | Cloudflare R2                                               | under $1                                                 |
+| Transactional email                  | Postmark 10k/mo, or Resend                                  | $0 – $15                                                 |
+| SMS number + messages                | Twilio                                                      | $1.15 number, ~$0.0079/message                           |
+| A2P 10DLC registration (SMS only)    | Twilio / carriers                                           | $4 one-time brand, $15 one-time campaign vetting, ~$2/mo |
+| Error monitoring                     | Sentry free tier                                            | $0                                                       |
+| Uptime checks                        | UptimeRobot free tier                                       | $0                                                       |
+| Domain and TLS                       | You own the domain. Subdomain free, certificates automatic. | $0                                                       |
+| **Realistic total**                  |                                                             | **$40 – $80**                                            |
 
 Budget $60 a month. Drop SMS from v1 and take roughly $18 off, plus the carrier registration step.
 
@@ -222,9 +223,9 @@ Deliberately small. No self-registration, no public sign-up, no password reset a
 - **Magic link sign-in.** Staff enter their work email, get a link, click it, they are in. Single-use, expires in 15 minutes. No passwords for office and technicians, so no shared password taped to a monitor.
 - **Owner account gets a password plus an authenticator app** as a second route in, so there is a way to sign in that does not depend on email working.
 - **Three roles.**
-  - *Owner* — everything, including data export, deletion, staff management, Business Impact page.
-  - *Office* — inbox, request detail, status changes, scheduling, Office Assist, notes. No export, no delete.
-  - *Technician* — assigned requests only. Detail view, prep sheet, mark complete.
+  - _Owner_ — everything, including data export, deletion, staff management, Business Impact page.
+  - _Office_ — inbox, request detail, status changes, scheduling, Office Assist, notes. No export, no delete.
+  - _Technician_ — assigned requests only. Detail view, prep sheet, mark complete.
 - **Sessions.** Signed, httpOnly, Secure cookies. 30 days rolling on the shop computer, 7 days on technician phones. Export, delete and staff changes require a sign-in within the last hour. Removing someone revokes their sessions immediately.
 
 Not building: SSO, an org chart, per-field permissions, or an audit console. Tell me in week 0 if you need any of it and I will price it; otherwise it is scope that can break without earning its keep.
@@ -327,17 +328,17 @@ A furnace call that gets lost is worse than no online form at all. The testing i
 
 Part-time work on my side, a few short calls on yours. Weeks can slip; dependencies are what cause slippage, so each week names yours.
 
-| Week | What I build | What I need from Kennedy's |
-|---|---|---|
-| 0 | Discovery. The questions in section 15. **If you run a scheduling platform, we log into it together and settle the integration.** Scope and price agreed in writing. | 60–90 minutes with you and one office person. Platform login. |
-| 1 | Postgres behind the storage interface, migrations, staging environment. Hosting and storage accounts created in your name. Code repository is yours from day one. | Someone to create the accounts with a Kennedy's email and add me. |
-| 2 | Staff sign-in, three roles, session handling, owner-only staff management screen. | Names, emails and roles to start. |
-| 3 | Customer confirmation and office notification email. Photo upload to object storage. | SPF/DKIM records. **Your exact wording for the confirmation email**, including anything about response times. |
-| 4 | Office acceptance testing on staging. Question wording and labels corrected to how you actually talk to customers. | 90 minutes with whoever answers the phone. They will find more than I will. |
-| 5 | Fixes from week 4. Calendar or platform integration, as settled in week 0. Accessibility and real-device passes. Restore test performed and documented. | A decision: link or subdomain (section 4). |
-| 6 | Production deployed and running, not yet linked from your site. Soft launch — link added to the contact page. Parallel run begins, old form stays live. | Your web person adds the link. |
-| 7 | After-hours SMS alert, if you want it. | Legal business name, EIN and address for carrier registration. The on-call number. |
-| 8 | Parallel-run review. Triage weights adjusted against real requests. Handover: documentation, credentials, runbook, and a walk through removing my access. | 60 minutes to review what came in and decide about the old form. |
+| Week | What I build                                                                                                                                                         | What I need from Kennedy's                                                                                    |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| 0    | Discovery. The questions in section 15. **If you run a scheduling platform, we log into it together and settle the integration.** Scope and price agreed in writing. | 60–90 minutes with you and one office person. Platform login.                                                 |
+| 1    | Postgres behind the storage interface, migrations, staging environment. Hosting and storage accounts created in your name. Code repository is yours from day one.    | Someone to create the accounts with a Kennedy's email and add me.                                             |
+| 2    | Staff sign-in, three roles, session handling, owner-only staff management screen.                                                                                    | Names, emails and roles to start.                                                                             |
+| 3    | Customer confirmation and office notification email. Photo upload to object storage.                                                                                 | SPF/DKIM records. **Your exact wording for the confirmation email**, including anything about response times. |
+| 4    | Office acceptance testing on staging. Question wording and labels corrected to how you actually talk to customers.                                                   | 90 minutes with whoever answers the phone. They will find more than I will.                                   |
+| 5    | Fixes from week 4. Calendar or platform integration, as settled in week 0. Accessibility and real-device passes. Restore test performed and documented.              | A decision: link or subdomain (section 4).                                                                    |
+| 6    | Production deployed and running, not yet linked from your site. Soft launch — link added to the contact page. Parallel run begins, old form stays live.              | Your web person adds the link.                                                                                |
+| 7    | After-hours SMS alert, if you want it.                                                                                                                               | Legal business name, EIN and address for carrier registration. The on-call number.                            |
+| 8    | Parallel-run review. Triage weights adjusted against real requests. Handover: documentation, credentials, runbook, and a walk through removing my access.            | 60 minutes to review what came in and decide about the old form.                                              |
 
 Weeks 4 and 8 determine whether this is any good, and both are mostly your people talking and me listening.
 
@@ -376,4 +377,4 @@ Each of these moves the price, the schedule, or the shape of the build.
 
 ---
 
-*[YOUR NAME] · [YOUR PHONE] · [YOUR EMAIL] · Demo: [DEMO URL]*
+_[YOUR NAME] · [YOUR PHONE] · [YOUR EMAIL] · Demo: [DEMO URL]_

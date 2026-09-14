@@ -40,6 +40,7 @@ Say it before they look, not after:
 > [YOUR EMAIL]
 
 **Rules for this email:**
+
 - One link. The demo. No portfolio, no scheduling page, no attachments.
 - Plain text. No logo, no banner, no graphics in the signature. It should look like a person typed it.
 - If you are not actually in or near Grant County, cut "and I'm in [YOUR TOWN]" rather than stretching it.
@@ -54,7 +55,7 @@ Under 60 words. For a text, a Facebook page message, or the body of a voicemail 
 
 > Hi — my name is [YOUR NAME], I write software in [YOUR TOWN]. Nobody at Kennedy's asked me for this. On my own time I built a working online service-request demo around your shop: customer picks the problem, answers a few questions, sends photos, your office gets it sorted by urgency. [DEMO URL] — worth a look? [YOUR PHONE]
 
-A Facebook message probably lands with whoever runs the page, not the owner. Close with: *"If this should go to someone else, point me at them and I'll take it from there."*
+A Facebook message probably lands with whoever runs the page, not the owner. Close with: _"If this should go to someone else, point me at them and I'll take it from there."_
 
 ---
 
@@ -82,7 +83,7 @@ Get the name, thank them, hang up.
 
 Under 80 words. One new fact. Reply in the same thread so the original sits underneath.
 
-**Subject:** (reply in thread) — or, starting fresh: *One more thing on that Kennedy's demo*
+**Subject:** (reply in thread) — or, starting fresh: _One more thing on that Kennedy's demo_
 
 > [NAME] —
 >
@@ -104,7 +105,7 @@ Never open with "just following up," "circling back," or "bumping this." Open wi
 
 The last message you send.
 
-**Subject:** (reply in thread) — *Closing this out*
+**Subject:** (reply in thread) — _Closing this out_
 
 > [NAME] —
 >
@@ -205,15 +206,15 @@ What is actually known: their office is open Monday to Friday, 8:00 to 5:00, and
 
 ## 9. What not to say
 
-| Don't say | Say instead |
-| --- | --- |
-| "We" / "our team" / "my agency" | "I." You are one person with low overhead. |
-| "I work with a lot of HVAC companies" | "This is the first one I've built, and I built it for yours." |
-| "It diagnoses the problem before the tech arrives" | "It never diagnoses anything. It collects, and it flags the safety stuff." |
-| "It books the appointment automatically" | "It doesn't book anybody. It collects the request and your office still decides." |
-| "This will get you 30% more bookings" | "It should save the office time on each call. You put your own numbers in and see." |
-| "You need this" / "every modern business has this" | "Have a look and tell me whether it's useful. It might not be." |
-| "Free trial, no risk, act now" | "It's a demo you can open on your phone." |
+| Don't say                                          | Say instead                                                                         |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| "We" / "our team" / "my agency"                    | "I." You are one person with low overhead.                                          |
+| "I work with a lot of HVAC companies"              | "This is the first one I've built, and I built it for yours."                       |
+| "It diagnoses the problem before the tech arrives" | "It never diagnoses anything. It collects, and it flags the safety stuff."          |
+| "It books the appointment automatically"           | "It doesn't book anybody. It collects the request and your office still decides."   |
+| "This will get you 30% more bookings"              | "It should save the office time on each call. You put your own numbers in and see." |
+| "You need this" / "every modern business has this" | "Have a look and tell me whether it's useful. It might not be."                     |
+| "Free trial, no risk, act now"                     | "It's a demo you can open on your phone."                                           |
 
 ---
 

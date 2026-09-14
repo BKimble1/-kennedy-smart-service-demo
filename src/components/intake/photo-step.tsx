@@ -54,7 +54,9 @@ export function PhotoStep({
           tone: "error",
           title: "Couldn't add that photo",
           description:
-            error instanceof Error ? error.message : "Try a different image from your camera roll.",
+            error instanceof Error
+              ? error.message
+              : "Try a different image from your camera roll.",
         });
       }
     }
@@ -98,8 +100,8 @@ export function PhotoStep({
                 <Icon className="size-[18px]" aria-hidden />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[15px] font-medium text-ink-900">{slot.label}</p>
-                <p className="mt-0.5 text-[13px] leading-snug text-ink-500">{slot.hint}</p>
+                <p className="text-ink-900 text-[15px] font-medium">{slot.label}</p>
+                <p className="text-ink-500 mt-0.5 text-[13px] leading-snug">{slot.hint}</p>
               </div>
               <Button
                 variant={mine.length ? "secondary" : "outline"}
@@ -133,24 +135,24 @@ export function PhotoStep({
             </div>
 
             {mine.length ? (
-              <div className="flex flex-wrap gap-2.5 border-t border-brand-100 px-4 py-3.5">
+              <div className="border-brand-100 flex flex-wrap gap-2.5 border-t px-4 py-3.5">
                 {mine.map((p) => (
                   <figure key={p.id} className="group relative">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={p.dataUrl}
                       alt={`${slot.label} photo — ${p.name}`}
-                      className="size-20 rounded-lg border border-ink-200 object-cover shadow-xs"
+                      className="border-ink-200 size-20 rounded-lg border object-cover shadow-xs"
                     />
                     <button
                       type="button"
                       onClick={() => remove(p.id)}
                       aria-label={`Remove ${p.name}`}
-                      className="absolute -top-1.5 -right-1.5 grid size-6 place-items-center rounded-full border border-ink-200 bg-white text-ink-500 shadow-sm transition-colors hover:bg-danger-50 hover:text-danger-600"
+                      className="border-ink-200 text-ink-500 hover:bg-danger-50 hover:text-danger-600 absolute -top-1.5 -right-1.5 grid size-6 place-items-center rounded-full border bg-white shadow-sm transition-colors"
                     >
                       <X className="size-3.5" aria-hidden />
                     </button>
-                    <figcaption className="tnum mt-1 text-center text-[10.5px] text-ink-400">
+                    <figcaption className="tnum text-ink-400 mt-1 text-center text-[10.5px]">
                       {formatBytes(p.sizeBytes)}
                     </figcaption>
                   </figure>

@@ -7,12 +7,7 @@
  */
 
 export type ServiceCategoryId =
-  | "cooling"
-  | "heating"
-  | "plumbing"
-  | "maintenance"
-  | "install"
-  | "other";
+  "cooling" | "heating" | "plumbing" | "maintenance" | "install" | "other";
 
 export type UrgencyId = "emergency" | "today" | "next-available" | "planning";
 
@@ -21,22 +16,11 @@ export type ContactMethod = "phone" | "text" | "email";
 export type PropertyType = "home" | "business";
 
 export type RequestStatus =
-  | "new"
-  | "contacted"
-  | "scheduled"
-  | "assigned"
-  | "estimate-sent"
-  | "completed"
-  | "closed";
+  "new" | "contacted" | "scheduled" | "assigned" | "estimate-sent" | "completed" | "closed";
 
 /** Conditions we never try to diagnose — we hand the customer off to emergency help. */
 export type SafetyFlagId =
-  | "gas-odor"
-  | "carbon-monoxide"
-  | "smoke-fire"
-  | "electrical"
-  | "flooding"
-  | "sewage";
+  "gas-odor" | "carbon-monoxide" | "smoke-fire" | "electrical" | "flooding" | "sewage";
 
 export type QuestionType = "single" | "multi" | "text";
 
@@ -185,13 +169,7 @@ export interface EstimateOpportunity {
 }
 
 export type ActivityKind =
-  | "submitted"
-  | "status"
-  | "note"
-  | "contact"
-  | "assign"
-  | "schedule"
-  | "estimate";
+  "submitted" | "status" | "note" | "contact" | "assign" | "schedule" | "estimate";
 
 export interface ActivityEntry {
   id: string;

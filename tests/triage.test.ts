@@ -118,7 +118,10 @@ describe("triage", () => {
   });
 
   it("is deterministic", () => {
-    const answers = [answer("cooling-state", "runs-no-cool"), answer("equipment-age", "15-plus")];
+    const answers = [
+      answer("cooling-state", "runs-no-cool"),
+      answer("equipment-age", "15-plus"),
+    ];
     const a = triage("cooling", "warm-air", "today", answers);
     const b = triage("cooling", "warm-air", "today", answers);
     expect(a).toEqual(b);
@@ -182,7 +185,9 @@ describe("triage", () => {
 
 describe("estimate opportunity", () => {
   it("flags a direct replacement request as asked", () => {
-    const result = triage("install", "furnace", "planning", [answer("replace-timing", "weeks")]);
+    const result = triage("install", "furnace", "planning", [
+      answer("replace-timing", "weeks"),
+    ]);
     expect(result.estimateOpportunity.flagged).toBe(true);
     expect(result.estimateOpportunity.kind).toBe("asked");
   });

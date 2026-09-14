@@ -45,13 +45,13 @@ export function StepShell({
     >
       <header className="mb-5 sm:mb-6">
         {eyebrow ? (
-          <p className="mb-2 text-[11px] font-semibold tracking-[0.1em] text-brand-700 uppercase">
+          <p className="text-brand-700 mb-2 text-[11px] font-semibold tracking-[0.1em] uppercase">
             {eyebrow}
           </p>
         ) : null}
         <h1 className="text-[26px] leading-[1.15] font-semibold sm:text-[30px]">{title}</h1>
         {subtitle ? (
-          <p className="mt-2.5 text-[15px] leading-relaxed text-ink-600">{subtitle}</p>
+          <p className="text-ink-600 mt-2.5 text-[15px] leading-relaxed">{subtitle}</p>
         ) : null}
       </header>
 
@@ -80,7 +80,9 @@ export function StepShell({
       ) : null}
 
       {footerNote ? (
-        <p className="mt-5 text-center text-[12.5px] leading-relaxed text-ink-500">{footerNote}</p>
+        <p className="text-ink-500 mt-5 text-center text-[12.5px] leading-relaxed">
+          {footerNote}
+        </p>
       ) : null}
     </div>
   );

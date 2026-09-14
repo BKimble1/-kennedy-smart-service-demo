@@ -24,14 +24,14 @@ If Option 2 is out of reach: Option 1 at $3,200 now, office desk at $6,200 befor
 
 ## The short version
 
-| | Option 1 — Intake | Option 2 — Intake + office desk | Option 3 — Full system |
-|---|---|---|---|
-| One-time | **$3,200** | **$8,900** | **$16,500** |
-| Configuration labor | $2,700 (26-35 hrs) | $7,400 (70-90 hrs) | $15,000 (140-182 hrs) |
-| Software license line | $500 | $1,500 | $1,500 |
-| Effective labor rate at midpoint | ~$88/hr | ~$93/hr | ~$93/hr |
-| Delivery | 2-3 weeks | 4-6 weeks | 10-14 weeks |
-| Hosting and support, from day 61 | $75/mo | $195/mo | $395/mo + SMS at cost |
+|                                  | Option 1 — Intake  | Option 2 — Intake + office desk | Option 3 — Full system |
+| -------------------------------- | ------------------ | ------------------------------- | ---------------------- |
+| One-time                         | **$3,200**         | **$8,900**                      | **$16,500**            |
+| Configuration labor              | $2,700 (26-35 hrs) | $7,400 (70-90 hrs)              | $15,000 (140-182 hrs)  |
+| Software license line            | $500               | $1,500                          | $1,500                 |
+| Effective labor rate at midpoint | ~$88/hr            | ~$93/hr                         | ~$93/hr                |
+| Delivery                         | 2-3 weeks          | 4-6 weeks                       | 10-14 weeks            |
+| Hosting and support, from day 61 | $75/mo             | $195/mo                         | $395/mo + SMS at cost  |
 
 Hosting and support are included for the first 60 days after launch. From day 61 the monthly
 starts, or I hand off the code and the data and they host it themselves. Month to month, 30 days
@@ -100,6 +100,7 @@ Say that before he has to ask it.
 Guided intake on the customer side. Structured email to the office. No dashboard.
 
 ### Included
+
 - The full 8-step intake flow, configured to Kennedy's trades and service list: air conditioning,
   heating and furnace, plumbing, maintenance, installation and replacement, other
 - Per-category issue lists and the follow-up questions for each issue, reviewed line by line with
@@ -125,6 +126,7 @@ Guided intake on the customer side. Structured email to the office. No dashboard
 - 60 days of support after launch
 
 ### Not included
+
 - No office dashboard, no triage ranking, no call summaries, no reply drafts, no prep sheets.
   Requests arrive by email and live in email.
 - No SMS or text messaging of any kind.
@@ -132,28 +134,30 @@ Guided intake on the customer side. Structured email to the office. No dashboard
 
 ### Hours
 
-| Work | Hours |
-|---|---|
-| Discovery, mapping their trades and issue lists | 3-4 |
-| Intake configuration: categories, issue lists, follow-up questions, all copy | 6-8 |
-| Safety interlock copy review and owner sign-off | 1-2 |
-| Branding, plus confirming NATE and Bryant mark usage with whoever controls it | 2-3 |
-| Photo storage and delivery | 2 |
-| Email pipeline, templates, domain, SPF, DKIM | 3-4 |
-| Hosting, SSL, deploy, spam protection | 2-3 |
-| Testing on real phones and browsers, accessibility pass | 3-4 |
-| Training and written handoff | 2 |
-| One revision round | 2-3 |
-| **Total** | **26-35** |
+| Work                                                                          | Hours     |
+| ----------------------------------------------------------------------------- | --------- |
+| Discovery, mapping their trades and issue lists                               | 3-4       |
+| Intake configuration: categories, issue lists, follow-up questions, all copy  | 6-8       |
+| Safety interlock copy review and owner sign-off                               | 1-2       |
+| Branding, plus confirming NATE and Bryant mark usage with whoever controls it | 2-3       |
+| Photo storage and delivery                                                    | 2         |
+| Email pipeline, templates, domain, SPF, DKIM                                  | 3-4       |
+| Hosting, SSL, deploy, spam protection                                         | 2-3       |
+| Testing on real phones and browsers, accessibility pass                       | 3-4       |
+| Training and written handoff                                                  | 2         |
+| One revision round                                                            | 2-3       |
+| **Total**                                                                     | **26-35** |
 
 $2,700 of labor over 26-35 hours is $104 an hour at the low end and $77 at the high end. Midpoint
 is about $88. The high end is the risk I accept for quoting a fixed price.
 
 ### Delivery
+
 26-35 hours at 20 a week is under two weeks of work. **2-3 weeks from deposit and content**, with
 the extra week for their feedback turnaround.
 
 ### Monthly from day 61 — $75
+
 Hosting, domain and SSL renewal, the transactional email service, uptime monitoring, security and
 dependency updates, bug fixes on anything I delivered, up to 30 minutes of content or question
 edits, and email support with a two-business-day reply target. That target is mine. It is not a
@@ -170,12 +174,14 @@ than the included time is billed in change-order blocks.
 This is the one I want them to buy and the one the case study comes from.
 
 ### Lead with this
+
 **The triage engine is rules, not a model.** He writes the rules with me, in his words, and every
 ranking shows the plain-English reasons it landed where it did. He is not being asked to trust a
 black box with the order of his own inbox. That is the sentence that sells the product. Say it
 while the dashboard is in his hands.
 
 ### Included
+
 - Everything in Option 1
 - **Office dashboard** with summary cards: New, Needs response, Emergency, Scheduled, Estimate
   opportunities, Completed
@@ -207,6 +213,7 @@ while the dashboard is in his hands.
 - 60 days of support after launch
 
 ### Not included
+
 - No SMS or text messaging. Reply drafts can be copied into whatever they text from today.
 - No calendar or scheduling integration. Preferred windows are captured and displayed. No
   appointment is booked and nothing syncs to a calendar or a dispatch board.
@@ -214,6 +221,7 @@ while the dashboard is in his hands.
   platform. This feeds that kind of system. It does not replace it.
 
 ### On the AI
+
 The drafting engine is deterministic. It composes prose from the structured answers with no API
 key and no per-request cost. The product does not depend on a paid AI API and I am not going to
 sell them a monthly API bill they do not need.
@@ -225,31 +233,33 @@ default, because I do not think they need it.
 
 ### Hours
 
-| Work | Hours |
-|---|---|
-| Discovery, plus the working session where he writes the triage rules | 5-6 |
-| Intake configuration: categories, issue lists, follow-up questions, all copy | 9-11 |
-| Safety interlock copy review and owner sign-off | 1-2 |
-| Branding, plus confirming NATE and Bryant mark usage | 3-4 |
-| Triage rules encoded, tuned, and the reason strings written in his words | 7-9 |
-| Drafting engine tuned to his voice, service area, and office hours | 7-9 |
-| Postgres behind the store interface, migrations, backups, export | 7-9 |
-| Office access control, rate limiting, upload validation, security pass | 7-8 |
-| Email deliverability: domain, SPF, DKIM, templates, spam protection | 4-5 |
-| Deploy, hosting, SSL, uptime monitoring | 3-4 |
-| Impact calculator and reporting view configured with his inputs | 2-3 |
-| Testing on real phones and browsers, accessibility pass | 5-7 |
-| Two training sessions and a written runbook | 4-5 |
-| Two revision rounds and two weeks of live tuning | 6-8 |
-| **Total** | **70-90** |
+| Work                                                                         | Hours     |
+| ---------------------------------------------------------------------------- | --------- |
+| Discovery, plus the working session where he writes the triage rules         | 5-6       |
+| Intake configuration: categories, issue lists, follow-up questions, all copy | 9-11      |
+| Safety interlock copy review and owner sign-off                              | 1-2       |
+| Branding, plus confirming NATE and Bryant mark usage                         | 3-4       |
+| Triage rules encoded, tuned, and the reason strings written in his words     | 7-9       |
+| Drafting engine tuned to his voice, service area, and office hours           | 7-9       |
+| Postgres behind the store interface, migrations, backups, export             | 7-9       |
+| Office access control, rate limiting, upload validation, security pass       | 7-8       |
+| Email deliverability: domain, SPF, DKIM, templates, spam protection          | 4-5       |
+| Deploy, hosting, SSL, uptime monitoring                                      | 3-4       |
+| Impact calculator and reporting view configured with his inputs              | 2-3       |
+| Testing on real phones and browsers, accessibility pass                      | 5-7       |
+| Two training sessions and a written runbook                                  | 4-5       |
+| Two revision rounds and two weeks of live tuning                             | 6-8       |
+| **Total**                                                                    | **70-90** |
 
 $7,400 of labor over 70-90 hours is $106 at the low end, $82 at the high end, about $93 at the
 80-hour midpoint. Plus the $1,500 license line. I can defend every row of that table out loud.
 
 ### Delivery
+
 70-90 hours at 20 a week is 3.5 to 4.5 weeks of work. **4-6 weeks from deposit and content.**
 
 ### Monthly from day 61 — $195
+
 Everything in the Option 1 monthly, plus database hosting and nightly off-site backups, up to one
 hour of changes a month, support for whoever is using the dashboard, and a quarterly twenty-minute
 check-in.
@@ -265,6 +275,7 @@ Everything in Option 2, plus scheduling, SMS, and staff accounts. Unlike Option 
 does not exist yet. It is new engineering, which is why the hours are large.
 
 ### Included
+
 - Everything in Option 2
 - **Scheduling integration**: two-way sync with Google Calendar or their existing dispatch system,
   so a confirmed appointment lands on the calendar the technicians look at. Scope and price get
@@ -281,6 +292,7 @@ does not exist yet. It is new engineering, which is why the hours are large.
 - Three rounds of revisions and 60 days of support after launch
 
 ### Not included
+
 - No automated outbound messaging. A human presses send on every message.
 - No invoicing, payments, or financing applications.
 - **No carrier approval guarantee.** SMS registration is run by the carriers, takes two to four
@@ -289,30 +301,33 @@ does not exist yet. It is new engineering, which is why the hours are large.
 
 ### Hours
 
-| Work | Hours |
-|---|---|
-| Everything in Option 2 | 70-90 |
-| Scheduling integration (Google Calendar at the low end, a vendor API at the high end) | 18-26 |
-| SMS: provider, carrier registration, compliance, templates, delivery logging | 16-20 |
-| Staff accounts: roles, invites, resets, audit trail | 14-18 |
-| Technician assignment and per-technician views | 8-10 |
-| Owner reporting and exports | 6-8 |
-| Extra testing, full-staff training, documentation | 8-10 |
-| **Total** | **140-182** |
+| Work                                                                                  | Hours       |
+| ------------------------------------------------------------------------------------- | ----------- |
+| Everything in Option 2                                                                | 70-90       |
+| Scheduling integration (Google Calendar at the low end, a vendor API at the high end) | 18-26       |
+| SMS: provider, carrier registration, compliance, templates, delivery logging          | 16-20       |
+| Staff accounts: roles, invites, resets, audit trail                                   | 14-18       |
+| Technician assignment and per-technician views                                        | 8-10        |
+| Owner reporting and exports                                                           | 6-8         |
+| Extra testing, full-staff training, documentation                                     | 8-10        |
+| **Total**                                                                             | **140-182** |
 
 $15,000 of labor over 140-182 hours is $107 at the low end, $82 at the high end, about $93 at the
 161-hour midpoint.
 
 ### Delivery
+
 140-182 hours at 20 a week is 7 to 9 weeks of work. Add carrier registration and whatever their
 scheduling vendor's API turns out to be. **10-14 weeks from deposit.**
 
 ### Monthly from day 61 — $395 plus SMS at cost
+
 Everything in the Option 2 monthly, plus the SMS number and per-message carrier fees passed
 through at cost, monitoring of the scheduling sync, staff account administration, two hours of
 changes a month, and a one-business-day reply target on anything that stops the dashboard working.
 
 ### How to treat it in the room
+
 Option 3 is the honest ceiling and somewhere to grow in year two. I should not expect a yes on it.
 If he lights up, sell Option 2 first and phase the rest. A fourteen-week first project with a
 client I have never worked with is a bad idea for both of us.
@@ -324,6 +339,7 @@ client I have never worked with is a bad idea for both of us.
 **Quote Option 2 at $8,900. Say it once, plainly, and stop talking.**
 
 The order:
+
 1. Ask discovery question one. Listen to the whole answer.
 2. Put the demo at [DEMO URL] on a phone and hand him the phone. He taps through it, not me.
 3. Walk him into the safety interlock. That screen shows I understand which direction the risk in
@@ -332,6 +348,7 @@ The order:
 5. Then price. Three numbers on one page.
 
 Why Option 2 is the opening:
+
 - It is the package the demo demonstrates. Quoting intake-only after showing him a dashboard is
   quoting him something worse than what he just held.
 - The value is on the office side. Structured intake alone moves the problem from the inbox to a
@@ -342,6 +359,7 @@ Do not quote a padded number planning to discount it. Open at the price and have
 cuts instead of pre-planned discounts. Cut work, not price.
 
 ### Rate, if he asks directly
+
 About $90 an hour for configuration work. I am solo, with no office, no account manager, no
 project manager, and no sales team taking a cut, and that is why the number is what it is rather
 than higher. If it comes up, **ask what Kennedy's bills their own service labor at** rather than
@@ -354,14 +372,14 @@ with a stocked truck and me. I lose that comparison in front of him.
 
 **Option 2 scope-cut floor: $7,600.** Each cut comes out in writing, with its hours:
 
-| Cut | Hours | Price |
-|---|---|---|
-| Business Impact page and the admin-time calculator | 2-3 | -$250 |
-| Drag-and-drop pipeline becomes a status dropdown | 3-4 | -$300 |
-| Second revision round | 3-4 | -$300 |
-| Second week of live tuning | 2-3 | -$250 |
-| Second training session, shorter runbook | 2 | -$200 |
-| **Total** | **12-16** | **-$1,300** |
+| Cut                                                | Hours     | Price       |
+| -------------------------------------------------- | --------- | ----------- |
+| Business Impact page and the admin-time calculator | 2-3       | -$250       |
+| Drag-and-drop pipeline becomes a status dropdown   | 3-4       | -$300       |
+| Second revision round                              | 3-4       | -$300       |
+| Second week of live tuning                         | 2-3       | -$250       |
+| Second training session, shorter runbook           | 2         | -$200       |
+| **Total**                                          | **12-16** | **-$1,300** |
 
 At $90 an hour that reconciles. The intake, the triage engine with its reasons, the request detail
 view, the drafting engine, the pipeline, the database, and the backups all survive, because those
@@ -426,8 +444,8 @@ Blocks: **$450 per half day, $850 per full day.** Higher than the project rate o
 reason if asked is that bundled work planned in advance is discounted and work inserted mid-project
 is not, because it costs more than its own hours.
 
-The script, usable verbatim: *"Good idea. That's outside what we scoped, so let me write it on the
-list and price it. Do you want it now or after launch?"* Almost always after launch, and the list
+The script, usable verbatim: _"Good idea. That's outside what we scoped, so let me write it on the
+list and price it. Do you want it now or after launch?"_ Almost always after launch, and the list
 becomes phase two.
 
 Keep the parking lot list including the free items, and show it at the final training.
@@ -517,6 +535,7 @@ next prospects and that promise takes them off the table for a year, which is ex
 worth trading for something.
 
 Rules:
+
 - **The ceiling is the license line and it does not move.** Not $2,000 because the conversation got
   tense.
 - **It is conditional and it is written into the agreement.** No testimonial and no reference
@@ -538,8 +557,8 @@ Print this. One side. No hourly rates, no internal reasoning.
 Built by [YOUR NAME] · [YOUR PHONE] · [YOUR EMAIL]
 Working demo: [DEMO URL]
 
-*I built this on my own before we ever spoke. Kennedy's has not reviewed or approved any of it. If
-it is not useful to you, no hard feelings and no follow-up.*
+_I built this on my own before we ever spoke. Kennedy's has not reviewed or approved any of it. If
+it is not useful to you, no hard feelings and no follow-up._
 
 **Option 1 — Intake only — $3,200**
 A guided intake on your site that asks the right questions for each kind of call, lets customers

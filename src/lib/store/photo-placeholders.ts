@@ -92,7 +92,10 @@ const DATA_PLATE = wrap(
      [152, 472],
      [648, 472],
    ]
-     .map(([x, y]) => `<circle cx="${x}" cy="${y}" r="7" fill="#8d959e" stroke="#5b636c" stroke-width="2"/>`)
+     .map(
+       ([x, y]) =>
+         `<circle cx="${x}" cy="${y}" r="7" fill="#8d959e" stroke="#5b636c" stroke-width="2"/>`,
+     )
      .join("")}`,
   "#6a7480",
 );

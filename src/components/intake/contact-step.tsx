@@ -25,9 +25,14 @@ const ZIP = /^\d{5}$/;
 
 export function validateContact(c: CustomerForm): ContactErrors {
   const errors: ContactErrors = {};
-  if (!c.name.trim() || c.name.trim().length < 2) errors.name = "We need a name for the work order.";
+  if (!c.name.trim() || c.name.trim().length < 2)
+    errors.name = "We need a name for the work order.";
   const digits = c.phone.replace(/\D/g, "");
-  if (!PHONE_DIGITS.test(digits.length === 11 && digits.startsWith("1") ? digits.slice(1) : digits)) {
+  if (
+    !PHONE_DIGITS.test(
+      digits.length === 11 && digits.startsWith("1") ? digits.slice(1) : digits,
+    )
+  ) {
     errors.phone = "Enter a 10-digit phone number.";
   }
   if (c.contactMethod === "email" || c.email.trim()) {
@@ -78,10 +83,10 @@ export function ContactStep({
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between gap-3 rounded-xl border border-dashed border-brand-200 bg-brand-50/50 px-4 py-3">
-        <p className="text-[12.5px] leading-snug text-brand-900">
-          <span className="font-semibold">Demo tip:</span> fill this in with sample Indiana details
-          instead of typing your own.
+      <div className="border-brand-200 bg-brand-50/50 flex items-center justify-between gap-3 rounded-xl border border-dashed px-4 py-3">
+        <p className="text-brand-900 text-[12.5px] leading-snug">
+          <span className="font-semibold">Demo tip:</span> fill this in with sample Indiana
+          details instead of typing your own.
         </p>
         <Button
           size="sm"
@@ -95,7 +100,7 @@ export function ContactStep({
       </div>
 
       <fieldset>
-        <legend className="mb-2 text-[13px] font-medium text-ink-800">
+        <legend className="text-ink-800 mb-2 text-[13px] font-medium">
           Is this a home or a business?
         </legend>
         <div className="grid grid-cols-2 gap-2">
@@ -116,8 +121,8 @@ export function ContactStep({
                 className={cn(
                   "flex items-center gap-2.5 rounded-lg border px-3.5 py-3 text-[14px] font-medium transition-colors",
                   active
-                    ? "border-brand-500 bg-brand-50 text-brand-900 ring-2 ring-brand-500/15"
-                    : "border-ink-200 bg-white text-ink-700 hover:border-ink-300 hover:bg-ink-50",
+                    ? "border-brand-500 bg-brand-50 text-brand-900 ring-brand-500/15 ring-2"
+                    : "border-ink-200 text-ink-700 hover:border-ink-300 hover:bg-ink-50 bg-white",
                 )}
               >
                 <Icon className="size-4 shrink-0" aria-hidden />
@@ -157,7 +162,9 @@ export function ContactStep({
           label="Email"
           htmlFor="c-email"
           error={errors.email}
-          hint={value.contactMethod === "email" ? undefined : "Optional, but handy for the receipt"}
+          hint={
+            value.contactMethod === "email" ? undefined : "Optional, but handy for the receipt"
+          }
         >
           <Input
             id="c-email"
@@ -214,7 +221,7 @@ export function ContactStep({
       </div>
 
       <fieldset>
-        <legend className="mb-2 text-[13px] font-medium text-ink-800">
+        <legend className="text-ink-800 mb-2 text-[13px] font-medium">
           How should the office reach you?
         </legend>
         <div className="grid grid-cols-3 gap-2">
@@ -230,8 +237,8 @@ export function ContactStep({
                 className={cn(
                   "flex flex-col items-center gap-1.5 rounded-lg border px-2 py-3 text-[13px] font-medium transition-colors",
                   active
-                    ? "border-brand-500 bg-brand-50 text-brand-900 ring-2 ring-brand-500/15"
-                    : "border-ink-200 bg-white text-ink-700 hover:border-ink-300 hover:bg-ink-50",
+                    ? "border-brand-500 bg-brand-50 text-brand-900 ring-brand-500/15 ring-2"
+                    : "border-ink-200 text-ink-700 hover:border-ink-300 hover:bg-ink-50 bg-white",
                 )}
               >
                 <Icon className="size-4" aria-hidden />
@@ -244,7 +251,7 @@ export function ContactStep({
 
       <div>
         <Label htmlFor="c-notes">Anything else we should know?</Label>
-        <p className="mt-1 mb-1.5 text-xs text-ink-500">
+        <p className="text-ink-500 mt-1 mb-1.5 text-xs">
           Optional. Gate codes, dogs, where to park, the best door to knock on.
         </p>
         <Textarea
@@ -257,16 +264,16 @@ export function ContactStep({
         />
       </div>
 
-      <label className="flex cursor-pointer items-start gap-2.5 rounded-lg border border-ink-200 bg-white p-3.5">
+      <label className="border-ink-200 flex cursor-pointer items-start gap-2.5 rounded-lg border bg-white p-3.5">
         <input
           type="checkbox"
           checked={value.returning}
           onChange={(e) => set("returning", e.target.checked)}
           className="mt-0.5 size-4 shrink-0 accent-[oklch(0.436_0.104_248)]"
         />
-        <span className="text-[13.5px] leading-snug text-ink-700">
+        <span className="text-ink-700 text-[13.5px] leading-snug">
           I&apos;ve used Kennedy&apos;s before
-          <span className="mt-0.5 block text-[12px] text-ink-500">
+          <span className="text-ink-500 mt-0.5 block text-[12px]">
             Helps the office find your history before they call.
           </span>
         </span>

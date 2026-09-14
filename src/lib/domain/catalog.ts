@@ -291,7 +291,12 @@ const BANK: FollowUpQuestion[] = [
     optional: true,
     options: [
       { id: "no", label: "No" },
-      { id: "kennedys", label: "Yes — Kennedy's has been out", weight: 5, signals: ["repeat-repair"] },
+      {
+        id: "kennedys",
+        label: "Yes — Kennedy's has been out",
+        weight: 5,
+        signals: ["repeat-repair"],
+      },
       { id: "other", label: "Yes — another company", weight: 3, signals: ["repeat-repair"] },
       { id: "diy", label: "I tried something myself" },
     ],
@@ -353,7 +358,12 @@ const BANK: FollowUpQuestion[] = [
     options: [
       { id: "one", label: "One sink, tub or shower", signals: ["single-room"] },
       { id: "toilet", label: "A toilet", weight: 5 },
-      { id: "multiple", label: "Several fixtures at once", weight: 14, signals: ["whole-home"] },
+      {
+        id: "multiple",
+        label: "Several fixtures at once",
+        weight: 14,
+        signals: ["whole-home"],
+      },
       {
         id: "main",
         label: "Everything — and it comes up somewhere else when I run water",
@@ -406,7 +416,12 @@ const BANK: FollowUpQuestion[] = [
     prompt: "Where is there no water?",
     type: "single",
     options: [
-      { id: "whole", label: "The entire building", weight: 24, signals: ["no-water", "whole-home"] },
+      {
+        id: "whole",
+        label: "The entire building",
+        weight: 24,
+        signals: ["no-water", "whole-home"],
+      },
       { id: "hot-only", label: "Hot water only", weight: 12, signals: ["no-hot-water"] },
       { id: "cold-only", label: "Cold water only", weight: 12 },
       { id: "one", label: "One fixture", weight: 4, signals: ["single-room"] },
@@ -443,7 +458,12 @@ const BANK: FollowUpQuestion[] = [
       { id: "clogged", label: "Clogged or won't flush", weight: 8 },
       { id: "overflow", label: "Overflowing", weight: 22, signals: ["active-water"] },
       { id: "running", label: "Running constantly", weight: 4 },
-      { id: "leak-base", label: "Leaking around the base", weight: 10, signals: ["active-water"] },
+      {
+        id: "leak-base",
+        label: "Leaking around the base",
+        weight: 10,
+        signals: ["active-water"],
+      },
       { id: "loose", label: "Loose or rocking" },
     ],
   },
@@ -453,7 +473,12 @@ const BANK: FollowUpQuestion[] = [
     type: "single",
     options: [
       { id: "drip", label: "Dripping or won't shut off", weight: 4 },
-      { id: "leak-base", label: "Leaking at the base or underneath", weight: 8, signals: ["active-water"] },
+      {
+        id: "leak-base",
+        label: "Leaking at the base or underneath",
+        weight: 8,
+        signals: ["active-water"],
+      },
       { id: "no-flow", label: "Barely any flow", weight: 3 },
       { id: "broken-handle", label: "Handle is broken or spinning", weight: 4 },
       { id: "replace", label: "I want it replaced", signals: ["replacement-intent"] },
@@ -465,10 +490,24 @@ const BANK: FollowUpQuestion[] = [
     type: "single",
     options: [
       { id: "not-running", label: "Not running at all", weight: 18 },
-      { id: "constant", label: "Running constantly and not keeping up", weight: 20, signals: ["active-water"] },
-      { id: "water-rising", label: "Water is rising in the pit", weight: 22, signals: ["active-water"] },
+      {
+        id: "constant",
+        label: "Running constantly and not keeping up",
+        weight: 20,
+        signals: ["active-water"],
+      },
+      {
+        id: "water-rising",
+        label: "Water is rising in the pit",
+        weight: 22,
+        signals: ["active-water"],
+      },
       { id: "noisy", label: "Running, but noisy", weight: 6 },
-      { id: "preventive", label: "It works — I want it looked at or replaced", signals: ["replacement-intent"] },
+      {
+        id: "preventive",
+        label: "It works — I want it looked at or replaced",
+        signals: ["replacement-intent"],
+      },
     ],
   },
   {
@@ -488,7 +527,12 @@ const BANK: FollowUpQuestion[] = [
     prompt: "What's prompting you to look at this now?",
     type: "multi",
     options: [
-      { id: "repairs", label: "Repair costs are adding up", weight: 4, signals: ["repeat-repair"] },
+      {
+        id: "repairs",
+        label: "Repair costs are adding up",
+        weight: 4,
+        signals: ["repeat-repair"],
+      },
       { id: "age", label: "The system is old", weight: 3, signals: ["aging-equipment"] },
       { id: "comfort", label: "Rooms are uncomfortable", weight: 3 },
       { id: "bills", label: "Energy bills are high", weight: 2 },
@@ -564,7 +608,8 @@ const BANK: FollowUpQuestion[] = [
     prompt: "Tell us what's going on",
     helper: "A sentence or two is plenty. We'll follow up with anything else we need.",
     type: "text",
-    placeholder: "For example: the shut-off valve under the kitchen sink is seized and I'd like it replaced.",
+    placeholder:
+      "For example: the shut-off valve under the kitchen sink is seized and I'd like it replaced.",
   },
   {
     id: "other-when",
@@ -918,11 +963,17 @@ export function getCategory(id: ServiceCategoryId): ServiceCategory {
   return CATEGORY_BY_ID[id];
 }
 
-export function getIssue(categoryId: ServiceCategoryId, issueId: string): IssueOption | undefined {
+export function getIssue(
+  categoryId: ServiceCategoryId,
+  issueId: string,
+): IssueOption | undefined {
   return CATEGORY_BY_ID[categoryId]?.issues.find((i) => i.id === issueId);
 }
 
-export function questionsFor(categoryId: ServiceCategoryId, issueId: string): FollowUpQuestion[] {
+export function questionsFor(
+  categoryId: ServiceCategoryId,
+  issueId: string,
+): FollowUpQuestion[] {
   const issue = getIssue(categoryId, issueId);
   if (!issue) return [];
   return issue.questions.map(getQuestion);

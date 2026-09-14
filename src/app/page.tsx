@@ -5,10 +5,12 @@ import { BUSINESS, CONCEPT_NOTICE, PRODUCT } from "@/lib/domain/business";
 import {
   ArrowRight,
   Camera,
+  Check,
   ClipboardList,
   Clock,
   LayoutDashboard,
   ListChecks,
+  Minus,
   Play,
   ShieldAlert,
   Smartphone,
@@ -48,14 +50,17 @@ const TONE_CLASS = {
 
 export default function Home() {
   return (
-    <div className="min-h-dvh bg-ink-50">
+    <div className="bg-ink-50 min-h-dvh">
       <ConceptRibbon />
 
-      <header className="border-b border-ink-200 bg-white">
+      <header className="border-ink-200 border-b bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <Logo />
           <div className="flex items-center gap-2">
             <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+              <Link href="/about">About this demo</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
               <Link href="/dashboard/impact">Business impact</Link>
             </Button>
             <Button asChild variant="secondary" size="sm">
@@ -70,7 +75,7 @@ export default function Home() {
 
       <main id="main">
         {/* ---- Hero ------------------------------------------------------ */}
-        <section className="texture-grid relative overflow-hidden bg-ink-950">
+        <section className="texture-grid bg-ink-950 relative overflow-hidden">
           <div
             aria-hidden
             className="absolute inset-0 bg-[radial-gradient(110%_70%_at_80%_-10%,oklch(0.372_0.085_249)_0%,transparent_58%)]"
@@ -80,15 +85,16 @@ export default function Home() {
               <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-3 py-1 text-[11px] font-medium tracking-[0.06em] text-white/70 uppercase">
                 Concept demonstration
               </p>
-              <h1 className="mt-5 font-display text-[38px] leading-[1.06] font-semibold text-white sm:text-[52px]">
+              <h1 className="font-display mt-5 text-[38px] leading-[1.06] font-semibold text-white sm:text-[52px]">
                 Every service request,
                 <br />
                 ready to dispatch.
               </h1>
               <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-white/70 sm:text-[17px]">
                 A replacement for the generic contact form: the customer answers a handful of
-                questions about what&apos;s actually happening, and the office receives a triaged,
-                structured request with photos, address and availability already attached.
+                questions about what&apos;s actually happening, and the office receives a
+                triaged, structured request with photos, address and availability already
+                attached.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -132,7 +138,7 @@ export default function Home() {
                     <div
                       key={p.name}
                       style={{ animationDelay: `${180 + i * 110}ms` }}
-                      className="animate-rise rounded-xl border border-white/10 bg-ink-900/70 p-3"
+                      className="animate-rise bg-ink-900/70 rounded-xl border border-white/10 p-3"
                     >
                       <div className="flex items-center gap-2">
                         <span className="truncate text-[13.5px] font-semibold text-white">
@@ -151,16 +157,16 @@ export default function Home() {
                 </div>
               </div>
               <div
-                className="animate-rise absolute -bottom-16 -left-4 hidden rounded-xl border border-white/12 bg-ink-900 p-3.5 shadow-xl lg:block xl:-bottom-14 xl:-left-14"
+                className="animate-rise bg-ink-900 absolute -bottom-16 -left-4 hidden rounded-xl border border-white/12 p-3.5 shadow-xl lg:block xl:-bottom-14 xl:-left-14"
                 style={{ animationDelay: "560ms" }}
               >
-                <p className="flex items-center gap-1.5 text-[10.5px] font-semibold tracking-wide text-brand-300 uppercase">
+                <p className="text-brand-300 flex items-center gap-1.5 text-[10.5px] font-semibold tracking-wide uppercase">
                   <Sparkle className="size-3" />
                   Call summary
                 </p>
                 <p className="mt-1 max-w-[248px] text-[12px] leading-relaxed text-white/65">
-                  “Sarah Whitcomb in Marion submitted a cooling request: the system runs but the air
-                  isn&apos;t cold…”
+                  “Sarah Whitcomb in Marion submitted a cooling request: the system runs but the
+                  air isn&apos;t cold…”
                 </p>
               </div>
             </div>
@@ -200,13 +206,72 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ---- What arrives ------------------------------------------------ */}
+        <section className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:pb-16">
+          <h2 className="font-display text-[24px] leading-tight font-semibold sm:text-[28px]">
+            What actually arrives in the office
+          </h2>
+          <p className="mt-2.5 max-w-2xl text-[15px] leading-relaxed text-ink-600">
+            The difference isn&apos;t the form. It&apos;s what the office is holding when they pick
+            up the phone.
+          </p>
+          <div className="mt-7 grid gap-3 md:grid-cols-2">
+            <article className="rounded-2xl border border-ink-200 bg-white p-6">
+              <p className="text-[11px] font-semibold tracking-[0.09em] text-ink-500 uppercase">
+                From a general contact form
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {["A name", "An email address", "A subject line", "A sentence or two of free text"].map(
+                  (t) => (
+                    <li
+                      key={t}
+                      className="flex items-center gap-2.5 text-[14px] text-ink-600"
+                    >
+                      <Minus className="size-3.5 shrink-0 text-ink-300" aria-hidden />
+                      {t}
+                    </li>
+                  ),
+                )}
+              </ul>
+              <p className="mt-5 border-t border-ink-150 pt-4 text-[13.5px] leading-relaxed text-ink-500">
+                Everything else gets worked out on a phone call — often two, and often not on the
+                first try.
+              </p>
+            </article>
+
+            <article className="rounded-2xl border border-brand-200 bg-brand-50/40 p-6">
+              <p className="text-[11px] font-semibold tracking-[0.09em] text-brand-700 uppercase">
+                From a structured request
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {[
+                  "The trade, and the specific issue",
+                  "Two to four answers about what the equipment is doing",
+                  "How urgent the customer thinks it is",
+                  "Photos of the equipment, the problem and the model plate",
+                  "Service address and preferred contact method",
+                  "The days and windows that actually work for them",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-2.5 text-[14px] text-ink-800">
+                    <Check className="mt-0.5 size-3.5 shrink-0 text-brand-600" aria-hidden />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 border-t border-brand-200/70 pt-4 text-[13.5px] leading-relaxed text-brand-900/80">
+                The first call becomes a confirmation instead of an interview.
+              </p>
+            </article>
+          </div>
+        </section>
+
         {/* ---- What's inside ---------------------------------------------- */}
-        <section className="border-y border-ink-200 bg-white">
+        <section className="border-ink-200 border-y bg-white">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
             <h2 className="font-display text-[24px] leading-tight font-semibold sm:text-[28px]">
               What&apos;s actually in here
             </h2>
-            <p className="mt-2.5 max-w-2xl text-[15px] leading-relaxed text-ink-600">
+            <p className="text-ink-600 mt-2.5 max-w-2xl text-[15px] leading-relaxed">
               This is a working application, not a slide deck. Everything below is clickable.
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -244,14 +309,19 @@ export default function Home() {
               ].map((f) => {
                 const Icon = f.icon;
                 return (
-                  <article key={f.title} className="rounded-xl border border-ink-200 bg-ink-50/60 p-5">
-                    <span className="grid size-9 place-items-center rounded-lg border border-ink-200 bg-white text-ink-600">
+                  <article
+                    key={f.title}
+                    className="border-ink-200 bg-ink-50/60 rounded-xl border p-5"
+                  >
+                    <span className="border-ink-200 text-ink-600 grid size-9 place-items-center rounded-lg border bg-white">
                       <Icon className="size-[18px]" aria-hidden />
                     </span>
-                    <h3 className="mt-3.5 font-display text-[15px] font-semibold text-ink-950">
+                    <h3 className="font-display text-ink-950 mt-3.5 text-[15px] font-semibold">
                       {f.title}
                     </h3>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-600">{f.body}</p>
+                    <p className="text-ink-600 mt-1.5 text-[13.5px] leading-relaxed">
+                      {f.body}
+                    </p>
                   </article>
                 );
               })}
@@ -261,13 +331,13 @@ export default function Home() {
 
         {/* ---- Closing ---------------------------------------------------- */}
         <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
-          <div className="rounded-2xl border border-ink-200 bg-white p-6 text-center sm:p-10">
+          <div className="border-ink-200 rounded-2xl border bg-white p-6 text-center sm:p-10">
             <h2 className="font-display text-[24px] leading-tight font-semibold sm:text-[28px]">
               Ninety seconds is enough to see it
             </h2>
-            <p className="mx-auto mt-2.5 max-w-xl text-[15px] leading-relaxed text-ink-600">
-              The guided demo walks a request from a homeowner&apos;s phone through to a scheduled
-              job on the office board, one short step at a time.
+            <p className="text-ink-600 mx-auto mt-2.5 max-w-xl text-[15px] leading-relaxed">
+              The guided demo walks a request from a homeowner&apos;s phone through to a
+              scheduled job on the office board, one short step at a time.
             </p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -285,7 +355,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-ink-200 bg-ink-950">
+      <footer className="border-ink-200 bg-ink-950 border-t">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <div>
@@ -309,6 +379,14 @@ export default function Home() {
               >
                 {BUSINESS.website}
               </a>
+              <p className="mt-3">
+                <Link
+                  href="/about"
+                  className="text-white/70 underline underline-offset-4 hover:text-white"
+                >
+                  About this prototype
+                </Link>
+              </p>
             </div>
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-5">
@@ -346,22 +424,22 @@ function SideCard({
     <article
       className={
         dark
-          ? "flex flex-col rounded-2xl border border-ink-200 bg-white p-6 sm:p-8"
-          : "flex flex-col rounded-2xl border border-ink-200 bg-white p-6 sm:p-8"
+          ? "border-ink-200 flex flex-col rounded-2xl border bg-white p-6 sm:p-8"
+          : "border-ink-200 flex flex-col rounded-2xl border bg-white p-6 sm:p-8"
       }
     >
-      <span className="grid size-10 place-items-center rounded-xl border border-brand-100 bg-brand-50 text-brand-700">
+      <span className="border-brand-100 bg-brand-50 text-brand-700 grid size-10 place-items-center rounded-xl border">
         <Icon className="size-5" aria-hidden />
       </span>
-      <p className="mt-4 text-[11px] font-semibold tracking-[0.09em] text-brand-700 uppercase">
+      <p className="text-brand-700 mt-4 text-[11px] font-semibold tracking-[0.09em] uppercase">
         {eyebrow}
       </p>
-      <h2 className="mt-2 font-display text-[22px] leading-tight font-semibold">{title}</h2>
-      <p className="mt-2.5 text-[14.5px] leading-relaxed text-ink-600">{body}</p>
+      <h2 className="font-display mt-2 text-[22px] leading-tight font-semibold">{title}</h2>
+      <p className="text-ink-600 mt-2.5 text-[14.5px] leading-relaxed">{body}</p>
       <ul className="mt-5 flex-1 space-y-2.5">
         {points.map((p) => (
-          <li key={p} className="flex gap-2.5 text-[13.5px] leading-relaxed text-ink-700">
-            <span aria-hidden className="mt-[8px] size-1 shrink-0 rounded-full bg-brand-500" />
+          <li key={p} className="text-ink-700 flex gap-2.5 text-[13.5px] leading-relaxed">
+            <span aria-hidden className="bg-brand-500 mt-[8px] size-1 shrink-0 rounded-full" />
             {p}
           </li>
         ))}
