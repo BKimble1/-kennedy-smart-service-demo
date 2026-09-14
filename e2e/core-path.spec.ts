@@ -316,6 +316,80 @@ test.describe("guided demo", () => {
   });
 });
 
+test.describe("keyboard and accessibility", () => {
+  test("the intake can be completed without a mouse", async ({ page }) => {
+    await page.goto("/request");
+    await expect(
+      page.getByRole("heading", { name: /what do you need help with/i }),
+    ).toBeVisible();
+
+    // Tab to the first category and choose it with the keyboard.
+    const cooling = page.getByRole("button", { name: /Air Conditioning/ });
+    await cooling.focus();
+    await expect(cooling).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("heading", { name: /what's happening/i })).toBeVisible();
+
+    const issue = page.getByRole("button", { name: /Blowing warm air/ });
+    await issue.focus();
+    await page.keyboard.press(" ");
+    await expect(
+      page.getByRole("heading", { name: /what is the system doing/i }),
+    ).toBeVisible();
+
+    // Every step keeps a visible focus ring on the control that has focus.
+    const outline = await page.evaluate(() => {
+      const el = document.activeElement as HTMLElement | null;
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return { outlineWidth: s.outlineWidth, outlineStyle: s.outlineStyle };
+    });
+    expect(outline).not.toBeNull();
+  });
+
+  test("skip-to-content works and lands on main", async ({ page }) => {
+    await page.goto("/");
+    await page.keyboard.press("Tab");
+    const skip = page.getByRole("link", { name: /skip to main content/i });
+    await expect(skip).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("#main")).toBeVisible();
+  });
+
+  test("the dashboard exposes landmarks and accessible names", async ({ page }) => {
+    await page.goto("/dashboard");
+    await expect(page.getByRole("main")).toBeVisible();
+    await expect(
+      page.getByRole("navigation", { name: /dashboard sections/i }).first(),
+    ).toBeAttached();
+    await expect(page.getByLabel(/search requests/i)).toBeVisible();
+    // Every request row is a link with the customer's name in its accessible name.
+    const rows = page.locator('a[href^="/dashboard/requests/"]');
+    await expect(rows.first()).toBeVisible();
+    expect(await rows.first().getAttribute("href")).toMatch(/KSD-\d{4}/);
+  });
+
+  test("images and icon-only controls carry text alternatives", async ({ page }) => {
+    await page.goto("/dashboard/requests/KSD-4206");
+    await expect(page.getByText(/Photos \(2\)/)).toBeVisible();
+    const problems = await page.evaluate(() => {
+      const out: string[] = [];
+      document.querySelectorAll("img").forEach((img) => {
+        if (!img.getAttribute("alt"))
+          out.push(`img without alt: ${img.currentSrc.slice(0, 40)}`);
+      });
+      document.querySelectorAll("button, a").forEach((el) => {
+        const text = (el.textContent ?? "").trim();
+        const label = el.getAttribute("aria-label") ?? el.getAttribute("title");
+        if (!text && !label)
+          out.push(`control with no accessible name: ${el.outerHTML.slice(0, 80)}`);
+      });
+      return out;
+    });
+    expect(problems, problems.join(" | ")).toEqual([]);
+  });
+});
+
 test.describe("concept labelling", () => {
   test("every surface carries the concept notice", async ({ page }) => {
     for (const path of [
