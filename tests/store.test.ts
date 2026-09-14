@@ -111,6 +111,77 @@ describe("local request store", () => {
     expect(calls).toBe(1);
   });
 
+  it("captures a half-finished request and marks it partial", () => {
+    const partial = store.savePartial({
+      propertyType: "home",
+      category: DRAFT.category,
+      issueId: DRAFT.issueId,
+      urgency: DRAFT.urgency,
+      answers: DRAFT.answers,
+      safetyFlags: [],
+      customer: DRAFT.customer,
+      reachedStep: "contact details",
+    });
+    expect(partial.completion).toBe("partial");
+    expect(partial.availability).toEqual([]);
+    expect(partial.photos).toEqual([]);
+    expect(partial.customer.phone).toBe(DRAFT.customer.phone);
+    expect(partial.activity[0].summary).toMatch(/did not finish/i);
+    expect(store.get(partial.id)?.completion).toBe("partial");
+  });
+
+  it("replaces the partial record in place when the customer finishes", () => {
+    const before = store.list().length;
+    const partial = store.savePartial({
+      propertyType: "home",
+      category: DRAFT.category,
+      issueId: DRAFT.issueId,
+      urgency: DRAFT.urgency,
+      answers: DRAFT.answers,
+      safetyFlags: [],
+      customer: DRAFT.customer,
+      reachedStep: "contact details",
+    });
+    expect(store.list().length).toBe(before + 1);
+
+    const finished = store.create(DRAFT, new Date(), partial.id);
+    expect(store.list().length).toBe(before + 1);
+    expect(finished.id).toBe(partial.id);
+    expect(finished.reference).toBe(partial.reference);
+    expect(finished.completion).toBe("complete");
+    expect(finished.availability.length).toBeGreaterThan(0);
+  });
+
+  it("updates an existing partial rather than stacking duplicates", () => {
+    const first = store.savePartial({
+      propertyType: "home",
+      category: DRAFT.category,
+      issueId: DRAFT.issueId,
+      urgency: DRAFT.urgency,
+      answers: DRAFT.answers,
+      safetyFlags: [],
+      customer: DRAFT.customer,
+      reachedStep: "contact details",
+    });
+    const count = store.list().length;
+    const second = store.savePartial(
+      {
+        propertyType: "home",
+        category: DRAFT.category,
+        issueId: DRAFT.issueId,
+        urgency: DRAFT.urgency,
+        answers: DRAFT.answers,
+        safetyFlags: [],
+        customer: { ...DRAFT.customer, name: "Jamie Tester-Updated" },
+        reachedStep: "contact details",
+      },
+      first.id,
+    );
+    expect(store.list().length).toBe(count);
+    expect(second.id).toBe(first.id);
+    expect(second.customer.name).toBe("Jamie Tester-Updated");
+  });
+
   it("restores the seed on reset", () => {
     store.create(DRAFT);
     store.reset();

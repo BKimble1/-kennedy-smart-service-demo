@@ -9,6 +9,7 @@ export interface DashboardMetrics {
   completed: number;
   afterHours: number;
   withPhotos: number;
+  partials: number;
   openTotal: number;
   /** Oldest `new` request still waiting, in minutes. */
   oldestWaitingMinutes: number | null;
@@ -35,6 +36,7 @@ export function computeMetrics(requests: ServiceRequest[], now = new Date()): Da
     completed: requests.filter((r) => r.status === "completed").length,
     afterHours: requests.filter((r) => r.triage.afterHours).length,
     withPhotos: requests.filter((r) => r.photos.length > 0).length,
+    partials: requests.filter((r) => r.completion === "partial").length,
     openTotal: open.length,
     oldestWaitingMinutes: oldest,
   };

@@ -44,7 +44,7 @@ async function completeIntake(page: Page, opts: { sample?: boolean } = {}) {
   await expect(page.getByRole("heading", { name: /where are we headed/i })).toBeVisible();
   if (opts.sample !== false) {
     await page.getByRole("button", { name: /Fill sample/i }).click();
-    await expect(page.getByLabel(/Your name/i)).toHaveValue(/Whitcomb/);
+    await expect(page.getByLabel(/Your name/i)).toHaveValue(/Megan Ruhl/);
   }
   await page.getByRole("button", { name: /^Continue$/ }).click();
 
@@ -100,7 +100,7 @@ test.describe("customer intake", () => {
     await expect(page.getByRole("heading", { name: /service requests/i })).toBeVisible();
     const row = page.locator(`a:has-text("${reference}")`).first();
     await expect(row).toBeVisible();
-    await expect(row).toContainText("Sarah Whitcomb");
+    await expect(row).toContainText("Megan Ruhl");
     await expect(row).toContainText(/High priority|Emergency|Standard/);
   });
 
@@ -127,6 +127,44 @@ test.describe("customer intake", () => {
     await expect(
       page.getByRole("heading", { name: /what does the smell remind you of/i }),
     ).toBeVisible();
+  });
+
+  test("leaving after the contact step still reaches the office", async ({ page }) => {
+    await page.goto("/request");
+    await page.getByRole("button", { name: /Plumbing/ }).click();
+    await page.getByRole("button", { name: /Water heater/ }).click();
+    await page.getByRole("button", { name: /No hot water at all/ }).click();
+    await page.getByRole("button", { name: /Electric tank/ }).click();
+    await page.getByRole("button", { name: /5 to 10 years/ }).click();
+    await page.getByRole("button", { name: /None of these/ }).click();
+    await page.getByRole("button", { name: /^Continue$/ }).click();
+    await page.getByRole("button", { name: /Today if possible/ }).click();
+    await page.getByRole("button", { name: /Fill sample/i }).click();
+    await page.getByRole("button", { name: /^Continue$/ }).click();
+
+    // Walk away here — no submit.
+    await page.goto("/dashboard");
+    const row = page
+      .locator('a[href^="/dashboard/requests/"]', { hasText: "Megan Ruhl" })
+      .first();
+    await expect(row).toBeVisible();
+    await expect(row).toContainText("Unfinished");
+    await row.click();
+    await expect(page.getByText(/never finished/i)).toBeVisible();
+    await expect(page.getByText(/would not exist at all/i)).toBeVisible();
+  });
+
+  test("finishing the request replaces the half-finished record", async ({ page }) => {
+    await completeIntake(page);
+    await page.getByRole("button", { name: /send this to kennedy/i }).click();
+    await expect(page.getByRole("heading", { name: /you're all set/i })).toBeVisible({
+      timeout: 15_000,
+    });
+    await page.goto("/dashboard");
+    const mine = page.locator('a[href^="/dashboard/requests/"]', { hasText: "Megan Ruhl" });
+    // The half-finished record was replaced, not duplicated.
+    await expect(mine).toHaveCount(1);
+    await expect(mine.first()).not.toContainText("Unfinished");
   });
 
   test("an in-progress request survives a page refresh", async ({ page }) => {
@@ -298,11 +336,11 @@ test.describe("concept labelling", () => {
     }
     // And the full disclaimer must be reachable, not just the short label.
     await page.goto("/about");
-    await expect(page.getByRole("heading", { name: /read this before you judge it/i })).toBeVisible();
-    await expect(page.getByText(/what it is not/i)).toBeVisible();
     await expect(
-      page.getByText(/kennedy's did not ask for it/i).first(),
+      page.getByRole("heading", { name: /read this before you judge it/i }),
     ).toBeVisible();
+    await expect(page.getByText(/what it is not/i)).toBeVisible();
+    await expect(page.getByText(/kennedy's did not ask for it/i).first()).toBeVisible();
     await expect(page.getByText(/stored in/i).first()).toBeVisible();
   });
 

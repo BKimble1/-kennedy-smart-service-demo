@@ -9,6 +9,7 @@ import {
   Building2,
   Camera,
   FileText,
+  Hourglass,
   MapPin,
   Moon,
   ShieldAlert,
@@ -74,6 +75,9 @@ export function RequestRow({
             <span className="text-ink-900 font-medium">{request.issueLabel}</span>
             <span className="text-ink-400"> · </span>
             <span className="text-ink-600">{oneLine}</span>
+            {request.completion === "partial" ? (
+              <span className="text-warn-800"> Left before choosing a time.</span>
+            ) : null}
           </p>
 
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
@@ -95,6 +99,12 @@ export function RequestRow({
               <span className="tnum border-ink-200 bg-ink-50 text-ink-600 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px] font-medium">
                 <Camera className="size-3" aria-hidden />
                 {request.photos.length}
+              </span>
+            ) : null}
+            {request.completion === "partial" ? (
+              <span className="border-warn-300 bg-warn-50 text-warn-900 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px] font-semibold">
+                <Hourglass className="size-3" aria-hidden />
+                Unfinished
               </span>
             ) : null}
             {request.triage.afterHours ? (

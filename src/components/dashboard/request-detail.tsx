@@ -30,6 +30,7 @@ import {
   Clock,
   FileQuestion,
   Gauge,
+  Hourglass,
   Mail,
   MapPin,
   MessageSquare,
@@ -132,6 +133,24 @@ export function RequestDetail({ id }: { id: string }) {
               <span className="font-medium">{protocol.headline}</span> Confirm they are safe and
               that the appropriate emergency service has been contacted before you discuss
               scheduling.
+            </p>
+          </div>
+        ) : null}
+
+        {request.completion === "partial" ? (
+          <div className="animate-rise border-warn-300 bg-warn-50 mb-5 rounded-xl border p-4 sm:p-5">
+            <p className="font-display text-warn-900 flex items-center gap-2 text-[15px] font-semibold">
+              <Hourglass className="size-4.5 shrink-0" aria-hidden />
+              This request was never finished
+            </p>
+            <p className="text-warn-900/90 mt-2 text-[13.5px] leading-relaxed">
+              {request.customer.name.split(" ")[0]} got as far as the{" "}
+              {request.abandonedAt ?? "contact"} step and left without submitting. Everything
+              below is what they had already told us — the name, the number and the symptoms are
+              real. What is missing is photos and preferred times.
+            </p>
+            <p className="text-warn-900/70 mt-2 text-[12.5px] leading-relaxed">
+              On a plain contact form this request would not exist at all.
             </p>
           </div>
         ) : null}

@@ -49,13 +49,15 @@ const URGENCY_ICON: Record<UrgencyId, typeof Zap> = {
 
 export function IntakeWizard() {
   const intake = useIntake();
-  const { create } = useRequests();
+  const { create, savePartial } = useRequests();
   const router = useRouter();
   const { push } = useToast();
 
   const [dismissedSafety, setDismissedSafety] = React.useState<SafetyFlagId[]>([]);
   const [contactErrors, setContactErrors] = React.useState<ContactErrors>({});
   const [submitting, setSubmitting] = React.useState(false);
+  /* Id of the part-finished record created when contact details were captured. */
+  const [partialId, setPartialId] = React.useState<string | undefined>(undefined);
 
   const { state, step, steps, index, direction, followUps, safetyFlags, draft } = intake;
 
@@ -69,7 +71,8 @@ export function IntakeWizard() {
     setSubmitting(true);
     /* A beat of latency so the confirmation doesn't feel like a page jump. */
     await new Promise((r) => setTimeout(r, 620));
-    const created = create(draft);
+    const created = create(draft, partialId);
+    setPartialId(undefined);
     intake.clearDraft();
     push({
       tone: "success",
@@ -295,8 +298,41 @@ export function IntakeWizard() {
             onNext={() => {
               const errors = validateContact(state.customer);
               setContactErrors(errors);
-              if (Object.keys(errors).length === 0) intake.go(1);
-              else {
+              if (Object.keys(errors).length === 0) {
+                /*
+                 * Capture what we have before moving on. If the customer never
+                 * reaches the final screen, the office still gets a name, a
+                 * number and the symptoms instead of nothing at all.
+                 */
+                if (state.category && state.issueId && state.urgency) {
+                  const record = savePartial(
+                    {
+                      propertyType: state.propertyType,
+                      category: state.category,
+                      issueId: state.issueId,
+                      urgency: state.urgency,
+                      answers: intake.answers,
+                      safetyFlags,
+                      notes: state.notes.trim() || undefined,
+                      customer: {
+                        name: state.customer.name.trim(),
+                        phone: state.customer.phone.trim(),
+                        email: state.customer.email.trim(),
+                        address1: state.customer.address1.trim(),
+                        city: state.customer.city.trim(),
+                        state: "IN",
+                        zip: state.customer.zip.trim(),
+                        contactMethod: state.customer.contactMethod,
+                        returning: state.customer.returning || undefined,
+                      },
+                      reachedStep: "contact details",
+                    },
+                    partialId,
+                  );
+                  setPartialId(record.id);
+                }
+                intake.go(1);
+              } else {
                 document
                   .querySelector('[aria-invalid="true"]')
                   ?.scrollIntoView({ block: "center", behavior: "smooth" });

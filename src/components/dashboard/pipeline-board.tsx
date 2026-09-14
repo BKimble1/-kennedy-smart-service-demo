@@ -22,7 +22,7 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
-import { Camera, GripVertical, Info, MoveRight, ShieldAlert } from "lucide-react";
+import { Camera, GripVertical, Hourglass, Info, MoveRight, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { PriorityBadge, TradeAvatar } from "./indicators";
@@ -248,6 +248,12 @@ function Card({
           <span className="border-danger-300 bg-danger-100 text-danger-800 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10.5px] font-semibold">
             <ShieldAlert className="size-2.5" aria-hidden />
             Safety
+          </span>
+        ) : null}
+        {request.completion === "partial" ? (
+          <span className="border-warn-300 bg-warn-50 text-warn-900 inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10.5px] font-semibold">
+            <Hourglass className="size-2.5" aria-hidden />
+            Unfinished
           </span>
         ) : null}
         {request.photos.length ? (

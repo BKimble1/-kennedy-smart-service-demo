@@ -9,6 +9,7 @@ import {
   ClipboardList,
   Clock,
   LayoutDashboard,
+  Hourglass,
   ListChecks,
   Minus,
   Play,
@@ -211,36 +212,36 @@ export default function Home() {
           <h2 className="font-display text-[24px] leading-tight font-semibold sm:text-[28px]">
             What actually arrives in the office
           </h2>
-          <p className="mt-2.5 max-w-2xl text-[15px] leading-relaxed text-ink-600">
-            The difference isn&apos;t the form. It&apos;s what the office is holding when they pick
-            up the phone.
+          <p className="text-ink-600 mt-2.5 max-w-2xl text-[15px] leading-relaxed">
+            The difference isn&apos;t the form. It&apos;s what the office is holding when they
+            pick up the phone.
           </p>
           <div className="mt-7 grid gap-3 md:grid-cols-2">
-            <article className="rounded-2xl border border-ink-200 bg-white p-6">
-              <p className="text-[11px] font-semibold tracking-[0.09em] text-ink-500 uppercase">
+            <article className="border-ink-200 rounded-2xl border bg-white p-6">
+              <p className="text-ink-500 text-[11px] font-semibold tracking-[0.09em] uppercase">
                 From a general contact form
               </p>
               <ul className="mt-4 space-y-2.5">
-                {["A name", "An email address", "A subject line", "A sentence or two of free text"].map(
-                  (t) => (
-                    <li
-                      key={t}
-                      className="flex items-center gap-2.5 text-[14px] text-ink-600"
-                    >
-                      <Minus className="size-3.5 shrink-0 text-ink-300" aria-hidden />
-                      {t}
-                    </li>
-                  ),
-                )}
+                {[
+                  "A name",
+                  "An email address",
+                  "A subject line",
+                  "A sentence or two of free text",
+                ].map((t) => (
+                  <li key={t} className="text-ink-600 flex items-center gap-2.5 text-[14px]">
+                    <Minus className="text-ink-300 size-3.5 shrink-0" aria-hidden />
+                    {t}
+                  </li>
+                ))}
               </ul>
-              <p className="mt-5 border-t border-ink-150 pt-4 text-[13.5px] leading-relaxed text-ink-500">
-                Everything else gets worked out on a phone call — often two, and often not on the
-                first try.
+              <p className="border-ink-150 text-ink-500 mt-5 border-t pt-4 text-[13.5px] leading-relaxed">
+                Everything else gets worked out on a phone call — often two, and often not on
+                the first try.
               </p>
             </article>
 
-            <article className="rounded-2xl border border-brand-200 bg-brand-50/40 p-6">
-              <p className="text-[11px] font-semibold tracking-[0.09em] text-brand-700 uppercase">
+            <article className="border-brand-200 bg-brand-50/40 rounded-2xl border p-6">
+              <p className="text-brand-700 text-[11px] font-semibold tracking-[0.09em] uppercase">
                 From a structured request
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -251,14 +252,15 @@ export default function Home() {
                   "Photos of the equipment, the problem and the model plate",
                   "Service address and preferred contact method",
                   "The days and windows that actually work for them",
+                  "And a name and number even when they don't finish",
                 ].map((t) => (
-                  <li key={t} className="flex items-start gap-2.5 text-[14px] text-ink-800">
-                    <Check className="mt-0.5 size-3.5 shrink-0 text-brand-600" aria-hidden />
+                  <li key={t} className="text-ink-800 flex items-start gap-2.5 text-[14px]">
+                    <Check className="text-brand-600 mt-0.5 size-3.5 shrink-0" aria-hidden />
                     {t}
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 border-t border-brand-200/70 pt-4 text-[13.5px] leading-relaxed text-brand-900/80">
+              <p className="border-brand-200/70 text-brand-900/80 mt-5 border-t pt-4 text-[13.5px] leading-relaxed">
                 The first call becomes a confirmation instead of an interview.
               </p>
             </article>
@@ -295,6 +297,11 @@ export default function Home() {
                   icon: ClipboardList,
                   title: "Smart office assist",
                   body: "Call summary, customer reply draft and technician prep sheet, generated from the structured answers.",
+                },
+                {
+                  icon: Hourglass,
+                  title: "Nothing falls through",
+                  body: "A request is captured the moment contact details are entered. If the customer never reaches the last screen, the office still has their name, number and symptoms.",
                 },
                 {
                   icon: Camera,

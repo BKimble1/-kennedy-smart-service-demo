@@ -12,6 +12,14 @@ describe("seeded inbox", () => {
     expect(seeds.length).toBeLessThanOrEqual(20);
   });
 
+  it("includes one request the customer never finished", () => {
+    const partial = seeds.filter((s) => s.completion === "partial");
+    expect(partial).toHaveLength(1);
+    expect(partial[0].customer.phone).toBeTruthy();
+    expect(partial[0].availability).toEqual([]);
+    expect(partial[0].activity[0].summary).toMatch(/did not finish/i);
+  });
+
   it("gives every request a unique id and reference", () => {
     expect(new Set(seeds.map((s) => s.id)).size).toBe(seeds.length);
     expect(new Set(seeds.map((s) => s.reference)).size).toBe(seeds.length);
@@ -28,7 +36,7 @@ describe("seeded inbox", () => {
 
   it("only uses reserved example.com addresses and 555 phone numbers", () => {
     for (const s of seeds) {
-      expect(s.customer.email).toMatch(/@example\.com$/);
+      if (s.customer.email) expect(s.customer.email).toMatch(/@example\.com$/);
       expect(s.customer.phone).toMatch(/^765555\d{4}$/);
     }
   });

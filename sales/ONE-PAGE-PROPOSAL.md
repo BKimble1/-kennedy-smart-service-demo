@@ -20,13 +20,14 @@ If it is worth doing, the half that has nothing to do with web traffic is the of
 - Six of the eight are taps. Typing happens on the contact screen. Photos and preferred times can both be skipped.
 - Your phone number sits at the top of every screen. Anyone who would rather call, calls, and you have lost nothing.
 - The question list is yours, not mine. If you want it down to four screens, we cut screens.
-- As it stands, if someone quits halfway you get nothing. I would rather you got their name and number at the point they stopped. That is a change I would make before launch if you want it, and you should probably want it.
+- If someone quits halfway, you still get the request. The moment they enter a name and number it is captured and lands in your inbox marked unfinished, with whatever they had already told you. Try it in the demo: stop after the contact screen and then open the office side.
 
 ## What you would get
 
 - A safety stop. A reported gas smell, CO alarm, smoke, sparking, or uncontrolled water ends the form and tells the customer to get out and call 911 or the gas utility. It never says anything about the equipment. I write that wording, you approve it before it goes live, and if your insurance carrier or your attorney wants different words, we use theirs.
 - Customers pick their trade and their problem, then answer two to four questions written for that problem. The request arrives with the trade, the symptom, the equipment, and when the customer can be home.
 - Photos of the unit, the leak, or the model and serial plate, attached to the request.
+- Requests the customer never finished, marked as such, with the name, the number and the symptoms they had already given.
 - Preferred days and time windows. Morning, afternoon, evening.
 - One office inbox, ranked by urgency, with the plain-English reason for every ranking shown. Fixed rules you can read, not a guess.
 - Per request: a short call summary, a customer reply draft, and a technician prep sheet. These are assembled from the answers the customer typed, by fixed rules. No AI subscription and no per-request cost. Copy buttons only. Nothing reaches a customer unless someone at Kennedy's sends it. If you ever want a language model writing them instead, that is an add-on and it is your call, not mine.
@@ -37,11 +38,11 @@ Names, phone numbers, addresses, and photos sit in a database on a server rented
 
 ## What it costs
 
-|                                   | Starter      | Middle  | Full                  |
-| --------------------------------- | ------------ | ------- | --------------------- |
-| One-time build                    | $3,200       | $8,900  | $17,500               |
-| Optional monthly, starting day 61 | $75          | $195    | $395 plus SMS at cost |
-| Live in                           | 2 to 3 weeks | 3 weeks | 10 to 14 weeks        |
+|                                   | Starter      | Middle       | Full                  |
+| --------------------------------- | ------------ | ------------ | --------------------- |
+| One-time build                    | $3,200       | $8,900       | $16,500               |
+| Optional monthly, starting day 61 | $75          | $195         | $395 plus SMS at cost |
+| Live in                           | 2 to 3 weeks | 4 to 6 weeks | 10 to 14 weeks        |
 
 Starter is the customer intake page and email notifications, no dashboard. The demo you are looking at is the middle column. Full adds scheduling integration, text messaging, and staff logins, and I would not sell it to you first.
 
@@ -62,11 +63,11 @@ Not included: a rebuild of kennedyheatingandair.com, advertising, or any connect
 | Week   | What happens                                                                                                                                                      |
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1      | I sit with whoever answers the phone and write down what they ask callers today. You decide the trade list, the issue list, and any wording about response times. |
-| 2      | Your questions, trades, and wording go in. It gets deployed. You see it running with your own content partway through the week.                                   |
-| 3      | Your changes. Training for whoever works the inbox. Live behind a link on your site.                                                                              |
-| 4 to 5 | Tuning, at no extra charge. Triage rules written in week one are wrong the moment real requests arrive.                                                           |
+| 2 to 3 | Your questions, trades, and wording go in. It gets deployed. You see it running with your own content before the end of week three.                               |
+| 4      | Your changes. Training for whoever works the inbox. Live behind a link on your site.                                                                              |
+| 5 to 6 | Tuning, at no extra charge. Triage rules written in week one are wrong the moment real requests arrive.                                                           |
 
-The software is already built. Those weeks are your content, your questions, deployment, and training, not writing it from scratch. If weeks 4 and 5 read like padding to you, cut them and call me when something is wrong.
+The software is already built. Those weeks are your content, your questions, deployment, and training, not writing it from scratch. If weeks 5 and 6 read like padding to you, cut them and call me when something is wrong.
 
 ## What I need from you
 

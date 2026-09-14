@@ -267,6 +267,12 @@ export function buildCallSummary(request: ServiceRequest): string {
     );
   }
 
+  if (request.completion === "partial") {
+    sentences.push(
+      "They left the form before finishing, so there are no photos or preferred times yet — worth asking for both on the call.",
+    );
+  }
+
   const preference: Record<string, string> = {
     phone: "prefers a phone call",
     text: "prefers a text message",

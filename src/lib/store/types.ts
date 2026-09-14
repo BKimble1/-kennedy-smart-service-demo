@@ -2,6 +2,7 @@ import type {
   ActivityEntry,
   AvailabilityWindow,
   IntakeDraft,
+  PartialIntake,
   RequestStatus,
   ServiceRequest,
 } from "@/lib/domain/types";
@@ -25,7 +26,9 @@ export interface RequestPatch {
 export interface RequestStore {
   list(): ServiceRequest[];
   get(id: string): ServiceRequest | undefined;
-  create(draft: IntakeDraft, now?: Date): ServiceRequest;
+  create(draft: IntakeDraft, now?: Date, replaceId?: string): ServiceRequest;
+  /** Capture a half-finished request so an abandoned form still reaches the office. */
+  savePartial(partial: PartialIntake, existingId?: string, now?: Date): ServiceRequest;
   update(id: string, patch: RequestPatch, actor?: string): ServiceRequest | undefined;
   addActivity(id: string, entry: Omit<ActivityEntry, "id" | "at">): ServiceRequest | undefined;
   reset(): void;

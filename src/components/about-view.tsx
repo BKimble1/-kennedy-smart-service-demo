@@ -2,7 +2,13 @@
 
 import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
-import { BUILDER, BUSINESS, CONCEPT_NOTICE, PRODUCT, hasBuilderContact } from "@/lib/domain/business";
+import {
+  BUILDER,
+  BUSINESS,
+  CONCEPT_NOTICE,
+  PRODUCT,
+  hasBuilderContact,
+} from "@/lib/domain/business";
 import {
   ArrowLeft,
   Ban,
@@ -46,6 +52,10 @@ const REAL_BUILD = [
     body: "A short list of named accounts — owner, office, technicians — rather than a public link.",
   },
   {
+    title: "Half-finished requests would still count",
+    body: "A request is captured the moment a name and number are entered, so someone who closes the tab at the photo step still reaches the office. That is in the demo — try leaving part-way through and then open the dashboard.",
+  },
+  {
     title: "Drafts would still be drafts",
     body: "Nothing auto-sends to a customer in version one. A person reads it, edits it, and presses send.",
   },
@@ -53,8 +63,8 @@ const REAL_BUILD = [
 
 export function AboutView() {
   return (
-    <div className="min-h-dvh bg-ink-50">
-      <header className="border-b border-ink-200 bg-white">
+    <div className="bg-ink-50 min-h-dvh">
+      <header className="border-ink-200 border-b bg-white">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3.5 sm:px-6">
           <Link href="/" className="rounded-md">
             <Logo />
@@ -69,42 +79,43 @@ export function AboutView() {
       </header>
 
       <main id="main" className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
-        <p className="text-[11px] font-semibold tracking-[0.1em] text-brand-700 uppercase">
+        <p className="text-brand-700 text-[11px] font-semibold tracking-[0.1em] uppercase">
           About this demo
         </p>
         <h1 className="mt-3 text-[30px] leading-[1.12] font-semibold sm:text-[38px]">
           Read this before you judge it.
         </h1>
-        <p className="mt-4 text-[16px] leading-relaxed text-ink-600">
-          {CONCEPT_NOTICE.long}
-        </p>
+        <p className="text-ink-600 mt-4 text-[16px] leading-relaxed">{CONCEPT_NOTICE.long}</p>
 
         <section className="mt-9 grid gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-ok-200 bg-white p-5">
-            <p className="flex items-center gap-2 font-display text-[15px] font-semibold text-ok-800">
+          <div className="border-ok-200 rounded-xl border bg-white p-5">
+            <p className="font-display text-ok-800 flex items-center gap-2 text-[15px] font-semibold">
               <Check className="size-4" aria-hidden />
               What it is
             </p>
             <ul className="mt-3.5 space-y-2.5">
               {IS.map((t) => (
-                <li key={t} className="flex gap-2.5 text-[13.5px] leading-relaxed text-ink-700">
-                  <span aria-hidden className="mt-[8px] size-1 shrink-0 rounded-full bg-ok-500" />
+                <li key={t} className="text-ink-700 flex gap-2.5 text-[13.5px] leading-relaxed">
+                  <span
+                    aria-hidden
+                    className="bg-ok-500 mt-[8px] size-1 shrink-0 rounded-full"
+                  />
                   {t}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-xl border border-danger-200 bg-white p-5">
-            <p className="flex items-center gap-2 font-display text-[15px] font-semibold text-danger-800">
+          <div className="border-danger-200 rounded-xl border bg-white p-5">
+            <p className="font-display text-danger-800 flex items-center gap-2 text-[15px] font-semibold">
               <Ban className="size-4" aria-hidden />
               What it is not
             </p>
             <ul className="mt-3.5 space-y-2.5">
               {IS_NOT.map((t) => (
-                <li key={t} className="flex gap-2.5 text-[13.5px] leading-relaxed text-ink-700">
+                <li key={t} className="text-ink-700 flex gap-2.5 text-[13.5px] leading-relaxed">
                   <span
                     aria-hidden
-                    className="mt-[8px] size-1 shrink-0 rounded-full bg-danger-500"
+                    className="bg-danger-500 mt-[8px] size-1 shrink-0 rounded-full"
                   />
                   {t}
                 </li>
@@ -113,75 +124,80 @@ export function AboutView() {
           </div>
         </section>
 
-        <section className="mt-4 rounded-xl border border-ink-200 bg-white p-5 sm:p-6">
-          <h2 className="flex items-center gap-2 font-display text-[16px] font-semibold text-ink-950">
-            <Database className="size-4 text-ink-400" aria-hidden />
+        <section className="border-ink-200 mt-4 rounded-xl border bg-white p-5 sm:p-6">
+          <h2 className="font-display text-ink-950 flex items-center gap-2 text-[16px] font-semibold">
+            <Database className="text-ink-400 size-4" aria-hidden />
             Where the information goes
           </h2>
-          <p className="mt-3 text-[14px] leading-relaxed text-ink-700">
+          <p className="text-ink-700 mt-3 text-[14px] leading-relaxed">
             Nowhere. Everything you enter — including photos — is stored in{" "}
-            <span className="font-medium text-ink-950">your own browser</span> and never leaves the
-            device. There is no server holding it, no account, and no analytics on what you click.
+            <span className="text-ink-950 font-medium">your own browser</span> and never leaves
+            the device. There is no server holding it, no account, and no analytics on what you
+            click.
           </p>
-          <p className="mt-2.5 text-[14px] leading-relaxed text-ink-700">
-            Two practical consequences while you are looking around: a request you submit on your
-            phone will not appear on your laptop, and clearing your browser data resets the demo to
-            its fifteen seeded examples. Every one of those examples is fictional — invented names,
-            reserved <span className="font-mono text-[13px]">555</span> phone numbers and{" "}
-            <span className="font-mono text-[13px]">example.com</span> addresses. Only the towns and
-            ZIP codes are real, so the service area looks like the real one.
+          <p className="text-ink-700 mt-2.5 text-[14px] leading-relaxed">
+            Two practical consequences while you are looking around: a request you submit on
+            your phone will not appear on your laptop, and clearing your browser data resets the
+            demo to its fifteen seeded examples. Every one of those examples is fictional —
+            invented names, reserved <span className="font-mono text-[13px]">555</span> phone
+            numbers and <span className="font-mono text-[13px]">example.com</span> addresses.
+            Only the towns and ZIP codes are real, so the service area looks like the real one.
           </p>
         </section>
 
-        <section className="mt-4 rounded-xl border border-ink-200 bg-white p-5 sm:p-6">
-          <h2 className="flex items-center gap-2 font-display text-[16px] font-semibold text-ink-950">
-            <ShieldCheck className="size-4 text-ink-400" aria-hidden />
+        <section className="border-ink-200 mt-4 rounded-xl border bg-white p-5 sm:p-6">
+          <h2 className="font-display text-ink-950 flex items-center gap-2 text-[16px] font-semibold">
+            <ShieldCheck className="text-ink-400 size-4" aria-hidden />
             On safety
           </h2>
-          <p className="mt-3 text-[14px] leading-relaxed text-ink-700">
-            If a customer reports a gas smell, a carbon monoxide alarm, smoke, sparking electrical
-            equipment, flooding they cannot stop, or sewage backing up, the form stops. It shows
-            emergency guidance and points them at 911 and the relevant utility instead of taking a
-            service request. It does not try to work out what is wrong, and it does not promise
-            anyone will arrive.
+          <p className="text-ink-700 mt-3 text-[14px] leading-relaxed">
+            If a customer reports a gas smell, a carbon monoxide alarm, smoke, sparking
+            electrical equipment, flooding they cannot stop, or sewage backing up, the form
+            stops. It shows emergency guidance and points them at 911 and the relevant utility
+            instead of taking a service request. It does not try to work out what is wrong, and
+            it does not promise anyone will arrive.
           </p>
-          <p className="mt-2.5 text-[13px] leading-relaxed text-ink-500">
-            That wording would be reviewed and signed off by the business before anything like this
-            went live. Nothing here is safety, medical or legal advice.
+          <p className="text-ink-500 mt-2.5 text-[13px] leading-relaxed">
+            That wording would be reviewed and signed off by the business before anything like
+            this went live. Nothing here is safety, medical or legal advice.
           </p>
         </section>
 
-        <section className="mt-4 rounded-xl border border-ink-200 bg-white p-5 sm:p-6">
-          <h2 className="flex items-center gap-2 font-display text-[16px] font-semibold text-ink-950">
-            <Wrench className="size-4 text-ink-400" aria-hidden />
+        <section className="border-ink-200 mt-4 rounded-xl border bg-white p-5 sm:p-6">
+          <h2 className="font-display text-ink-950 flex items-center gap-2 text-[16px] font-semibold">
+            <Wrench className="text-ink-400 size-4" aria-hidden />
             What making it real would involve
           </h2>
           <ol className="mt-4 space-y-3.5">
             {REAL_BUILD.map((item, i) => (
               <li key={item.title} className="flex gap-3.5">
-                <span className="tnum mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border border-ink-200 bg-ink-50 text-[12px] font-semibold text-ink-600">
+                <span className="tnum border-ink-200 bg-ink-50 text-ink-600 mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border text-[12px] font-semibold">
                   {i + 1}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[14px] font-medium text-ink-900">{item.title}</p>
-                  <p className="mt-0.5 text-[13.5px] leading-relaxed text-ink-600">{item.body}</p>
+                  <p className="text-ink-900 text-[14px] font-medium">{item.title}</p>
+                  <p className="text-ink-600 mt-0.5 text-[13.5px] leading-relaxed">
+                    {item.body}
+                  </p>
                 </div>
               </li>
             ))}
           </ol>
-          <p className="mt-4 border-t border-ink-150 pt-3.5 text-[13px] leading-relaxed text-ink-500">
-            That is a few weeks of work, not an afternoon, and it is quotable. Nothing on this site
-            commits anyone to anything.
+          <p className="border-ink-150 text-ink-500 mt-4 border-t pt-3.5 text-[13px] leading-relaxed">
+            That is a few weeks of work, not an afternoon, and it is quotable. Nothing on this
+            site commits anyone to anything.
           </p>
         </section>
 
         {hasBuilderContact() ? (
-          <section className="mt-4 rounded-xl border border-brand-200 bg-brand-50/50 p-5 sm:p-6">
-            <h2 className="font-display text-[16px] font-semibold text-brand-950">Who built this</h2>
+          <section className="border-brand-200 bg-brand-50/50 mt-4 rounded-xl border p-5 sm:p-6">
+            <h2 className="font-display text-brand-950 text-[16px] font-semibold">
+              Who built this
+            </h2>
             {BUILDER.name ? (
-              <p className="mt-2 text-[15px] font-medium text-ink-950">{BUILDER.name}</p>
+              <p className="text-ink-950 mt-2 text-[15px] font-medium">{BUILDER.name}</p>
             ) : null}
-            <p className="mt-0.5 text-[13.5px] text-ink-600">{BUILDER.blurb}</p>
+            <p className="text-ink-600 mt-0.5 text-[13.5px]">{BUILDER.blurb}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {BUILDER.email ? (
                 <Button asChild size="sm" variant="secondary" className="bg-white">
@@ -203,11 +219,13 @@ export function AboutView() {
           </section>
         ) : null}
 
-        <section className="mt-4 rounded-xl border border-ink-200 bg-ink-100/60 p-5 text-[13px] leading-relaxed text-ink-600 sm:p-6">
+        <section className="border-ink-200 bg-ink-100/60 text-ink-600 mt-4 rounded-xl border p-5 text-[13px] leading-relaxed sm:p-6">
           <p>
-            <span className="font-semibold text-ink-800">To reach {BUSINESS.name} for real</span>{" "}
+            <span className="text-ink-800 font-semibold">
+              To reach {BUSINESS.name} for real
+            </span>{" "}
             — service, questions, or anything about your equipment — call{" "}
-            <a href={BUSINESS.phoneHref} className="font-medium text-brand-700 underline">
+            <a href={BUSINESS.phoneHref} className="text-brand-700 font-medium underline">
               {BUSINESS.phone}
             </a>{" "}
             or visit{" "}
@@ -215,7 +233,7 @@ export function AboutView() {
               href={BUSINESS.websiteUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="font-medium text-brand-700 underline"
+              className="text-brand-700 font-medium underline"
             >
               {BUSINESS.website}
             </a>
@@ -233,7 +251,7 @@ export function AboutView() {
           </Button>
         </div>
 
-        <p className="mt-10 border-t border-ink-200 pt-5 text-[11.5px] text-ink-400">
+        <p className="border-ink-200 text-ink-400 mt-10 border-t pt-5 text-[11.5px]">
           {PRODUCT.fullName} · {CONCEPT_NOTICE.builtBy}
         </p>
       </main>

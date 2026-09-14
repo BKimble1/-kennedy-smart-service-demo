@@ -44,13 +44,17 @@ export function validateContact(c: CustomerForm): ContactErrors {
   return errors;
 }
 
+/**
+ * Deliberately someone who is *not* in the seeded inbox, so a request submitted
+ * during a demo is instantly distinguishable from the fifteen already there.
+ */
 const SAMPLE: CustomerForm = {
-  name: "Sarah Whitcomb",
-  phone: "(765) 555-0142",
-  email: "sarah.whitcomb@example.com",
-  address1: "3127 S Boots St",
+  name: "Megan Ruhl",
+  phone: "(765) 555-0164",
+  email: "megan.ruhl@example.com",
+  address1: "1206 W Euclid Ave",
   city: "Marion",
-  zip: "46953",
+  zip: "46952",
   contactMethod: "phone",
   returning: false,
 };

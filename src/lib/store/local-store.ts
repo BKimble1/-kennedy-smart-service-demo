@@ -1,5 +1,10 @@
-import type { ActivityEntry, IntakeDraft, ServiceRequest } from "@/lib/domain/types";
-import { composeRequest } from "./compose";
+import type {
+  ActivityEntry,
+  IntakeDraft,
+  PartialIntake,
+  ServiceRequest,
+} from "@/lib/domain/types";
+import { composePartial, composeRequest } from "./compose";
 import { shortId } from "@/lib/utils/id";
 import { SEED_MAX_REFERENCE, buildSeedRequests } from "./seed";
 import { STATUS_LABEL, type RequestPatch, type RequestStore } from "./types";
@@ -118,15 +123,39 @@ export class LocalRequestStore implements RequestStore {
     return this.read().find((r) => r.id === id || r.reference === id);
   }
 
-  create(draft: IntakeDraft, now = new Date()): ServiceRequest {
+  create(draft: IntakeDraft, now = new Date(), replaceId?: string): ServiceRequest {
     const all = this.read();
-    this.counter += 1;
+    const existing = replaceId ? all.find((r) => r.id === replaceId) : undefined;
+    if (!existing) this.counter += 1;
     const request = composeRequest(draft, {
-      id: shortId("req"),
-      reference: `KSD-${this.counter}`,
+      id: existing?.id ?? shortId("req"),
+      reference: existing?.reference ?? `KSD-${this.counter}`,
       now,
     });
-    this.write([request, ...all]);
+    this.write(
+      existing ? all.map((r) => (r.id === existing.id ? request : r)) : [request, ...all],
+    );
+    this.emit();
+    return request;
+  }
+
+  /**
+   * Captures a request the moment contact details are valid, part-way through
+   * the flow. If the customer finishes, `create` replaces this record in place;
+   * if they don't, the office still has a name, a number and the symptoms.
+   */
+  savePartial(partial: PartialIntake, existingId?: string, now = new Date()): ServiceRequest {
+    const all = this.read();
+    const existing = existingId ? all.find((r) => r.id === existingId) : undefined;
+    if (!existing) this.counter += 1;
+    const request = composePartial(partial, {
+      id: existing?.id ?? shortId("req"),
+      reference: existing?.reference ?? `KSD-${this.counter}`,
+      now: existing ? new Date(existing.createdAt) : now,
+    });
+    this.write(
+      existing ? all.map((r) => (r.id === existing.id ? request : r)) : [request, ...all],
+    );
     this.emit();
     return request;
   }

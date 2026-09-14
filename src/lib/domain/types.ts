@@ -209,6 +209,27 @@ export interface ServiceRequest {
   officeNotes?: string;
   /** Marks records created during this browser session. */
   demoCreated?: boolean;
+  /**
+   * `partial` means the customer gave contact details and then left without
+   * finishing. The office still gets a name, a number and what was reported so
+   * far, instead of the request evaporating.
+   */
+  completion?: "complete" | "partial";
+  /** Which wizard step the customer reached before leaving. */
+  abandonedAt?: string;
+}
+
+/** What we know at the point contact details are captured, mid-flow. */
+export interface PartialIntake {
+  propertyType: PropertyType;
+  category: ServiceCategoryId;
+  issueId: string;
+  urgency: UrgencyId;
+  answers: IntakeAnswer[];
+  safetyFlags: SafetyFlagId[];
+  customer: Customer;
+  notes?: string;
+  reachedStep: string;
 }
 
 /** The payload the intake wizard hands to the store. */

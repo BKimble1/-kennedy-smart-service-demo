@@ -56,6 +56,8 @@ interface SeedSpec {
   notes?: string;
   officeNotes?: string;
   status: RequestStatus;
+  /** Customer gave contact details and then left without finishing. */
+  partial?: boolean;
   assignedTech?: string;
   scheduledFor?: { dayOffset: number; window: AvailabilityWindow };
   customer: {
@@ -455,6 +457,30 @@ const SEEDS: SeedSpec[] = [
     },
   },
   {
+    ref: 4192,
+    minutesAgo: 96,
+    category: "cooling",
+    issueId: "wont-start",
+    urgency: "today",
+    partial: true,
+    answers: [
+      { q: "thermostat", v: ["blank"] },
+      { q: "breaker", v: ["tripped"] },
+      { q: "started-when", v: ["today"] },
+    ],
+    availability: [],
+    status: "new",
+    customer: {
+      name: "Gail Sandiford",
+      phone: "7655550137",
+      email: "",
+      address1: "417 W Charles St",
+      city: "Jonesboro",
+      zip: "46938",
+      contactMethod: "phone",
+    },
+  },
+  {
     ref: 4193,
     minutesAgo: 7200,
     category: "plumbing",
@@ -517,8 +543,12 @@ function buildActivity(spec: SeedSpec, createdAt: Date, now: Date): ActivityEntr
     at: createdAt.toISOString(),
     kind: "submitted",
     actor: spec.customer.name,
-    summary: "Request submitted through the website",
-    detail: `${getCategory(spec.category).label} — ${getIssue(spec.category, spec.issueId)?.label ?? spec.issueId}`,
+    summary: spec.partial
+      ? "Customer entered their details but did not finish"
+      : "Request submitted through the website",
+    detail: spec.partial
+      ? `Reached the contact details step. ${getCategory(spec.category).label} — ${getIssue(spec.category, spec.issueId)?.label ?? spec.issueId}`
+      : `${getCategory(spec.category).label} — ${getIssue(spec.category, spec.issueId)?.label ?? spec.issueId}`,
   });
 
   if (spec.safetyFlags?.length) {
@@ -640,6 +670,8 @@ export function buildSeedRequests(now = new Date()): ServiceRequest[] {
         returning: spec.customer.returning,
       },
       status: spec.status,
+      completion: spec.partial ? "partial" : "complete",
+      abandonedAt: spec.partial ? "contact details" : undefined,
       assignedTech: spec.assignedTech,
       scheduledFor: spec.scheduledFor
         ? {

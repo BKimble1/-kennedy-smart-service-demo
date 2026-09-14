@@ -1,7 +1,12 @@
 "use client";
 
 import { useCallback, useMemo, useSyncExternalStore } from "react";
-import type { ActivityEntry, IntakeDraft, ServiceRequest } from "@/lib/domain/types";
+import type {
+  ActivityEntry,
+  IntakeDraft,
+  PartialIntake,
+  ServiceRequest,
+} from "@/lib/domain/types";
 import { getStore } from "./local-store";
 import type { RequestPatch } from "./types";
 
@@ -24,7 +29,10 @@ export function useRequests() {
 
   const actions = useMemo(
     () => ({
-      create: (draft: IntakeDraft) => store.create(draft),
+      create: (draft: IntakeDraft, replaceId?: string) =>
+        store.create(draft, new Date(), replaceId),
+      savePartial: (partial: PartialIntake, existingId?: string) =>
+        store.savePartial(partial, existingId),
       update: (id: string, patch: RequestPatch, actor?: string) =>
         store.update(id, patch, actor),
       addActivity: (id: string, entry: Omit<ActivityEntry, "id" | "at">) =>

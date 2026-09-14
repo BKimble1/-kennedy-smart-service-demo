@@ -11,6 +11,7 @@ import {
   Camera,
   ClipboardCheck,
   FileText,
+  Hourglass,
   Info,
   ListChecks,
   Moon,
@@ -42,6 +43,11 @@ const BENEFITS = [
     icon: Moon,
     title: "After-hours lead capture",
     body: `The office is open ${BUSINESS.officeHoursLabel}. A request submitted at 11pm arrives complete and is ready to work first thing.`,
+  },
+  {
+    icon: Hourglass,
+    title: "Half-finished requests still reach you",
+    body: "As soon as someone enters a name and number, the request is captured. If they close the tab before choosing a time, the office still has the person and the symptoms rather than nothing.",
   },
   {
     icon: ClipboardCheck,
@@ -226,7 +232,7 @@ export function ImpactView() {
             right now. Realistic for a contractor of this size, and the same counts you would be
             reading from real traffic.
           </p>
-          <div className="mt-5 grid gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-5 grid gap-2.5 sm:grid-cols-2 xl:grid-cols-5">
             <InboxFact
               icon={Moon}
               value={hydrated ? metrics.afterHours : 0}
@@ -250,6 +256,12 @@ export function ImpactView() {
               value={hydrated ? metrics.emergency : 0}
               total={requests.length}
               label="ranked emergency and surfaced first"
+            />
+            <InboxFact
+              icon={Hourglass}
+              value={hydrated ? metrics.partials : 0}
+              total={requests.length}
+              label="captured before the customer finished"
             />
           </div>
         </section>

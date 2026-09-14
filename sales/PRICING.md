@@ -10,6 +10,9 @@ The one page they see is at the bottom. It has three prices and no hourly rates 
 
 ---
 
+> **Tier names.** Option 1 / 2 / 3 here are the Starter / Pro / Full tiers. The client-facing
+> `ONE-PAGE-PROPOSAL.md` calls them Starter / Middle / Full — same scopes, same prices.
+
 ## Index card — the four numbers for 8am
 
 - **Open at $8,900** (Option 2). Say it once and stop talking.
