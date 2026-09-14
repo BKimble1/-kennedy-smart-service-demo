@@ -14,7 +14,6 @@ import { primaryProtocol } from "@/lib/domain/safety";
 import type { SafetyFlagId, UrgencyId } from "@/lib/domain/types";
 import { previewRequest } from "@/lib/store/compose";
 import { useRequests } from "@/lib/store/use-requests";
-import { cn } from "@/lib/utils/cn";
 import { formatAvailability } from "@/lib/utils/format";
 import {
   ArrowLeft,
@@ -560,10 +559,6 @@ function ReviewPanel({
         </a>
         .
       </p>
-
-      <div className={cn("flex justify-center pt-1")}>
-        <ConceptNotice />
-      </div>
     </div>
   );
 }

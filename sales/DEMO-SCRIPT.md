@@ -2,7 +2,9 @@
 
 For [YOUR NAME]. Read it out loud before you walk in.
 
-**Runtime:** about two minutes of clicking if nobody stops you. Assume you are in the building fifteen. If they ask a question, stop clicking and answer it.
+**Runtime:** about two minutes of clicking if nobody stops you — call it ninety seconds if you skip the optional last beat. Assume you are in the building fifteen. If they ask a question, stop clicking and answer it.
+
+**If you are sending the link instead of standing there**, the app has its own guided walkthrough at `/demo` — a bar at the bottom of the screen tells the owner what to click, one step at a time, and it can be dismissed. That is what the link in your email leads to.
 
 **Three standing rules:**
 
@@ -171,6 +173,24 @@ Do not skip the photo. Every screen after this one shows it.
 > "One more thing before you ask me: right now this is a demo with no login on it. Names, phone numbers, addresses, photos of the inside of somebody's house. A real install gets logins and the data lives in a proper database on your account instead of in a browser. I'd rather tell you that than have you find it."
 
 **THEY SEE:** A customer reply draft with a copy button, and the technician prep sheet below it.
+
+---
+
+### Beat 12 — The one that never finished (only if they are still with you)
+
+Skip this if they have checked out. If they are leaning in, it is the beat that answers the objection they have not said out loud yet.
+
+**CLICK:** Back to the inbox. Find the request marked **Unfinished** — Gail Sandiford — and open it.
+
+**SAY:**
+
+> "Here's the one I'd want you to look at. She never finished. Got as far as putting her name and number in and closed it. You still have her: name, number, address, thermostat's dead, breaker tripped, wants somebody today. On a contact form that request doesn't exist — she just never shows up."
+
+**THEY SEE:** A yellow banner saying the request was never finished, what is missing (photos and preferred times), and everything she had already entered.
+
+Say nothing after that. Let them work out what it is worth.
+
+---
 
 **Then stop.** Hands off the keyboard.
 

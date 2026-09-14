@@ -172,7 +172,15 @@ export function ConfirmationView({ id }: { id: string }) {
             {[
               {
                 title: "The office reviews what you sent",
-                body: `Everything you answered — including your photos and preferred times — arrives together, so nobody has to call you back for basics.`,
+                body: `Everything you answered${
+                  request.photos.length && request.availability.length
+                    ? ", including your photos and preferred times,"
+                    : request.photos.length
+                      ? ", including your photos,"
+                      : request.availability.length
+                        ? ", including the times you gave,"
+                        : ""
+                } arrives together, so nobody has to call you back for basics.`,
               },
               {
                 title: "Someone calls you to confirm",
