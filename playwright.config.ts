@@ -25,6 +25,20 @@ export default defineConfig({
       args: ["--no-sandbox", "--disable-dev-shm-usage"],
     },
   },
+  /*
+   * E2E runs against a production build — the same artifact that gets deployed,
+   * and free of the dev server's HMR client. Locally an already-running server
+   * is reused; on CI Playwright starts and stops its own.
+   */
+  webServer: {
+    command: `npx next start -p ${PORT}`,
+    url: baseURL,
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+    stdout: "pipe",
+    stderr: "pipe",
+  },
+
   projects: [
     {
       name: "desktop",
